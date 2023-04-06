@@ -1,0 +1,196 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+package "Activities" #DDDDDD {
+  class SearchAvailableInventoryActivity{
+  handleRequest()
+  }
+
+class GetAvailableInventoryActivity{
+handleRequest()
+}
+
+class GetReservedInventoryActivity{
+handleRequest()
+}
+
+class GetTotalInventoryActivty{
+handleRequest()
+}
+
+class UpdateAvailableInventroyActivity{
+-metricsPublisher
+handleRequest()
+}
+
+class UpdateReservedInventroyActivity{
+-metricsPublisher
+handleRequest()
+}
+
+class CreateOrderActivity{
+handleRequest()
+}
+
+class UpdateOrderActivity{
+-metricsPublisher
+handleRequest()
+//use cases 8, 9, 13 included in this activity
+}
+
+class GetOrderActivity{
+handleRequest()
+//use case 11 & 12
+}
+}
+package "DAOs" #FFE633 {
+class AvailableInventoryDao {
+    -dynamDBMapper
+    -metricsPublisher
+    +getAvailableInventory()
+    +saveAvailableInventory()
+}
+
+class ReservedInventoryDao {
+    -dynamDBMapper
+    -metricsPublisher
+    +getReservedInventory()
+    +saveReservedInventory()
+}
+class OrderInventoryDao {
+    -dynamDBMapper
+    -metricsPublisher
+    +getOrders()
+    +saveOrders()
+}
+}
+
+package "Models" #A2FF33 {
+class Beer {
+    //dynamoDBModel
+    -String Id
+    -Enum beerType
+    -String name
+    -Enum packaging
+    -BigDecimal price
+    -Intger units
+}
+
+class Order {
+    //dynamoDBmodel
+    -String Id
+    -String ClientId
+    -List orderItems
+    -BigDecimal totalCost
+    -Boolean orderProcessed
+}
+
+class OrderItem {
+    //dynamoDBmodel
+    -String Id
+    -Intger units
+    -BigDecimal itemPrice
+}
+}
+
+package "Enums" #33FFF3 {
+enum BeerType {
+STOUT
+PORTER
+IPA
+LAGER
+}
+
+enum PackagingType {
+KEG
+CASE
+}
+}
+
+package "Lambda" #3399FF {
+    class SearchAvailableInventoryLambda {
+    }
+
+    class SearchAvailableInventoryLambda {
+    }
+
+    class GetAvailableInventoryLambda {
+    }
+
+    class GetReservedInventoryLambda {
+    }
+
+    class GetTotalInventoryLambda {
+    }
+
+    class UpdateAvailableInventroyLambda {
+    }
+
+    class UpdateReservedInventroyLambda {
+    }
+
+    class CreateOrderLambda {
+    }
+
+    class UpdateOrderLambda {
+    }
+
+    class GetOrderLambda {
+    }
+}
+package "Metrics" #C133FF {
+    class MetricConstants{
+    }
+    class MetricsPublisher{
+    }
+}
+
+    class LambdaRequest{
+    }
+
+    class LambdaResponse{
+    }
+    class AuthenticatedLambdaRequest{
+    }
+    class LambdaActivityRunner{
+        }
+
+
+LambdaActivityRunner <-- UpdateOrderLambda
+LambdaActivityRunner <-- SearchAvailableInventoryLambda
+LambdaActivityRunner <-- GetOrderLambda
+LambdaActivityRunner <-- CreateOrderLambda
+LambdaActivityRunner <-- GetAvailableInventoryLambda
+LambdaActivityRunner <-- UpdateReservedInventroyLambda
+LambdaActivityRunner <-- UpdateReservedInventroyLambda
+LambdaActivityRunner <-- GetTotalInventoryLambda
+LambdaActivityRunner <-- GetReservedInventoryLambda
+LambdaActivityRunner --> LambdaResponse
+LambdaRequest --> LambdaActivityRunner
+AuthenticatedLambdaRequest --> LambdaActivityRunner
+Beer  <-- BeerType
+AvailableInventoryDao <-- Beer
+Beer <-- PackagingType
+Order <-- OrderItem
+ReservedInventoryDao <-- Beer
+OrderInventoryDao <-- Order
+SearchAvailableInventoryActivity <-- AvailableInventoryDao
+GetAvailableInventoryActivity <-- AvailableInventoryDao
+GetReservedInventoryActivity <-- ReservedInventoryDao
+UpdateAvailableInventroyActivity <-- AvailableInventoryDao
+UpdateReservedInventroyActivity <--AvailableInventoryDao
+CreateOrderActivity <-- OrderInventoryDao
+GetOrderActivity <-- OrderInventoryDao
+UpdateOrderActivity <--OrderInventoryDao
+GetTotalInventoryActivty <-- AvailableInventoryDao
+GetTotalInventoryActivty <-- ReservedInventoryDao
+SearchAvailableInventoryLambda <-- SearchAvailableInventoryActivity
+GetAvailableInventoryLambda <-- GetAvailableInventoryActivity
+GetReservedInventoryLambda <-- GetReservedInventoryActivity
+GetOrderLambda <-- GetOrderActivity
+UpdateOrderLambda <-- UpdateOrderActivity
+GetTotalInventoryLambda <-- GetTotalInventoryActivty
+UpdateReservedInventroyLambda <-- UpdateReservedInventroyActivity
+CreateOrderLambda <-- CreateOrderActivity
+UpdateAvailableInventroyLambda <-- UpdateAvailableInventroyActivity
+@enduml
