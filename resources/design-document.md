@@ -97,6 +97,7 @@ _The functionality here does not need to be accounted for in your design._
 
 _Describe broadly how you are proposing to solve for the requirements you described in Section 2. This may include class diagram(s) showing what components you are planning to build. You should argue why this architecture (organization of components) is reasonable. That is, why it represents a good data flow and a good separation of concerns. Where applicable, argue why this architecture satisfies the stated requirements._
 
+https://github.com/nss-se-cohort-02/u5-project-team-6-six-pack-innovations/blob/main/resources/SixPackInnovationsCD.puml
 
 
 # 6. API
@@ -104,6 +105,9 @@ _Describe broadly how you are proposing to solve for the requirements you descri
 ## 6.1. Public Models
 
 _Define the data models your service will expose in its responses via your *`-Model`* package. These will be equivalent to the *`PlaylistModel`* and *`SongModel`* from the Unit 3 project._
+OrderModel
+OrderItemModel
+BeerModel
 
 ## 6.2. _First Endpoint_
 
@@ -111,13 +115,50 @@ _Describe the behavior of the first endpoint you will build into your service AP
 
 _(You should have a separate section for each of the endpoints you are expecting to build...)_
 
+Accepts GET requests to /availableinventory:id
+Accpet an id to check the inventory
+if Id is not found, will throw an BeerNotFoundException
+
+
 ## 6.3 _Second Endpoint_
 
 _(repeat, but you can use shorthand here, indicating what is different, likely primarily the data in/out and error conditions. If the sequence diagram is nearly identical, you can say in a few words how it is the same/different from the first endpoint)_
 
+Accepts PUT requests to /availableinventory:id
+-returns the updated available inventory
+Accepts an id to update the inventory
+if Id is not found, will throw BeerNotFoundException
+if quantity invalid will throw InvalidAttributeException
+
 # 7. Tables
 
 _Define the DynamoDB tables you will need for the data your service will use. It may be helpful to first think of what objects your service will need, then translate that to a table structure, like with the *`Playlist` POJO* versus the `playlists` table in the Unit 3 project._
+
+TABLES:
+available_inventory
+id //partition key, string
+type // sort key, string
+name // string
+units // number
+
+reserved_inventory
+id // partition key, string
+type // sort key, string
+name // string
+units // number
+
+orders
+id // partition key, string
+customer_Id // string
+order_items // string list
+total_price // number
+
+INDEX:
+orders
+customer_Id // partition key, string
+id // string
+order_items // string list
+total_price // number
 
 # 8. Pages
 
