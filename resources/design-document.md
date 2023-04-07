@@ -109,26 +109,58 @@ OrderModel
 OrderItemModel
 BeerModel
 
-## 6.2. _First Endpoint_
-
-_Describe the behavior of the first endpoint you will build into your service API. This should include what data it requires, what data it returns, and how it will handle any known failure cases. You should also include a sequence diagram showing how a user interaction goes from user to website to service to database, and back. This first endpoint can serve as a template for subsequent endpoints. (If there is a significant difference on a subsequent endpoint, review that with your team before building it!)_
-
-_(You should have a separate section for each of the endpoints you are expecting to build...)_
-
+## 6.2. _Get Available Inventory_
 Accepts GET requests to /availableinventory:id
 Accpet an id to check the inventory
 if Id is not found, will throw an BeerNotFoundException
 
 
-## 6.3 _Second Endpoint_
-
-_(repeat, but you can use shorthand here, indicating what is different, likely primarily the data in/out and error conditions. If the sequence diagram is nearly identical, you can say in a few words how it is the same/different from the first endpoint)_
-
-Accepts PUT requests to /availableinventory:id
+## 6.3 _Update Available Inventory_
+Accepts PUT requests to /availableinventory:beer object
 -returns the updated available inventory
-Accepts an id to update the inventory
+Accepts a beer object
 if Id is not found, will throw BeerNotFoundException
 if quantity invalid will throw InvalidAttributeException
+
+## 6.4 _Search Available Inventory_
+**Drop down menu to solve this endpoint??
+Accepts a GET request to /searchavailableinventory : String 
+(This will be a beer type ENUM) 
+If String is not found, will throw a BeerNotFoundException
+If String is null, will throw a InvalidAttributeException
+
+## 6.5 _Get Reserved Inventory_
+Accepts GET requests to /reservedinventory:id
+Accpet an id to check the inventory
+if Id is not found, will throw an BeerNotFoundException
+
+## 6.6 _Update Reserved Inventory_
+Accepts PUT requests to /reservedinventory:beer object
+-returns the updated reserved inventory
+Accepts a beer object
+if Id is not found, will throw BeerNotFoundException
+if quantity invalid will throw InvalidAttributeException
+
+## 6.7 _Create Order Lambda_
+Accepts a POST request to /orders : order Object
+- returns a unique order Id implemented by the service
+Accepts an order object
+
+## 6.8 _Get Total Inventory_
+Accepts a GET request to /inventory : ??
+- returns all beer items from the list from both available and reserved inventory tables
+If no beers are in table will throw OutOfStockException
+
+## 6.9 _Update Order_
+Accepts a PUT request to /orders : order object
+- returns order 
+**Notifies client that the order status has changed
+
+## 6.10 _Get Order_
+Accepts a GET request to /orders : string (orderId)
+- returns order
+If order is not found returns OrderNotFoundException
+
 
 # 7. Tables
 
