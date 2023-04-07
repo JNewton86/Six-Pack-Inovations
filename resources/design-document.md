@@ -13,7 +13,6 @@ _You should take a look at the [example design document](example-design-document
 -Managing the inventory of a brewery.
 -Managing the orders that a brewery receives for their product.
 -Tracking sales/profits of orders from customers over a period of time.
--Managing ingredients malt, barley, hops, water, etc.
 
 ## 2. Top Questions to Resolve in Review
 
@@ -39,19 +38,19 @@ U5. _As a [product] customer, I want to `add inventory to either kegs or cases` 
 
 U6. _As a [product] customer, I want my clients to be able to place an order for a specific beer type by kegs, cases or both_
 
-U7. _As a product customer, I want the available inventory and reserved inventory to update when a client places an order from us.
+U7. _As a product customer, I want the available inventory and reserved inventory to update when a client places an order from us._
 
-U8. _As a customer, I would like orders to be manually processed by an employee after a client places an order.
+U8. _As a customer, I would like orders to be manually processed by an employee after a client places an order._
 
-U9. _As a customer, I would like clients to be automatically informed when their orders are processed.
+U9. _As a customer, I would like clients to be automatically informed when their orders are processed._
 
-U10. _As a customer, I would like clients to be able to view the process of their orders on a client page.
+U10. _As a customer, I would like clients to be able to view the process of their orders on a client page._
 
-U11. _As a customer, I would like to be able to view all pending orders for our product.
+U11. _As a customer, I would like to be able to view all pending orders for our product._
 
-U12. _As a customer, I would like to be able to view order history by time.
+U12. _As a customer, I would like to be able to view order history by time._
 
-U13. _As a customer, I would like to be able to press a button on the pending orders page to indicate an order has been processed.
+U13. _As a customer, I would like to be able to press a button on the pending orders page to indicate an order has been processed._
 
 ## 4. Project Scope
 
@@ -106,7 +105,6 @@ https://github.com/nss-se-cohort-02/u5-project-team-6-six-pack-innovations/blob/
 
 _Define the data models your service will expose in its responses via your *`-Model`* package. These will be equivalent to the *`PlaylistModel`* and *`SongModel`* from the Unit 3 project._
 OrderModel
-OrderItemModel
 BeerModel
 
 ## 6.2. _Get Available Inventory_
