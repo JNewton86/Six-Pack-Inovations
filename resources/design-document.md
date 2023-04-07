@@ -191,6 +191,6 @@ total_price // number
 
 _Include mock-ups of the web pages you expect to build. These can be as sophisticated as mockups/wireframes using drawing software, or as simple as hand-drawn pictures that represent the key customer-facing components of the pages. It should be clear what the interactions will be on the page, especially where customers enter and submit data. You may want to accompany the mockups with some description of behaviors of the page (e.g. “When customer submits the submit-dog-photo button, the customer is sent to the doggie detail page”)_
 
-<img width="1146" alt="image" src="https://user-images.githubusercontent.com/10236355/230640458-fdce13ae-8280-479a-87ce-547ec194943b.png">
 
+![website planning](https://user-images.githubusercontent.com/10236355/230640662-80d52eda-f32a-4dcc-9e1f-4fb889a12098.png)
 
