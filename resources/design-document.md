@@ -114,7 +114,6 @@ Accepts GET requests to /availableinventory:id
 Accpet an id to check the inventory
 if Id is not found, will throw an BeerNotFoundException
 
-
 ## 6.3 _Update Available Inventory_
 Accepts PUT requests to /availableinventory:beer object
 -returns the updated available inventory
@@ -134,9 +133,10 @@ Accepts GET requests to /reservedinventory:id
 Accpet an id to check the inventory
 if Id is not found, will throw an BeerNotFoundException
 
-## 6.6 _Update Reserved Inventory_
-Accepts PUT requests to /reservedinventory:beer object
--returns the updated reserved inventory
+## 6.6 _Update Inventory_
+**use this when an order is created
+Accepts PUT requests to /inventory:beer object
+- return boolean of success/failure
 Accepts a beer object
 if Id is not found, will throw BeerNotFoundException
 if quantity invalid will throw InvalidAttributeException
@@ -145,11 +145,6 @@ if quantity invalid will throw InvalidAttributeException
 Accepts a POST request to /orders : order Object
 - returns a unique order Id implemented by the service
 Accepts an order object
-
-## 6.8 _Get Total Inventory_
-Accepts a GET request to /inventory : ??
-- returns all beer items from the list from both available and reserved inventory tables
-If no beers are in table will throw OutOfStockException
 
 ## 6.9 _Update Order_
 Accepts a PUT request to /orders : order object
