@@ -2,131 +2,107 @@
 'https://plantuml.com/class-diagram
 
 package "Activities" #DDDDDD {
-  class SearchAvailableInventoryActivity{
-  handleRequest()
-  }
 
-class GetAvailableInventoryActivity{
-handleRequest()
-}
+    class SearchAvailableInventoryActivity{
+        handleRequest()
+    }
 
-class GetReservedInventoryActivity{
-handleRequest()
-}
+    class GetInventoryActivity{
+        handleRequest()
+    }
 
-class GetTotalInventoryActivty{
-handleRequest()
-}
+    class UpdateInventoryActivity{
+        -metricsPublisher
+        handleRequest()
+    }
 
-class UpdateAvailableInventroyActivity{
--metricsPublisher
-handleRequest()
-}
+    class CreateOrderActivity{
+        handleRequest()
+    }
 
-class UpdateReservedInventroyActivity{
--metricsPublisher
-handleRequest()
-}
+    class UpdateOrderActivity{
+        -metricsPublisher
+        handleRequest()
+        //use cases 8, 9, 13 included in this activity
+    }
 
-class CreateOrderActivity{
-handleRequest()
-}
-
-class UpdateOrderActivity{
--metricsPublisher
-handleRequest()
-//use cases 8, 9, 13 included in this activity
+    class GetOrderActivity{
+    handleRequest()
+    //use case 11 & 12
+    }
 }
 
-class GetOrderActivity{
-handleRequest()
-//use case 11 & 12
-}
-}
 package "DAOs" #FFE633 {
-class AvailableInventoryDao {
-    -dynamDBMapper
-    -metricsPublisher
-    +getAvailableInventory()
-    +saveAvailableInventory()
-}
 
-class ReservedInventoryDao {
-    -dynamDBMapper
-    -metricsPublisher
-    +getReservedInventory()
-    +saveReservedInventory()
-}
-class OrderInventoryDao {
-    -dynamDBMapper
-    -metricsPublisher
-    +getOrders()
-    +saveOrders()
-}
+    class InventoryDao {
+        -dynamDBMapper
+        -metricsPublisher
+        +getAvailableInventory()
+        +saveAvailableInventory()
+    }
+
+
+    class OrderDao {
+        -dynamDBMapper
+        -metricsPublisher
+        +getOrders()
+        +saveOrders()
+    }
 }
 
 package "Models" #A2FF33 {
-class Beer {
-    //dynamoDBModel
-    -String Id
-    -Enum beerType
-    -String name
-    -Enum packaging
-    -BigDecimal price
-    -Intger units
-}
 
-class Order {
-    //dynamoDBmodel
-    -String Id
-    -String ClientId
-    -List orderItems
-    -BigDecimal totalCost
-    -Boolean orderProcessed
-}
+    class Beer {
+        //dynamoDBModel
+        -String id
+        -Enum PACKAGINGTYPE
+        -String name
+        -Enum packaging
+        -BigDecimal unitPrice
+        -Intger availableUnits
+        -Intger reservedUnits
+        -Intger totalUnits
+    }
 
-class OrderItem {
-    //dynamoDBmodel
-    -String Id
-    -Intger units
-    -BigDecimal itemPrice
-}
+    class Order {
+        //dynamoDBmodel
+        -String Id
+        -String ClientId
+        -List orderItems
+        -BigDecimal totalCost
+        -Boolean orderProcessed
+    }
+
+    class OrderItem {
+        //dynamoDBmodel
+        -String id
+        -String enum PackagingType
+        -Intger units
+        -BigDecimal lineItemPrice
+    }
 }
 
 package "Enums" #33FFF3 {
-enum BeerType {
-STOUT
-PORTER
-IPA
-LAGER
-}
 
-enum PackagingType {
-KEG
-CASE
-}
+    enum BeerType {
+        STOUT
+        PORTER
+        IPA
+        LAGER
+    }
+
+    enum PackagingType {
+        KEG
+        CASE
+    }
 }
 
 package "Lambda" #3399FF {
-    class SearchAvailableInventoryLambda {
+
+    class GetInventoryLambda {
     }
 
-    class SearchAvailableInventoryLambda {
-    }
-
-    class GetAvailableInventoryLambda {
-    }
-
-    class GetReservedInventoryLambda {
-    }
-
-    class GetTotalInventoryLambda {
-    }
-
-    class UpdateAvailableInventroyLambda {
-    }
-
-    class UpdateReservedInventroyLambda {
+    class UpdateInventoryLambda {
     }
 
     class CreateOrderLambda {
@@ -137,6 +113,9 @@ package "Lambda" #3399FF {
 
     class GetOrderLambda {
     }
+
+    class SearchAvailableInventoryLambda {
+    }
 }
 package "Metrics" #C133FF {
     class MetricConstants{
@@ -145,6 +124,11 @@ package "Metrics" #C133FF {
     }
 }
 
+
+    class LambdaActivityRunner{
+        }
+
+package "Lambda Request & Responses" #FF338A{
     class LambdaRequest{
     }
 
@@ -152,45 +136,32 @@ package "Metrics" #C133FF {
     }
     class AuthenticatedLambdaRequest{
     }
-    class LambdaActivityRunner{
-        }
-
-
+}
 LambdaActivityRunner <-- UpdateOrderLambda
-LambdaActivityRunner <-- SearchAvailableInventoryLambda
 LambdaActivityRunner <-- GetOrderLambda
 LambdaActivityRunner <-- CreateOrderLambda
-LambdaActivityRunner <-- GetAvailableInventoryLambda
-LambdaActivityRunner <-- UpdateReservedInventroyLambda
-LambdaActivityRunner <-- UpdateReservedInventroyLambda
-LambdaActivityRunner <-- GetTotalInventoryLambda
-LambdaActivityRunner <-- GetReservedInventoryLambda
+LambdaActivityRunner <-- UpdateInventoryLambda
+LambdaActivityRunner <-- GetInventoryLambda
+LambdaActivityRunner <-- SearchAvailableInventoryLambda
 LambdaActivityRunner --> LambdaResponse
 LambdaRequest --> LambdaActivityRunner
 AuthenticatedLambdaRequest --> LambdaActivityRunner
 Beer  <-- BeerType
-AvailableInventoryDao <-- Beer
 Beer <-- PackagingType
 Order <-- OrderItem
-ReservedInventoryDao <-- Beer
-OrderInventoryDao <-- Order
-SearchAvailableInventoryActivity <-- AvailableInventoryDao
-GetAvailableInventoryActivity <-- AvailableInventoryDao
-GetReservedInventoryActivity <-- ReservedInventoryDao
-UpdateAvailableInventroyActivity <-- AvailableInventoryDao
-UpdateReservedInventroyActivity <--AvailableInventoryDao
-CreateOrderActivity <-- OrderInventoryDao
-GetOrderActivity <-- OrderInventoryDao
-UpdateOrderActivity <--OrderInventoryDao
-GetTotalInventoryActivty <-- AvailableInventoryDao
-GetTotalInventoryActivty <-- ReservedInventoryDao
+InventoryDao <-- Beer
+OrderDao <-- Order
+
+CreateOrderActivity <-- OrderDao
+GetOrderActivity <-- OrderDao
+UpdateOrderActivity <--OrderDao
+GetInventoryActivity <-- InventoryDao
+UpdateInventoryActivity <--InventoryDao
+SearchAvailableInventoryActivity <-- InventoryDao
 SearchAvailableInventoryLambda <-- SearchAvailableInventoryActivity
-GetAvailableInventoryLambda <-- GetAvailableInventoryActivity
-GetReservedInventoryLambda <-- GetReservedInventoryActivity
+UpdateInventoryLambda <-- UpdateInventoryActivity
+GetInventoryLambda <-- GetInventoryActivity
 GetOrderLambda <-- GetOrderActivity
 UpdateOrderLambda <-- UpdateOrderActivity
-GetTotalInventoryLambda <-- GetTotalInventoryActivty
-UpdateReservedInventroyLambda <-- UpdateReservedInventroyActivity
 CreateOrderLambda <-- CreateOrderActivity
-UpdateAvailableInventroyLambda <-- UpdateAvailableInventroyActivity
 @enduml

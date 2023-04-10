@@ -108,14 +108,14 @@ BeerModel (see table for model)
 OrderItemModel 
   beer, packaging, quantity, and lineItemPrice 
 
-## 6.2. _Get Available Inventory_
-Accepts GET requests to /availableinventory:id
+## 6.2. _Get Inventory_
+Accepts GET requests to /inventory:id
 Accpet an id to check the inventory
 if Id is not found, will throw an BeerNotFoundException
 
-## 6.3 _Update Available Inventory_
-Accepts PUT requests to /availableinventory:beer object
--returns the updated available inventory
+## 6.3 _Update Inventory_
+Accepts PUT requests to /inventory:beer
+-returns the updated inventory
 Accepts a beer object
 if Id is not found, will throw BeerNotFoundException
 if quantity invalid will throw InvalidAttributeException
@@ -127,30 +127,17 @@ Accepts a GET request to /searchavailableinventory : String
 If String is not found, will throw a BeerNotFoundException
 If String is null, will throw a InvalidAttributeException
 
-## 6.5 _Get Reserved Inventory_
-Accepts GET requests to /reservedinventory:id
-Accpet an id to check the inventory
-if Id is not found, will throw an BeerNotFoundException
-
-## 6.6 _Update Inventory_
-**use this when an order is created
-Accepts PUT requests to /inventory:beer object
-- return boolean of success/failure
-Accepts a beer object
-if Id is not found, will throw BeerNotFoundException
-if quantity invalid will throw InvalidAttributeException
-
-## 6.7 _Create Order Lambda_
+## 6.5 _Create Order Lambda_
 Accepts a POST request to /orders : order Object
 - returns a unique order Id implemented by the service
 Accepts an order object
 
-## 6.9 _Update Order_
+## 6.6 _Update Order Lambda_
 Accepts a PUT request to /orders : order object
 - returns order 
 **Notifies client that the order status has changed
 
-## 6.10 _Get Order_
+## 6.7 _Get Order Lambda_
 Accepts a GET request to /orders : string (orderId)
 - returns order
 If order is not found returns OrderNotFoundException
