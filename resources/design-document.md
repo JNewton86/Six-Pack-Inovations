@@ -24,33 +24,32 @@ _List the most important questions you have about your design, or things that yo
 
 ## 3. Use Cases
 
+MVP
 _This is where we work backwards from the customer and define what our customers would like to do (and why). You may also include use cases for yourselves (as developers), or for the organization providing the product to customers._
 
-U1. _As a [product] customer, I want to `be able to view a table to check current total inventory level by beer type` when I `open the inventory menu`_
+U1. _As a [product] customer, I want to `be able to view a table to check current available, reserved and total inventory level by beer type` when I `open the inventory menu`_
 
-U2. _As a [product] customer, I want to `be able to view a table to check current available inventory level by beer type` when I `open the inventory menu`_
+U5. _As a [product] customer, I want to `update inventory by beer type and packaging for avaiable and reserved units` when I `open the update inventory page`_
 
-U3. _As a [product] customer, I want to `be able to view a table to check current reserved inventory level by beer type` when I `open the inventory menu`_
 
-U4. _As a [product] customer, I want to `be able to view a specific page for a beer type' when 'I click on the beer name from the inventory menu'_
-
-U5. _As a [product] customer, I want to `add inventory to either kegs or cases` when I `open the specific beer type's page`_
-
+Client Orders
 U6. _As a [product] customer, I want my clients to be able to place an order for a specific beer type by kegs, cases or both_
 
 U7. _As a product customer, I want the available inventory and reserved inventory to update when a client places an order from us._
 
+
+Employee Processing
+U11. _As a customer, I would like to be able to view all pending orders for our product._
+
 U8. _As a customer, I would like orders to be manually processed by an employee after a client places an order._
 
+Reach
 U9. _As a customer, I would like clients to be automatically informed when their orders are processed._
 
 U10. _As a customer, I would like clients to be able to view the process of their orders on a client page._
 
-U11. _As a customer, I would like to be able to view all pending orders for our product._
+U12. _As a customer, I would like to be able to view prior orders._
 
-U12. _As a customer, I would like to be able to view order history by time._
-
-U13. _As a customer, I would like to be able to press a button on the pending orders page to indicate an order has been processed._
 
 ## 4. Project Scope
 
@@ -104,8 +103,10 @@ https://github.com/nss-se-cohort-02/u5-project-team-6-six-pack-innovations/blob/
 ## 6.1. Public Models
 
 _Define the data models your service will expose in its responses via your *`-Model`* package. These will be equivalent to the *`PlaylistModel`* and *`SongModel`* from the Unit 3 project._
-OrderModel
-BeerModel
+OrderModel (see table for model)
+BeerModel (see table for model)
+OrderItemModel 
+  beer, packaging, quantity, and lineItemPrice 
 
 ## 6.2. _Get Available Inventory_
 Accepts GET requests to /availableinventory:id
@@ -160,30 +161,30 @@ If order is not found returns OrderNotFoundException
 _Define the DynamoDB tables you will need for the data your service will use. It may be helpful to first think of what objects your service will need, then translate that to a table structure, like with the *`Playlist` POJO* versus the `playlists` table in the Unit 3 project._
 ```
 TABLES:
-available_inventory
-id //partition key, string(specific to type of beer)
-packagetype // sort key, string (key, case, etc.)
-name // string
-units // number
 
-reserved_inventory
-id //partition key, string(specific to type of beer)
-packagetype // sort key, string (key, case, etc.)
+inventory
+id //partition key, string (specific to type of beer)
+packagingType // sort key, string (key, case, etc.)
 name // string
-units // number
+availableUnits // number
+reserveUnits // number
+totalUnits // number
+pricePerUnit // number
 
 orders
-id // partition key, string
-customer_Id // string
-order_items // string list
-total_price // number
+orderid // partition key, string
+customerId // string
+orderedItems // string (JSON) (JSON to include id, packagingtype, and number)
+totalPrice // number
 
 INDEX:
 orders
-customer_Id // partition key, string
+customerId // partition key, string
 id // string
-order_items // string list
-total_price // number
+
+beer // string 
+totalPrice // number
+
 ```
 # 8. Pages
 
