@@ -61,7 +61,7 @@
         "Item": {
           "id": { "S": "B019HKJTCM" },
           "beerType": {"S":  "IPA"},
-          "packagingType": { "S": "case" },
+          "packagingType": { "S": "Case" },
           "name": { "S": "Werewolf Beach Party" },
           "availableUnits": { "N": "30" },
           "reservedUnits": { "N": "5" },
