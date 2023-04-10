@@ -125,7 +125,7 @@ if quantity invalid will throw InvalidAttributeException
 Accepts a GET request to /searchavailableinventory : String 
 (This will be a beer type ENUM) 
 If String is not found, will throw a BeerNotFoundException
-If String is null, will throw a InvalidAttributeException
+If String is empty, will throw a InvalidAttributeException
 
 ## 6.5 _Create Order Lambda_
 Accepts a POST request to /orders : order Object

@@ -379,6 +379,22 @@ Resources:
       BillingMode: "PAY_PER_REQUEST"
       TableName: "album_tracks"
 
+  BeerInventoryTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      AttributeDefinitions:
+        - AttributeName: "beerId"
+          AttributeType: "S"
+        - AttributeName: "packageType"
+          AttributeType: "S"
+      KeySchema:
+        - AttributeName: "beerId"
+          KeyType: "HASH"
+        - AttributeName: "packageType"
+          KeyType: "RANGE"
+      BillingMode: "PAY_PER_REQUEST"
+      TableName: "beer_inventory"
+
 #-----------------------------------------------------
 # The outputs defined below will be printed
 #  to the screen after a successful deploy
