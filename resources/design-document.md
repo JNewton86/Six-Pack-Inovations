@@ -161,6 +161,7 @@ If order is not found returns OrderNotFoundException
 _Define the DynamoDB tables you will need for the data your service will use. It may be helpful to first think of what objects your service will need, then translate that to a table structure, like with the *`Playlist` POJO* versus the `playlists` table in the Unit 3 project._
 ```
 TABLES:
+
 inventory
 id //partition key, string (specific to type of beer)
 packagingType // sort key, string (key, case, etc.)
@@ -180,15 +181,13 @@ INDEX:
 orders
 customerId // partition key, string
 id // string
+
 beer // string 
 totalPrice // number
+
 ```
 # 8. Pages
 
 _Include mock-ups of the web pages you expect to build. These can be as sophisticated as mockups/wireframes using drawing software, or as simple as hand-drawn pictures that represent the key customer-facing components of the pages. It should be clear what the interactions will be on the page, especially where customers enter and submit data. You may want to accompany the mockups with some description of behaviors of the page (e.g. “When customer submits the submit-dog-photo button, the customer is sent to the doggie detail page”)_
 
 ![refined webthingy](https://user-images.githubusercontent.com/10236355/230664778-d8906476-65bc-4acf-87bc-c5b594a48e53.png)
-
-
-![website planning](https://user-images.githubusercontent.com/10236355/230640662-80d52eda-f32a-4dcc-9e1f-4fb889a12098.png)
-
