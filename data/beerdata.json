@@ -1,0 +1,116 @@
+{
+  "inventory": [
+    {
+      "PutRequest": {
+        "Item": {
+          "id": { "S": "B019HKJTCI" },
+          "beerType": {"S":  "IPA"},
+          "packagingType": { "S": "Keg" },
+          "name": { "S": "Werewolf Beach Party" },
+          "availableUnits": { "N": "30" },
+          "reservedUnits": { "N": "5" },
+          "totalUnits": { "N": "35" },
+          "pricePerUnit": { "N": "100" }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "id": { "S": "B019HKJTCJ" },
+          "beerType": {"S":  "Stout"},
+          "packagingType": { "S": "Keg" },
+          "name": { "S": "The Dark Knight" },
+          "availableUnits": { "N": "34" },
+          "reservedUnits": { "N": "10" },
+          "totalUnits": { "N": "44" },
+          "pricePerUnit": { "N": "100" }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "id": { "S": "B019HKJTCK" },
+          "beerType": {"S":  "Lager"},
+          "packagingType": { "S": "Keg" },
+          "name": { "S": "Midnight Sun Kodiak" },
+          "availableUnits": { "N": "45" },
+          "reservedUnits": { "N": "5" },
+          "totalUnits": { "N": "50" },
+          "pricePerUnit": { "N": "100" }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "id": { "S": "B019HKJTCL" },
+          "beerType": {"S":  "Porter"},
+          "packagingType": { "S": "Keg" },
+          "name": { "S": "Porter Potty" },
+          "availableUnits": { "N": "25" },
+          "reservedUnits": { "N": "20" },
+          "totalUnits": { "N": "45" },
+          "pricePerUnit": { "N": "100" }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "id": { "S": "B019HKJTCM" },
+          "beerType": {"S":  "IPA"},
+          "packagingType": { "S": "case" },
+          "name": { "S": "Werewolf Beach Party" },
+          "availableUnits": { "N": "30" },
+          "reservedUnits": { "N": "5" },
+          "totalUnits": { "N": "35" },
+          "pricePerUnit": { "N": "35" }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "id": { "S": "B019HKJTCN" },
+          "beerType": {"S":  "Stout"},
+          "packagingType": { "S": "Case" },
+          "name": { "S": "The Dark Knight" },
+          "availableUnits": { "N": "34" },
+          "reservedUnits": { "N": "10" },
+          "totalUnits": { "N": "44" },
+          "pricePerUnit": { "N": "35" }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "id": { "S": "B019HKJTCO" },
+          "beerType": {"S":  "Lager"},
+          "packagingType": { "S": "Case" },
+          "name": { "S": "Midnight Sun Kodiak" },
+          "availableUnits": { "N": "45" },
+          "reservedUnits": { "N": "5" },
+          "totalUnits": { "N": "50" },
+          "pricePerUnit": { "N": "35" }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "id": { "S": "B019HKJTCP" },
+          "beerType": {"S":  "Porter"},
+          "packagingType": { "S": "Case" },
+          "name": { "S": "Porter Potty" },
+          "availableUnits": { "N": "25" },
+          "reservedUnits": { "N": "20" },
+          "totalUnits": { "N": "45" },
+          "pricePerUnit": { "N": "35" }
+        }
+      }
+    }
+  ]
+}
