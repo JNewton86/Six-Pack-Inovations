@@ -24,7 +24,9 @@ public class InventoryDao {
      */
 
     @Inject
-    public InventoryDao(DynamoDBMapper dynamoDbMapper) {this.dynamoDbMapper = dynamoDbMapper; }
+    public InventoryDao(DynamoDBMapper dynamoDbMapper) {
+        this.dynamoDbMapper = dynamoDbMapper;
+    }
 
     /**
      * Retrieves a beer by beerId and packagingType.

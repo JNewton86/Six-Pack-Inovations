@@ -1,4 +1,4 @@
-package com.nashss.se.musicplaylistservice.models;
+package com.nashss.se.musicplaylistservice.dynamodb.models;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -28,6 +28,7 @@ public class Order {
     public String getClientId() {
         return clientId;
     }
+
 //change String to Beer object when merged
     public List<String> getOrderItems() {
         return orderItems;
@@ -52,7 +53,7 @@ public class Order {
 
         Order that = (Order) o;
 
-        return id == that.id &&
+        return Objects.equals(id, that.id) &&
                 Objects.equals(clientId, that.clientId) &&
                 Objects.equals(orderItems, that.orderItems) &&
                 Objects.equals(totalCost, that.totalCost);

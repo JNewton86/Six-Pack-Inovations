@@ -1,5 +1,6 @@
 package com.nashss.se.musicplaylistservice.dynamodb;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
+import com.nashss.se.musicplaylistservice.dynamodb.models.Order;
 import com.nashss.se.musicplaylistservice.exceptions.OrderNotFoundException;
 import com.nashss.se.musicplaylistservice.metrics.MetricsConstants;
 import com.nashss.se.musicplaylistservice.metrics.MetricsPublisher;

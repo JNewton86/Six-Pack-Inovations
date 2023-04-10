@@ -1,4 +1,4 @@
-package com.nashss.se.musicplaylistservice.models;
+package com.nashss.se.musicplaylistservice.dynamodb.models;
 
 import java.math.BigDecimal;
 
