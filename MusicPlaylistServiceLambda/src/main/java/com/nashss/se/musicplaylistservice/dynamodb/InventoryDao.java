@@ -4,6 +4,7 @@ import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
 import com.nashss.se.musicplaylistservice.dynamodb.models.AlbumTrack;
 import com.nashss.se.musicplaylistservice.exceptions.BeerNotFoundException;
 import com.nashss.se.musicplaylistservice.dynamodb.models.Beer;
+import com.nashss.se.musicplaylistservice.models.beerenums.PackagingType;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
@@ -37,15 +38,15 @@ public class InventoryDao {
      * @param packageType the type of packaging
      * @return The corresponding AlbumTrack if found
      */
-//    public Beer getBeer(String beerId, Enum packageType) {
-//        Beer beer = dynamoDbMapper.load(Beer.class, beerId, packageType);
-//        if (null == beer) {
-//            throw new BeerNotFoundException(
-//                    String.format("Could not find beer with beerID '%s' and packageType %d", beerId, packageType));
-//        }
-//
-//        return beer;
-//    }
+    public Beer getBeer(String beerId, PackagingType packageType) {
+        Beer beer = dynamoDbMapper.load(Beer.class, beerId, packageType);
+        if (null == beer) {
+            throw new BeerNotFoundException(
+                    String.format("Could not find beer with beerID '%s' and packageType %s", beerId, packageType));
+        }
+
+        return beer;
+    }
 
 
 
