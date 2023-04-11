@@ -1,4 +1,4 @@
-package com.nashss.se.musicplaylistservice.models;
+package com.nashss.se.musicplaylistservice.models.beerenums;
 
 public enum BeerType {
     STOUT,

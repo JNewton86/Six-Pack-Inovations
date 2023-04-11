@@ -1,9 +1,9 @@
 package com.nashss.se.musicplaylistservice.dynamodb;
 
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
-import com.nashss.se.musicplaylistservice.dynamodb.models.AlbumTrack;
-import com.nashss.se.musicplaylistservice.exceptions.AlbumTrackNotFoundException;
 import com.nashss.se.musicplaylistservice.exceptions.BeerNotFoundException;
+import com.nashss.se.musicplaylistservice.dynamodb.models.Beer;
+import com.nashss.se.musicplaylistservice.models.beerenums.PackagingType;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
@@ -33,17 +33,17 @@ class InventoryDaoTest {
         String packageType = "KEG";
         Beer beer = new Beer();
         beer.setBeerId(beerId);
-        beer.setPackageType(packageType);
+        beer.setPackagingType(PackagingType.CASE);
         when(dynamoDBMapper.load(Beer.class, beerId, packageType)).thenReturn(beer);
 
         // WHEN
-        Beer result = inventoryDao.getBeer(beerId, packageType);
+        Beer result = inventoryDao.getBeer(beerId, PackagingType.CASE);
 
         // THEN
         verify(dynamoDBMapper).load(Beer.class, beerId, packageType);
         assertEquals(beer, result,
                 String.format("Expected to receive Beer returned by DDB (%s), but received %s",
-                        beer.getBeerId, result.getBeerId));
+                        beer.getBeerId(), result.getBeerId()));
     }
 
     @Test
@@ -56,6 +56,6 @@ class InventoryDaoTest {
         when(dynamoDBMapper.load(Beer.class, beerId, packageType)).thenReturn(null);
 
         // WHEN + THEN
-        assertThrows(BeerNotFoundException.class, () -> inventoryDao.getBeer(beerId, packageType));
+        assertThrows(BeerNotFoundException.class, () -> inventoryDao.getBeer(beerId, PackagingType.CASE));
     }
 }

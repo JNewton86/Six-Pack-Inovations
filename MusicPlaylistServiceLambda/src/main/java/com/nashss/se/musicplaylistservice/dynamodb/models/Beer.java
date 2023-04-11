@@ -1,16 +1,18 @@
-package com.nashss.se.musicplaylistservice.models;
+package com.nashss.se.musicplaylistservice.dynamodb.models;
 
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBAttribute;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBHashKey;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBRangeKey;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable;
+import com.nashss.se.musicplaylistservice.models.beerenums.BeerType;
+import com.nashss.se.musicplaylistservice.models.beerenums.PackagingType;
 
 import java.math.BigDecimal;
 import java.util.Objects;
 
 @DynamoDBTable(tableName = "inventory")
 public class Beer {
-    private String id;
+    private String beerId;
     private BeerType beerType;
     private String name;
     private PackagingType packagingType;
@@ -18,18 +20,9 @@ public class Beer {
     private Integer availableUnits;
     private Integer reservedUnits;
 
-    public Beer(String id, BeerType beerType, String name, PackagingType packagingType, BigDecimal unitPrice, Integer availableUnits, Integer reservedUnits) {
-        this.id = id;
-        this.beerType = beerType;
-        this.name = name;
-        this.packagingType = packagingType;
-        this.unitPrice = unitPrice;
-        this.availableUnits = availableUnits;
-        this.reservedUnits = reservedUnits;
-    }
     @DynamoDBHashKey(attributeName = "id")
-    public String getId() {
-        return id;
+    public String getBeerId() {
+        return beerId;
     }
 
     @DynamoDBRangeKey(attributeName = "packagingType")
@@ -62,8 +55,8 @@ public class Beer {
         return reservedUnits;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setBeerId(String beerId) {
+        this.beerId = beerId;
     }
 
     public void setBeerType(BeerType beerType) {
@@ -96,11 +89,11 @@ public class Beer {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Beer beer = (Beer) o;
-        return Objects.equals(id, beer.id) && Objects.equals(beerType, beer.beerType) && Objects.equals(name, beer.name) && Objects.equals(packagingType, beer.packagingType) && Objects.equals(unitPrice, beer.unitPrice) && Objects.equals(availableUnits, beer.availableUnits) && Objects.equals(reservedUnits, beer.reservedUnits);
+        return Objects.equals(beerId, beer.beerId) && Objects.equals(beerType, beer.beerType) && Objects.equals(name, beer.name) && Objects.equals(packagingType, beer.packagingType) && Objects.equals(unitPrice, beer.unitPrice) && Objects.equals(availableUnits, beer.availableUnits) && Objects.equals(reservedUnits, beer.reservedUnits);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, beerType, name, packagingType, unitPrice, availableUnits, reservedUnits);
+        return Objects.hash(beerId, beerType, name, packagingType, unitPrice, availableUnits, reservedUnits);
     }
 }

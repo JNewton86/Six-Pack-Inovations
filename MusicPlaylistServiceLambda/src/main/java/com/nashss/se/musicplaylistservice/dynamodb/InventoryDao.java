@@ -2,8 +2,8 @@ package com.nashss.se.musicplaylistservice.dynamodb;
 
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
 import com.nashss.se.musicplaylistservice.dynamodb.models.AlbumTrack;
-import com.nashss.se.musicplaylistservice.exceptions.AlbumTrackNotFoundException;
 import com.nashss.se.musicplaylistservice.exceptions.BeerNotFoundException;
+import com.nashss.se.musicplaylistservice.dynamodb.models.Beer;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
