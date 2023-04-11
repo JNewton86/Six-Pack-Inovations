@@ -1,46 +1,95 @@
 package com.nashss.se.musicplaylistservice.dynamodb.models;
 
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBAttribute;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBHashKey;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTypeConverted;
+import com.nashss.se.musicplaylistservice.converters.AlbumTrackLinkedListConverter;
+import com.nashss.se.musicplaylistservice.models.OrderModel;
+
 import java.math.BigDecimal;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 import static com.nashss.se.musicplaylistservice.utils.CollectionUtils.copyToList;
-
+@DynamoDBTable(tableName = "orders")
 public class Order {
 
-    private final String id;
-    private final String clientId;
-    private final List<String> orderItems;
-    private final BigDecimal totalCost;
+    private String orderId;
+    private String clientId;
+    private List<OrderItem> orderItems;
+    private BigDecimal totalCost;
     private boolean orderProcessed;
 
-    public Order(String id, String clientId, List<String> orderItems, BigDecimal totalCost) {
-        this.id = id;
-        this.clientId = clientId;
-        this.orderItems = orderItems;
-        this.totalCost = totalCost;
-    }
-
+    @DynamoDBHashKey(attributeName = "orderId")
     public String getId() {
-        return id;
+        return orderId;
     }
 
-    public String getClientId() {
+    public void setId(String orderId) {
+        this.orderId = orderId;
+    }
+
+    @DynamoDBAttribute(attributeName = "clientId")
+    public String getClientIdd() {
         return clientId;
     }
 
-//change String to Beer object when merged
-    public List<String> getOrderItems() {
-        return orderItems;
+    public void setClientId(String clientId) {
+        this.clientId = clientId;
+    }
+    /**
+     * Returns the list of orderItems associated with this Order, null if there are none.
+     *
+     * @return Set of tags for this playlist
+     */
+    @DynamoDBAttribute(attributeName = "orderItems")
+    public List<OrderItem> getOrderItems() {
+        // normally, we would prefer to return an empty Set if there are no
+        // tags, but DynamoDB doesn't represent empty Sets...needs to be null
+        // instead
+        if (null == orderItems) {
+            return null;
+        }
+        return new ArrayList<>(orderItems);
     }
 
+    public void setOrderItems(List<OrderItem> orderItems) {
+        if (null == orderItems) {
+            this.orderItems = null;
+        } else {
+            this.orderItems = new ArrayList<>(orderItems);
+        }
+        this.orderItems = orderItems;
+    }
+
+    @DynamoDBAttribute(attributeName = "totalCost")
     public BigDecimal getTotalCost() {
         return totalCost;
     }
 
-    public boolean isOrderProcessed() {
+    public void setTotalCost(BigDecimal totalCost) {
+        this.totalCost = totalCost;
+    }
+
+    @DynamoDBAttribute(attributeName = "orderProcessed")
+    public boolean getOrderProcessed() {
         return orderProcessed;
     }
+
+    public void setOrderProcessed(boolean orderProcessed) {
+        this.orderProcessed = orderProcessed;
+    }
+
+    // PARTICIPANTS: You do not need to modify the songList getters/setters or annotations
+//    @DynamoDBTypeConverted(converter = .class)
+//    @DynamoDBAttribute(attributeName = "songList")
+//    public List<AlbumTrack> getSongList() {
+//        return songList;
+//    }
+//
+//    public void setSongList(List<AlbumTrack> songList) {
+//        this.songList = songList;
+//    }
 
     @Override
     public boolean equals(Object o) {
@@ -53,7 +102,7 @@ public class Order {
 
         Order that = (Order) o;
 
-        return Objects.equals(id, that.id) &&
+        return Objects.equals(orderId, that.orderId) &&
                 Objects.equals(clientId, that.clientId) &&
                 Objects.equals(orderItems, that.orderItems) &&
                 Objects.equals(totalCost, that.totalCost);
@@ -61,42 +110,6 @@ public class Order {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, clientId, orderItems, totalCost);
-    }
-
-    //CHECKSTYLE:OFF:Builder
-    public static Order.Builder builder() {
-        return new Order.Builder();
-    }
-
-    public static class Builder {
-        private String id;
-        private String clientId;
-        private List<String> orderItems;
-        private BigDecimal totalCost;
-
-        public Order.Builder withId(String id) {
-            this.id = id;
-            return this;
-        }
-
-        public Order.Builder withClientId(String clientId) {
-            this.clientId = clientId;
-            return this;
-        }
-
-        public Order.Builder withTotalCost(BigDecimal totalCost) {
-            this.totalCost = totalCost;
-            return this;
-        }
-
-        public Order.Builder withOrderItems(List<String> orderItems) {
-            this.orderItems = copyToList(orderItems);
-            return this;
-        }
-
-        public Order build() {
-            return new Order(id, clientId, orderItems, totalCost);
-        }
+        return Objects.hash(orderId, clientId, orderItems, totalCost);
     }
 }

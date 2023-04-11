@@ -39,7 +39,7 @@ public class OrderDaoTest {
     public void getOrder_withOrderId_callsMapperWithPartitionKey() {
         // GIVEN
         String orderId = "orderId";
-        when(dynamoDBMapper.load(Order.class, orderId)).thenReturn(new Order("4321", "troys toddlers tower", List.of("apple juice", "water"), BigDecimal.valueOf(50)));
+        when(dynamoDBMapper.load(Order.class, orderId)).thenReturn(new Order());
 
         // WHEN
         Order order = orderDao.getOrder(orderId);
@@ -64,7 +64,7 @@ public class OrderDaoTest {
     @Test
     public void saveOrder_callsMapperWithPlaylist() {
         // GIVEN
-        Order order = new Order("1234", "linas legume bar", List.of("meow", "bark"), BigDecimal.valueOf(50));
+        Order order = new Order();
 
         // WHEN
         Order result = orderDao.saveOrder(order);
