@@ -17,26 +17,26 @@ public class UpdateInventoryResult {
 
     @Override
     public String toString() {
-        return "UpdatePlaylistResult{" +
-                "playlist=" + playlist +
+        return "UpdateInventoryResult{" +
+                "BeerModel=" + beerModel +
                 '}';
     }
 
     //CHECKSTYLE:OFF:Builder
-    public static UpdatePlaylistResult.Builder builder() {
-        return new UpdatePlaylistResult.Builder();
+    public static UpdateInventoryResult.Builder builder() {
+        return new UpdateInventoryResult.Builder();
     }
 
     public static class Builder {
-        private PlaylistModel playlist;
+        private BeerModel beerModel;
 
-        public UpdatePlaylistResult.Builder withPlaylist(PlaylistModel playlist) {
-            this.playlist = playlist;
+        public UpdateInventoryResult.Builder withBeerModel(BeerModel beerModel) {
+            this.beerModel = beerModel;
             return this;
         }
 
-        public UpdatePlaylistResult build() {
-            return new UpdatePlaylistResult(playlist);
+        public UpdateInventoryResult build() {
+            return new UpdateInventoryResult(beerModel);
         }
     }
 }

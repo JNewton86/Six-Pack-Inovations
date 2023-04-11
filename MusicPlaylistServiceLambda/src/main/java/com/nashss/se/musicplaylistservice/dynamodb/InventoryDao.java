@@ -1,5 +1,6 @@
 package com.nashss.se.musicplaylistservice.dynamodb;
 import com.nashss.se.musicplaylistservice.dynamodb.models.Beer;
+import com.nashss.se.musicplaylistservice.dynamodb.models.Playlist;
 import com.nashss.se.musicplaylistservice.exceptions.BeerNotFoundException;
 import com.nashss.se.musicplaylistservice.models.beerenums.PackagingType;
 
@@ -46,7 +47,16 @@ public class InventoryDao {
         return beer;
     }
 
-
+    /**
+     * Saves (creates or updates) the given beer in the inventory table.
+     *
+     * @param beer The playlist to save
+     * @return The Playlist object that was saved
+     */
+    public Beer saveBeer(Beer beer) {
+        this.dynamoDbMapper.save(beer);
+        return beer;
+    }
 
 
 
