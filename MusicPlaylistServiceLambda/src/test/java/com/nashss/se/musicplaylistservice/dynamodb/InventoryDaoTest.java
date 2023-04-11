@@ -30,7 +30,7 @@ class InventoryDaoTest {
     void getBeer_withExistentbeerIdAndPackageType_loadsAlbumTrackByPartitionAndSortKeys() {
         // GIVEN
         String beerId = "beer123";
-        String packageType = "KEG";
+        PackagingType packageType = PackagingType.CASE;
         Beer beer = new Beer();
         beer.setBeerId(beerId);
         beer.setPackagingType(PackagingType.CASE);
