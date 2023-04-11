@@ -1,0 +1,10 @@
+version: '3.4'
+
+services:
+  u5projectteam6sixpackinnovations:
+    image: u5projectteam6sixpackinnovations
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    ports:
+      - 8000:8000
