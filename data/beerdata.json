@@ -59,7 +59,7 @@
     {
       "PutRequest": {
         "Item": {
-          "id": { "S": "B019HKJTCM" },
+          "id": { "S": "B019HKJTCI" },
           "beerType": {"S":  "IPA"},
           "packagingType": { "S": "Case" },
           "name": { "S": "Werewolf Beach Party" },
@@ -73,7 +73,7 @@
     {
       "PutRequest": {
         "Item": {
-          "id": { "S": "B019HKJTCN" },
+          "id": { "S": "B019HKJTCJ" },
           "beerType": {"S":  "Stout"},
           "packagingType": { "S": "Case" },
           "name": { "S": "The Dark Knight" },
@@ -87,7 +87,7 @@
     {
       "PutRequest": {
         "Item": {
-          "id": { "S": "B019HKJTCO" },
+          "id": { "S": "B019HKJTCK" },
           "beerType": {"S":  "Lager"},
           "packagingType": { "S": "Case" },
           "name": { "S": "Midnight Sun Kodiak" },
@@ -101,7 +101,7 @@
     {
       "PutRequest": {
         "Item": {
-          "id": { "S": "B019HKJTCP" },
+          "id": { "S": "B019HKJTCL" },
           "beerType": {"S":  "Porter"},
           "packagingType": { "S": "Case" },
           "name": { "S": "Porter Potty" },

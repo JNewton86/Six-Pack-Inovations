@@ -1,8 +1,14 @@
 package com.nashss.se.musicplaylistservice.models;
 
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBAttribute;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBHashKey;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBRangeKey;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable;
+
 import java.math.BigDecimal;
 import java.util.Objects;
 
+@DynamoDBTable(tableName = "inventory")
 public class Beer {
     private String id;
     private BeerType beerType;
@@ -21,31 +27,37 @@ public class Beer {
         this.availableUnits = availableUnits;
         this.reservedUnits = reservedUnits;
     }
-
+    @DynamoDBHashKey(attributeName = "id")
     public String getId() {
         return id;
     }
 
-    public BeerType getBeerType() {
-        return beerType;
-    }
-
-    public String getName() {
-        return name;
-    }
-
+    @DynamoDBRangeKey(attributeName = "packagingType")
     public PackagingType getPackagingType() {
         return packagingType;
     }
 
+    @DynamoDBAttribute(attributeName = "beerType")
+    public BeerType getBeerType() {
+        return beerType;
+    }
+
+    @DynamoDBAttribute(attributeName = "beerName" )
+    public String getName() {
+        return name;
+    }
+
+    @DynamoDBAttribute(attributeName = "unitPrice")
     public BigDecimal getUnitPrice() {
         return unitPrice;
     }
 
+    @DynamoDBAttribute(attributeName = "availableUnits")
     public Integer getAvailableUnits() {
         return availableUnits;
     }
 
+    @DynamoDBAttribute(attributeName = "reservedUnits")
     public Integer getReservedUnits() {
         return reservedUnits;
     }
