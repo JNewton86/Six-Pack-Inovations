@@ -37,15 +37,15 @@ public class InventoryDao {
      * @param packageType the type of packaging
      * @return The corresponding AlbumTrack if found
      */
-    public Beer getBeer(String beerId, Enum packageType) {
-        Beer beer = dynamoDbMapper.load(Beer.class, beerId, packageType);
-        if (null == beer) {
-            throw new BeerNotFoundException(
-                    String.format("Could not find beer with beerID '%s' and packageType %d", beerId, packageType));
-        }
-
-        return beer;
-    }
+//    public Beer getBeer(String beerId, Enum packageType) {
+//        Beer beer = dynamoDbMapper.load(Beer.class, beerId, packageType);
+//        if (null == beer) {
+//            throw new BeerNotFoundException(
+//                    String.format("Could not find beer with beerID '%s' and packageType %d", beerId, packageType));
+//        }
+//
+//        return beer;
+//    }
 
 
 
