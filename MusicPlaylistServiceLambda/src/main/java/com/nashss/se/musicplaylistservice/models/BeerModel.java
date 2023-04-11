@@ -8,10 +8,8 @@ import com.nashss.se.musicplaylistservice.models.beerenums.BeerType;
 import com.nashss.se.musicplaylistservice.models.beerenums.PackagingType;
 
 import java.math.BigDecimal;
-import java.util.List;
 import java.util.Objects;
 
-import static com.nashss.se.musicplaylistservice.utils.CollectionUtils.copyToList;
 
 @DynamoDBTable(tableName = "inventory")
 public class BeerModel {
@@ -23,7 +21,8 @@ public class BeerModel {
     private Integer availableUnits;
     private Integer reservedUnits;
 
-    public BeerModel(String id, BeerType beerType, String name, PackagingType packagingType, BigDecimal unitPrice, Integer availableUnits, Integer reservedUnits) {
+    public BeerModel(String id, BeerType beerType, String name, PackagingType packagingType,
+                     BigDecimal unitPrice, Integer availableUnits, Integer reservedUnits) {
         this.beerId = id;
         this.beerType = beerType;
         this.name = name;
@@ -47,7 +46,7 @@ public class BeerModel {
         return beerType;
     }
 
-    @DynamoDBAttribute(attributeName = "beerName" )
+    @DynamoDBAttribute(attributeName = "beerName")
     public String getName() {
         return name;
     }
