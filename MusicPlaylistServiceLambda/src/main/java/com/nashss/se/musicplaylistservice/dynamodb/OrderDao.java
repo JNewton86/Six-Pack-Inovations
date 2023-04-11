@@ -13,7 +13,7 @@ import javax.inject.Singleton;
 @Singleton
 public class OrderDao {
     private final DynamoDBMapper dynamoDbMapper;
-//    private final MetricsPublisher metricsPublisher;
+    //private final MetricsPublisher metricsPublisher;
 
     /**
      * Instantiates a OrderDao object.
@@ -23,13 +23,13 @@ public class OrderDao {
      */
     public OrderDao(DynamoDBMapper dynamoDbMapper, MetricsPublisher metricsPublisher) {
         this.dynamoDbMapper = dynamoDbMapper;
-//        this.metricsPublisher = metricsPublisher;
+        //this.metricsPublisher = metricsPublisher;
     }
 
     public Order getOrder(String orderId) {
         Order requestedOrder = dynamoDbMapper.load(Order.class, orderId);
         if (null == orderId) {
-//            metricsPublisher.addCount(MetricsConstants.GETORDER_ORDERNOTFOUND_COUNT, 1);
+            //metricsPublisher.addCount(MetricsConstants.GETORDER_ORDERNOTFOUND_COUNT, 1);
             throw new OrderNotFoundException(String.format("Could not find an Order with OrderId '%s' ", orderId));
         }
         return requestedOrder;
