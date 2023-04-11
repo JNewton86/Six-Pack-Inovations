@@ -1,0 +1,37 @@
+@startuml
+
+class index{
+loginpage
+}
+class Employeehome{
+}
+class clienthome{
+}
+class Inventory{
+
+}
+
+class BeerTypePage{
+
+}
+
+class OrderPlacement{
+
+}
+
+class Orders{
+
+}
+
+class ClientOrderHistory {
+}
+
+index --> Employeehome
+index -->clienthome
+clienthome --> OrderPlacement
+Employeehome --> Inventory
+Employeehome --> Orders
+Inventory --> BeerTypePage
+clienthome --> ClientOrderHistory
+
+@enduml

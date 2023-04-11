@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script type="text/javascript" src="assets/home.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/stylebeer.css">
+    <a href="employeelogin.html" class="button">Employee Login</a>
+</head>
+
+<body class="background">
+<header class="header" id="header"></header>
+<div class="card">
+    <h2>Search Beers</h2>
+    <form class="card-content" id="search-beer-form">
+        <p class="form-field">
+            <label>Search by name or tag</label>
+            <input type="text" class="validated-field" id="search-criteria" placeholder=
+                    "Kodiak Sun Bear or Porta Body Porter" autofocus>
+            <sub>Search is case-sensitive and tags must match exactly.</sub>
+        </p>
+    </form>
+    <p class="button-group">
+        <a href="#" class="button" id="search-btn">Search</a>
+    </p>
+    <img src="bear-beer-high-res-5000x5000.jpg" alt="Beer Bear">
+</div>
+<div class="card hidden" id='search-results-container'>
+    <h3>Results for <span id="search-criteria-display"></span></h3>
+    <div id="search-results-display">
+    </div>
+</div>
+</body>
+
+</html>

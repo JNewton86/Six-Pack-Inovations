@@ -8,7 +8,7 @@ Parameters:
   CognitoDomain:
     Type: String
     Description: A name for the cognito Domain
-    Default: "change-this-music-playlist-service-change-this"
+    Default: "beertracker-team-6-six-pack-innovations"
 
   S3Bucket:
     Type: String
@@ -378,6 +378,22 @@ Resources:
           KeyType: "RANGE"
       BillingMode: "PAY_PER_REQUEST"
       TableName: "album_tracks"
+
+  BeerInventoryTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      AttributeDefinitions:
+        - AttributeName: "beerId"
+          AttributeType: "S"
+        - AttributeName: "packageType"
+          AttributeType: "S"
+      KeySchema:
+        - AttributeName: "beerId"
+          KeyType: "HASH"
+        - AttributeName: "packageType"
+          KeyType: "RANGE"
+      BillingMode: "PAY_PER_REQUEST"
+      TableName: "beer_inventory"
 
 #-----------------------------------------------------
 # The outputs defined below will be printed
