@@ -30,6 +30,7 @@ class BeerToBeerModelConverterTest {
         assertEquals(beer.getAvailableUnits(), beerModel.getAvailableUnits());
         assertEquals(beer.getReservedUnits(), beerModel.getReservedUnits());
         assertEquals(beer.getUnitPrice(), beerModel.getUnitPrice());
+
     }
 
     @Test

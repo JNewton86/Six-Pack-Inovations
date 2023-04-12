@@ -22,6 +22,7 @@ public class BeerToBeerModelConverter {
                 .withUnitPrice(beer.getUnitPrice())
                 .withAvailableUnits(beer.getAvailableUnits())
                 .withReservedUnits(beer.getReservedUnits())
+                .withUnitPrice(beer.getUnitPrice())
                 .build();
     }
 }

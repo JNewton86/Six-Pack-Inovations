@@ -5,6 +5,8 @@ import com.nashss.se.musicplaylistservice.models.beerenums.PackagingType;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
 
+import java.math.BigDecimal;
+
 
 @JsonDeserialize(builder = UpdateInventoryRequest.Builder.class)
 public class UpdateInventoryRequest {
@@ -12,15 +14,16 @@ public class UpdateInventoryRequest {
     private final PackagingType packagingType;
     private Integer availableUnits;
     private Integer reservedUnits;
+    private BigDecimal unitPrice;
 
-      private UpdateInventoryRequest(String beerId, PackagingType packagingType, Integer availableUnits,
-                                   Integer reservedUnits) {
+    private UpdateInventoryRequest(String beerId, PackagingType packagingType, Integer availableUnits,
+                                   Integer reservedUnits, BigDecimal unitPrice) {
         this.beerId = beerId;
         this.packagingType = packagingType;
         this.availableUnits = availableUnits;
         this.reservedUnits = reservedUnits;
+        this.unitPrice = unitPrice;
     }
-
 
     public String getbeerId() {
         return beerId;
@@ -38,6 +41,9 @@ public class UpdateInventoryRequest {
         return reservedUnits;
     }
 
+    public BigDecimal getUnitPrice() {
+        return unitPrice;
+    }
 
     @Override
     public String toString() {
@@ -46,6 +52,7 @@ public class UpdateInventoryRequest {
                 ", packagingType='" + packagingType + '\'' +
                 ", availableUnits='" + availableUnits + '\'' +
                 ", reservedUnits='" + reservedUnits + '\'' +
+                ", unitPrice='" + unitPrice + '\'' +
                 '}';
     }
 
@@ -60,6 +67,7 @@ public class UpdateInventoryRequest {
         private PackagingType packagingType;
         private Integer availableUnits;
         private Integer reservedUnits;
+        private BigDecimal unitPrice;
 
         public Builder withId(String beerId) {
             this.beerId = beerId;
@@ -79,8 +87,13 @@ public class UpdateInventoryRequest {
             this.reservedUnits = availableUnits;
             return this;
         }
+
+        public Builder withUnitPrice(BigDecimal unitPrice) {
+            this.unitPrice = unitPrice;
+            return this;
+        }
         public UpdateInventoryRequest build() {
-            return new UpdateInventoryRequest(beerId, packagingType, availableUnits, reservedUnits);
+            return new UpdateInventoryRequest(beerId, packagingType, availableUnits, reservedUnits, unitPrice);
         }
     }
 }
