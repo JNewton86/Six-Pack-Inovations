@@ -1,18 +1,18 @@
 package com.nashss.se.musicplaylistservice.activity;
 
 import com.nashss.se.musicplaylistservice.activity.requests.UpdateInventoryRequest;
-import com.nashss.se.musicplaylistservice.activity.requests.UpdatePlaylistRequest;
-import com.nashss.se.musicplaylistservice.activity.results.UpdatePlaylistResult;
-import com.nashss.se.musicplaylistservice.converters.ModelConverter;
+import com.nashss.se.musicplaylistservice.activity.results.UpdateInventoryResult;
+import com.nashss.se.musicplaylistservice.converters.BeerToBeerModelConverter;
 import com.nashss.se.musicplaylistservice.dynamodb.InventoryDao;
-import com.nashss.se.musicplaylistservice.dynamodb.PlaylistDao;
 import com.nashss.se.musicplaylistservice.dynamodb.models.Beer;
-import com.nashss.se.musicplaylistservice.dynamodb.models.Playlist;
+import com.nashss.se.musicplaylistservice.exceptions.BeerNotFoundException;
 import com.nashss.se.musicplaylistservice.exceptions.InvalidAttributeValueException;
 import com.nashss.se.musicplaylistservice.metrics.MetricsConstants;
+import com.nashss.se.musicplaylistservice.metrics.MetricsConstantsSPI;
 import com.nashss.se.musicplaylistservice.metrics.MetricsPublisher;
 import com.nashss.se.musicplaylistservice.models.PlaylistModel;
 import com.nashss.se.projectresources.music.playlist.servic.util.MusicPlaylistServiceUtils;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -40,7 +40,6 @@ public class UpdateInventoryActivity {
      */
     @Inject
     public UpdateInventoryActivity(InventoryDao inventoryDao, MetricsPublisher metricsPublisher) {
-        //super(UpdateInventoryRequest.class);
         this.inventoryDao = inventoryDao;
         this.metricsPublisher = metricsPublisher;
     }
@@ -59,33 +58,46 @@ public class UpdateInventoryActivity {
      * If the request tries to update the customer ID,
      * this should throw an InvalidAttributeChangeException
      *
-     * @param updateInventoryRequest request object containing the beer ID, packageing type, available units and reserved
-     *                              units associated with it
+     * @param updateInventoryRequest request object containing the beer ID, packageing type,
+     *                               available units and reserved units associated with it
      * @return updatePlaylistResult result object containing the API defined {@link PlaylistModel}
      */
-    public UpdatePlaylistResult handleRequest(final UpdateInventoryRequest updateInventoryRequest) {
+    public UpdateInventoryResult handleRequest(final UpdateInventoryRequest updateInventoryRequest) {
         log.info("Received UpdateInventoryRequest {}", updateInventoryRequest);
 
+        // TODO this is legacy code, are we keeping it?
         if (!MusicPlaylistServiceUtils.isValidString(updateInventoryRequest.getbeerId())) {
             publishExceptionMetrics(true, false);
             throw new InvalidAttributeValueException("BeerID [" + updateInventoryRequest.getbeerId() +
                     "] contains illegal characters");
         }
 
+        // Check to ensure requested changes will not result in a negative inventory amount, add count to CloudWatch
+        if (updateInventoryRequest.getavailableUnits() < 0 || updateInventoryRequest.getavreservedUnits() <0 ) {
+            metricsPublisher.addCount(MetricsConstantsSPI.UPDATEINVENTORY_INVALIDATTRIBUTEVALUE_COUNT, 1);
+            metricsPublisher.addCount(MetricsConstantsSPI.UPDATEINVENTORY_INVALIDATTRIBUTECHANGE_COUNT, 0);
+            throw new InvalidAttributeValueException ("requested availableUnit or reservedUnits invalid");
+        }
+
         Beer beer = inventoryDao.getBeer(updateInventoryRequest.getbeerId(), updateInventoryRequest.getPackagingType());
 
-//        if (!playlist.getCustomerId().equals(updatePlaylistRequest.getCustomerId())) {
-//            publishExceptionMetrics(false, true);
-//            throw new SecurityException("You must own a playlist to update it.");
-//        }
+        // If beer not found in the table throws BeerNotFound and adds count to CloudWatch
+        if (beer == null){
+            metricsPublisher.addCount(MetricsConstantsSPI.UPDATEINVENTORY_BEERNOTFOUND_COUNT, 0);
+            throw new BeerNotFoundException("beer inventory object not found to update");
+        }
+            //if (!playlist.getCustomerId().equals(updatePlaylistRequest.getCustomerId())) {
+                //publishExceptionMetrics(false, true);
+                //throw new SecurityException("You must own a playlist to update it.");
+            //}
 
         beer.setAvailableUnits(updateInventoryRequest.getavailableUnits());
         beer.setReservedUnits(updateInventoryRequest.getavreservedUnits());
         beer = inventoryDao.saveBeer(beer);
 
         publishExceptionMetrics(false, false);
-        return UpdatePlaylistResult.builder()
-                .withBeerModel(new ModelConverter().toPlaylistModel(playlist))
+        return UpdateInventoryResult.builder()
+                .withBeerModel(new BeerToBeerModelConverter().toBeerModel(beer))
                 .build();
     }
 

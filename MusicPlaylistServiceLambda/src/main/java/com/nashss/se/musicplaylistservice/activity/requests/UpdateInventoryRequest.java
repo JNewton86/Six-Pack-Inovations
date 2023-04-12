@@ -1,8 +1,10 @@
 package com.nashss.se.musicplaylistservice.activity.requests;
 
+import com.nashss.se.musicplaylistservice.models.beerenums.PackagingType;
+
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
-import com.nashss.se.musicplaylistservice.models.beerenums.PackagingType;
+
 
 @JsonDeserialize(builder = UpdatePlaylistRequest.Builder.class)
 public class UpdateInventoryRequest {
