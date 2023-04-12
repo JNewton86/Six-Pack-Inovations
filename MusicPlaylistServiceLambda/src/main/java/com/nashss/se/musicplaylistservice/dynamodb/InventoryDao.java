@@ -1,6 +1,7 @@
 package com.nashss.se.musicplaylistservice.dynamodb;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBQueryExpression;
 import com.amazonaws.services.dynamodbv2.datamodeling.PaginatedQueryList;
+import static com.nashss.se.musicplaylistservice.dynamodb.models.Beer.BEERS_BY_TYPE_INDEX;
 import com.amazonaws.services.dynamodbv2.model.AttributeValue;
 import com.nashss.se.musicplaylistservice.dynamodb.models.Beer;
 import com.nashss.se.musicplaylistservice.exceptions.BeerNotFoundException;
@@ -9,13 +10,14 @@ import com.nashss.se.musicplaylistservice.models.beerenums.PackagingType;
 
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
 
-import javax.inject.Inject;
-import javax.inject.Singleton;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static com.nashss.se.musicplaylistservice.dynamodb.models.Beer.BEERS_BY_TYPE_INDEX;
+import javax.inject.Inject;
+import javax.inject.Singleton;
+
+
 
 /**
  * Accesses data for an album using {@link Beer} to represent the model in DynamoDB.

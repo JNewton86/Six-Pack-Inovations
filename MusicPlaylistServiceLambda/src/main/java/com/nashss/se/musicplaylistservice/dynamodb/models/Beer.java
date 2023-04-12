@@ -1,9 +1,9 @@
 package com.nashss.se.musicplaylistservice.dynamodb.models;
 
-import com.amazonaws.services.dynamodbv2.datamodeling.*;
-import com.nashss.se.musicplaylistservice.models.BeerModel;
 import com.nashss.se.musicplaylistservice.models.beerenums.BeerType;
 import com.nashss.se.musicplaylistservice.models.beerenums.PackagingType;
+
+import com.amazonaws.services.dynamodbv2.datamodeling.*;
 
 import java.math.BigDecimal;
 import java.util.Objects;
@@ -85,10 +85,20 @@ public class Beer {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o){ return true;}
-        if (o == null || getClass() != o.getClass()){ return false;}
+        if (this == o) {
+            return true;
+        }
+
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+
         Beer beer = (Beer) o;
-        return Objects.equals(beerId, beer.beerId) && Objects.equals(beerType, beer.beerType) && Objects.equals(name, beer.name) && Objects.equals(packagingType, beer.packagingType) && Objects.equals(unitPrice, beer.unitPrice) && Objects.equals(availableUnits, beer.availableUnits) && Objects.equals(reservedUnits, beer.reservedUnits);
+
+        return Objects.equals(beerId, beer.beerId) && Objects.equals(beerType, beer.beerType) &&
+                Objects.equals(name, beer.name) && Objects.equals(packagingType, beer.packagingType) &&
+                Objects.equals(unitPrice, beer.unitPrice) && Objects.equals(availableUnits, beer.availableUnits) &&
+                Objects.equals(reservedUnits, beer.reservedUnits);
     }
 
     @Override
