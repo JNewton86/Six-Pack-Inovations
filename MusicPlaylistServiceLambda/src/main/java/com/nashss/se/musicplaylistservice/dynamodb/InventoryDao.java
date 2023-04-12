@@ -1,6 +1,5 @@
 package com.nashss.se.musicplaylistservice.dynamodb;
 import com.nashss.se.musicplaylistservice.dynamodb.models.Beer;
-import com.nashss.se.musicplaylistservice.dynamodb.models.Playlist;
 import com.nashss.se.musicplaylistservice.exceptions.BeerNotFoundException;
 import com.nashss.se.musicplaylistservice.models.beerenums.PackagingType;
 

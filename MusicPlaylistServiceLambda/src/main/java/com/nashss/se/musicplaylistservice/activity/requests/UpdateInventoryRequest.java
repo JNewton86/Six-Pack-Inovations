@@ -6,20 +6,20 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
 
 
-@JsonDeserialize(builder = UpdatePlaylistRequest.Builder.class)
+@JsonDeserialize(builder = UpdateInventoryRequest.Builder.class)
 public class UpdateInventoryRequest {
     private final String beerId;
     private final PackagingType packagingType;
     private Integer availableUnits;
     private Integer reservedUnits;
 
-    private UpdateInventoryRequest(String beerId, PackagingType packagingType, Integer availableUnits, Integer reservedUnits) {
+      private UpdateInventoryRequest(String beerId, PackagingType packagingType, Integer availableUnits,
+                                   Integer reservedUnits) {
         this.beerId = beerId;
         this.packagingType = packagingType;
         this.availableUnits = availableUnits;
         this.reservedUnits = reservedUnits;
     }
-
 
 
     public String getbeerId() {

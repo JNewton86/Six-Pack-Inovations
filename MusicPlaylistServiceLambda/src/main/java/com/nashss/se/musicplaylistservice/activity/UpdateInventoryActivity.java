@@ -73,23 +73,19 @@ public class UpdateInventoryActivity {
         }
 
         // Check to ensure requested changes will not result in a negative inventory amount, add count to CloudWatch
-        if (updateInventoryRequest.getavailableUnits() < 0 || updateInventoryRequest.getavreservedUnits() <0 ) {
+        if (updateInventoryRequest.getavailableUnits() < 0 || updateInventoryRequest.getavreservedUnits() < 0) {
             metricsPublisher.addCount(MetricsConstantsSPI.UPDATEINVENTORY_INVALIDATTRIBUTEVALUE_COUNT, 1);
             metricsPublisher.addCount(MetricsConstantsSPI.UPDATEINVENTORY_INVALIDATTRIBUTECHANGE_COUNT, 0);
-            throw new InvalidAttributeValueException ("requested availableUnit or reservedUnits invalid");
+            throw new InvalidAttributeValueException("requested availableUnit or reservedUnits invalid");
         }
 
         Beer beer = inventoryDao.getBeer(updateInventoryRequest.getbeerId(), updateInventoryRequest.getPackagingType());
 
         // If beer not found in the table throws BeerNotFound and adds count to CloudWatch
-        if (beer == null){
+        if (beer == null) {
             metricsPublisher.addCount(MetricsConstantsSPI.UPDATEINVENTORY_BEERNOTFOUND_COUNT, 0);
             throw new BeerNotFoundException("beer inventory object not found to update");
         }
-            //if (!playlist.getCustomerId().equals(updatePlaylistRequest.getCustomerId())) {
-                //publishExceptionMetrics(false, true);
-                //throw new SecurityException("You must own a playlist to update it.");
-            //}
 
         beer.setAvailableUnits(updateInventoryRequest.getavailableUnits());
         beer.setReservedUnits(updateInventoryRequest.getavreservedUnits());

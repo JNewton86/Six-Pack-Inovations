@@ -6,7 +6,8 @@ import com.nashss.se.musicplaylistservice.models.BeerModel;
 public class BeerToBeerModelConverter {
 
     /**
-     * Converts a provided {@link Beer} into a {@link com.nashss.se.musicplaylistservice.models.BeerModel} representation.
+     * Converts a provided {@link Beer} into a {@link com.nashss.se.musicplaylistservice.models.BeerModel}
+     * representation.
      *
      * @param beer the beer to convert
      * @return the converted beermodel
