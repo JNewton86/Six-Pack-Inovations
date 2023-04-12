@@ -1,13 +1,13 @@
 :root {
     /* css variables: https://developer.mozilla.org/en-US/docs/Web/CSS/var */
-    --primary-color: #ECA203;
-    --secondary-color: #ffffff;
-    --tertiary-color: #1F66F5;
+    --primary-color: #ff5757;
+    --secondary-color: #FAF4F4;
+    --tertiary-color: #F03C3C;
     --error-color: #EE3A23;
 }
 
 .background {
-    background-color: #04A1B6;
+    background-color: --secondry-color;
     margin: 0;
     counter-reset: section;
     font-family: "Helvetica Neue",Helvetica,sans-serif;
@@ -24,9 +24,9 @@
 }
 
 .button {
-  background-color: var(--tertiary-color);
+  background-color: var(--secondary-color);
   border: none;
-  color: var(--secondary-color);
+  color: var(--primary-color);
   padding: 6px 8px 4px 8px;
   text-align: center;
   font-weight: bold;
@@ -135,3 +135,16 @@ a {
     color: var(--tertiary-color);
     text-decoration: none;
 }
+.parent {
+  margin: 1rem;
+  padding: 2rem 2rem;
+  text-align: center;
+}
+.child {
+  display: inline-block;
+  border: 2px solid red;
+  padding: 1rem 1rem;
+  vertical-align: middle;
+}
+
+.
