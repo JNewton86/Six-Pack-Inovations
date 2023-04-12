@@ -403,6 +403,8 @@ Resources:
           AttributeType: "S"
         - AttributeName: "packageType"
           AttributeType: "S"
+        - AttributeName: "beerType"
+          AttributeType: "S"
       KeySchema:
         - AttributeName: "beerId"
           KeyType: "HASH"
@@ -410,6 +412,13 @@ Resources:
           KeyType: "RANGE"
       BillingMode: "PAY_PER_REQUEST"
       TableName: "inventory"
+      GlobalSecondaryIndexes:
+        - IndexName: "BeersByBeerTypeIndex"
+          KeySchema:
+            - AttributeName: "beerType"
+              KeyType: "HASH"
+          Projection:
+            ProjectionType: "KEYS_ONLY"
 
   BeerOrderTable:
     Type: AWS::DynamoDB::Table

@@ -4,5 +4,5 @@ public enum BeerType {
     STOUT,
     PORTER,
     IPA,
-    LAGER
+    ALE, LAGER
 }

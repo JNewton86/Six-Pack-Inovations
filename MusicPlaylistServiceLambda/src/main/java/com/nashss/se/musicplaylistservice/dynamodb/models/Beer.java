@@ -1,9 +1,7 @@
 package com.nashss.se.musicplaylistservice.dynamodb.models;
 
-import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBAttribute;
-import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBHashKey;
-import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBRangeKey;
-import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable;
+import com.amazonaws.services.dynamodbv2.datamodeling.*;
+import com.nashss.se.musicplaylistservice.models.BeerModel;
 import com.nashss.se.musicplaylistservice.models.beerenums.BeerType;
 import com.nashss.se.musicplaylistservice.models.beerenums.PackagingType;
 
@@ -12,6 +10,7 @@ import java.util.Objects;
 
 @DynamoDBTable(tableName = "inventory")
 public class Beer {
+    public static final String BEERS_BY_TYPE_INDEX = "BeersByBeerTypeIndex";
     private String beerId;
     private BeerType beerType;
     private String name;
@@ -30,7 +29,7 @@ public class Beer {
         return packagingType;
     }
 
-    @DynamoDBAttribute(attributeName = "beerType")
+    @DynamoDBIndexHashKey(globalSecondaryIndexName = BEERS_BY_TYPE_INDEX, attributeName = "beerType")
     public BeerType getBeerType() {
         return beerType;
     }
