@@ -187,4 +187,7 @@ export default class MusicPlaylistClient extends BindingClass {
             errorCallback(error);
         }
     }
+
+    async getData() {
+    }
 }
