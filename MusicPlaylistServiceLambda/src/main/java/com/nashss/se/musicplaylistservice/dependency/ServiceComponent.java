@@ -49,6 +49,6 @@ public interface ServiceComponent {
      */
     UpdatePlaylistActivity provideUpdatePlaylistActivity();
 
-    GetBeerInventoryActivity provideGetBeerInventoryRequest();
+    GetBeerInventoryActivity provideGetBeerInventoryActivity();
 
 }

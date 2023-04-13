@@ -1,5 +1,7 @@
 package com.nashss.se.musicplaylistservice.dynamodb.models;
 
+import com.nashss.se.musicplaylistservice.converters.BeerTypeConverter;
+import com.nashss.se.musicplaylistservice.converters.PackagingTypeConverter;
 import com.nashss.se.musicplaylistservice.models.beerenums.BeerType;
 import com.nashss.se.musicplaylistservice.models.beerenums.PackagingType;
 
@@ -19,17 +21,19 @@ public class Beer {
     private Integer availableUnits;
     private Integer reservedUnits;
 
-    @DynamoDBHashKey(attributeName = "id")
+    @DynamoDBHashKey(attributeName = "beerId")
     public String getBeerId() {
         return beerId;
     }
-
-    @DynamoDBRangeKey(attributeName = "packagingType")
+    @DynamoDBTypeConverted(converter = PackagingTypeConverter.class)
+    @DynamoDBRangeKey(attributeName = "packageType")
     public PackagingType getPackagingType() {
         return packagingType;
     }
 
+    @DynamoDBTypeConverted(converter = BeerTypeConverter.class)
     @DynamoDBIndexHashKey(globalSecondaryIndexName = BEERS_BY_TYPE_INDEX, attributeName = "beerType")
+    @DynamoDBAttribute(attributeName = "beerType")
     public BeerType getBeerType() {
         return beerType;
     }
