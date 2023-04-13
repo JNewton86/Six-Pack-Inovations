@@ -49,6 +49,17 @@ public interface ServiceComponent {
      */
     UpdatePlaylistActivity provideUpdatePlaylistActivity();
 
+
+    /**
+     * Provides the relevant activity.
+     * @return UpdateInventoryActivity
+     */
+    UpdateInventoryActivity provideUpdateInventoryActivity();
+     /**
+     * Provides the relevant activity.
+     * @return GetBeerInventoryActivity
+     */
     GetBeerInventoryActivity provideGetBeerInventoryActivity();
+
 
 }

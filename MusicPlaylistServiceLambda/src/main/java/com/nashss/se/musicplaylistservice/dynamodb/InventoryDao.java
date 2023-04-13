@@ -56,6 +56,18 @@ public class InventoryDao {
         return beer;
     }
 
+
+    /**
+     * Saves (creates or updates) the given beer in the inventory table.
+     *
+     * @param beer The playlist to save
+     * @return The Playlist object that was saved
+     */
+    public Beer saveBeer(Beer beer) {
+        this.dynamoDbMapper.save(beer);
+        return beer;
+    }
+
     public List<Beer> getBeersByType(BeerType beerType){
         DynamoDBMapper mapper = new DynamoDBMapper(DynamoDbClientProvider.getDynamoDBClient());
         Map<String, AttributeValue> valueMap = new HashMap<>();
@@ -67,6 +79,7 @@ public class InventoryDao {
                 .withExpressionAttributeValues(valueMap);
 
         PaginatedQueryList<Beer> beersListedByType = mapper.query(Beer.class, queryExpression);
+
 
         return beersListedByType;
     }
