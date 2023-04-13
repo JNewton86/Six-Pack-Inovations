@@ -3,7 +3,7 @@
     {
       "PutRequest": {
         "Item": {
-          "id": { "S": "B019HKJTCI" },
+          "beerId": { "S": "B019HKJTCI" },
           "beerType": {"S":  "IPA"},
           "packagingType": { "S": "Keg" },
           "name": { "S": "Werewolf Beach Party" },
@@ -17,7 +17,7 @@
     {
       "PutRequest": {
         "Item": {
-          "id": { "S": "B019HKJTCJ" },
+          "beerId": { "S": "B019HKJTCJ" },
           "beerType": {"S":  "Stout"},
           "packagingType": { "S": "Keg" },
           "name": { "S": "The Dark Knight" },
@@ -31,7 +31,7 @@
     {
       "PutRequest": {
         "Item": {
-          "id": { "S": "B019HKJTCK" },
+          "beerId": { "S": "B019HKJTCK" },
           "beerType": {"S":  "Lager"},
           "packagingType": { "S": "Keg" },
           "name": { "S": "Midnight Sun Kodiak" },
@@ -45,7 +45,7 @@
     {
       "PutRequest": {
         "Item": {
-          "id": { "S": "B019HKJTCL" },
+          "beerId": { "S": "B019HKJTCL" },
           "beerType": {"S":  "Porter"},
           "packagingType": { "S": "Keg" },
           "name": { "S": "Porter Potty" },
@@ -59,7 +59,7 @@
     {
       "PutRequest": {
         "Item": {
-          "id": { "S": "B019HKJTCI" },
+          "beerId": { "S": "B019HKJTCI" },
           "beerType": {"S":  "IPA"},
           "packagingType": { "S": "Case" },
           "name": { "S": "Werewolf Beach Party" },
@@ -73,7 +73,7 @@
     {
       "PutRequest": {
         "Item": {
-          "id": { "S": "B019HKJTCJ" },
+          "beerId": { "S": "B019HKJTCJ" },
           "beerType": {"S":  "Stout"},
           "packagingType": { "S": "Case" },
           "name": { "S": "The Dark Knight" },
@@ -87,7 +87,7 @@
     {
       "PutRequest": {
         "Item": {
-          "id": { "S": "B019HKJTCK" },
+          "beerId": { "S": "B019HKJTCK" },
           "beerType": {"S":  "Lager"},
           "packagingType": { "S": "Case" },
           "name": { "S": "Midnight Sun Kodiak" },
@@ -101,7 +101,7 @@
     {
       "PutRequest": {
         "Item": {
-          "id": { "S": "B019HKJTCL" },
+          "beerId": { "S": "B019HKJTCL" },
           "beerType": {"S":  "Porter"},
           "packagingType": { "S": "Case" },
           "name": { "S": "Porter Potty" },
