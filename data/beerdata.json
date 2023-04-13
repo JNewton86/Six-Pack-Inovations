@@ -6,7 +6,7 @@
           "beerId": { "S": "B019HKJTCI" },
           "packagingType": { "S": "Keg" },
           "beerType": {"S":  "IPA"},
-          "name": { "S": "Werewolf Beach Party" },
+          "beerName": { "S": "Werewolf Beach Party" },
           "availableUnits": { "N": "30" },
           "reservedUnits": { "N": "5" },
           "unitPrice": { "N": "100" }
@@ -19,7 +19,7 @@
           "beerId": { "S": "B019HKJTCJ" },
           "packagingType": { "S": "Keg" },
           "beerType": {"S":  "Stout"},
-          "name": { "S": "The Dark Knight" },
+          "beerName": { "S": "The Dark Knight" },
           "availableUnits": { "N": "34" },
           "reservedUnits": { "N": "10" },
           "unitPrice": { "N": "100" }
@@ -32,7 +32,7 @@
           "beerId": { "S": "B019HKJTCK" },
           "packagingType": { "S": "Keg" },
           "beerType": {"S":  "Lager"},
-          "name": { "S": "Midnight Sun Kodiak" },
+          "beerName": { "S": "Midnight Sun Kodiak" },
           "availableUnits": { "N": "45" },
           "reservedUnits": { "N": "5" },
           "unitPrice": { "N": "100" }
@@ -45,7 +45,7 @@
           "beerId": { "S": "B019HKJTCL" },
           "packagingType": { "S": "Keg" },
           "beerType": {"S":  "Porter"},
-          "name": { "S": "Porter Potty" },
+          "beerName": { "S": "Porter Potty" },
           "availableUnits": { "N": "25" },
           "reservedUnits": { "N": "20" },
           "unitPrice": { "N": "100" }
@@ -58,7 +58,7 @@
           "beerId": { "S": "B019HKJTCI" },
           "packagingType": { "S": "Case" },
           "beerType": {"S":  "IPA"},
-          "name": { "S": "Werewolf Beach Party" },
+          "beerName": { "S": "Werewolf Beach Party" },
           "availableUnits": { "N": "30" },
           "reservedUnits": { "N": "5" },
           "unitPrice": { "N": "35" }
@@ -71,7 +71,7 @@
           "beerId": { "S": "B019HKJTCJ" },
           "packagingType": { "S": "Case" },
           "beerType": {"S":  "Stout"},
-          "name": { "S": "The Dark Knight" },
+          "beerName": { "S": "The Dark Knight" },
           "availableUnits": { "N": "34" },
           "reservedUnits": { "N": "10" },
           "unitPrice": { "N": "35" }
@@ -84,7 +84,7 @@
           "beerId": { "S": "B019HKJTCK" },
           "packagingType": { "S": "Case" },
           "beerType": {"S":  "Lager"},
-          "name": { "S": "Midnight Sun Kodiak" },
+          "beerName": { "S": "Midnight Sun Kodiak" },
           "availableUnits": { "N": "45" },
           "reservedUnits": { "N": "5" },
           "unitPrice": { "N": "35" }
@@ -97,7 +97,7 @@
           "beerId": { "S": "B019HKJTCL" },
           "packagingType": { "S": "Case" },
           "beerType": {"S":  "Porter"},
-          "name": { "S": "Porter Potty" },
+          "beerName": { "S": "Porter Potty" },
           "availableUnits": { "N": "25" },
           "reservedUnits": { "N": "20" },
           "unitPrice": { "N": "35" }
