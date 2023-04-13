@@ -5,9 +5,11 @@ import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBHashKey;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable;
 
 import java.math.BigDecimal;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 
-import static com.nashss.se.musicplaylistservice.utils.CollectionUtils.copyToList;
+
 @DynamoDBTable(tableName = "orders")
 public class Order {
 
@@ -76,17 +78,6 @@ public class Order {
     public void setOrderProcessed(boolean orderProcessed) {
         this.orderProcessed = orderProcessed;
     }
-
-    // PARTICIPANTS: You do not need to modify the songList getters/setters or annotations
-//    @DynamoDBTypeConverted(converter = .class)
-//    @DynamoDBAttribute(attributeName = "songList")
-//    public List<AlbumTrack> getSongList() {
-//        return songList;
-//    }
-//
-//    public void setSongList(List<AlbumTrack> songList) {
-//        this.songList = songList;
-//    }
 
     @Override
     public boolean equals(Object o) {

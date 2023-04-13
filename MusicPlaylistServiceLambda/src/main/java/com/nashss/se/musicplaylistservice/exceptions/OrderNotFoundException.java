@@ -1,6 +1,6 @@
 package com.nashss.se.musicplaylistservice.exceptions;
 
-public class OrderNotFoundException extends RuntimeException{
+public class OrderNotFoundException extends RuntimeException {
     private static final long serialVersionUID = -5312827183453299865L;
 
     public OrderNotFoundException() {
