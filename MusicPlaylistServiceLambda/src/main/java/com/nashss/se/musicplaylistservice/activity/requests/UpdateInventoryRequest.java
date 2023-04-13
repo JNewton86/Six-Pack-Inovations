@@ -84,7 +84,7 @@ public class UpdateInventoryRequest {
             return this;
         }
         public Builder withReservedUnits(Integer reservedUnits) {
-            this.reservedUnits = availableUnits;
+            this.reservedUnits = reservedUnits;
             return this;
         }
 
