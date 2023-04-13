@@ -21,6 +21,7 @@ export default class Header extends BindingClass {
      * Add the header to the page.
      */
     async addHeaderToPage() {
+        console.log("Hello from Adele");
         const currentUser = await this.client.getIdentity();
 
         const siteTitle = this.createSiteTitle();
