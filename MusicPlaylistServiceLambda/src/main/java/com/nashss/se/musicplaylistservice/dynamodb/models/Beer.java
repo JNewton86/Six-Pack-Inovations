@@ -26,7 +26,7 @@ public class Beer {
         return beerId;
     }
     @DynamoDBTypeConverted(converter = PackagingTypeConverter.class)
-    @DynamoDBRangeKey(attributeName = "packageType")
+    @DynamoDBRangeKey(attributeName = "packagingType")
     public PackagingType getPackagingType() {
         return packagingType;
     }

@@ -360,7 +360,7 @@ Resources:
         MusicPlaylistService:
           Type: Api
           Properties:
-            Path: /inventory/{BeerId}/{packagingType}
+            Path: /inventory/{beer}/{packagingType}
             Method: put
 
   AddSongToPlaylistLambda:
@@ -400,7 +400,7 @@ Resources:
         MusicPlaylistService:
           Type: Api
           Properties:
-            Path: /inventory/{beerType}
+            Path: /inventory/{beer}
             Method: get
             Auth:
               Authorizer: 'NONE'
