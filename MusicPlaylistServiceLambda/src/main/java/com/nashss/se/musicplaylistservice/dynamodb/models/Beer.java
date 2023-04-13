@@ -1,17 +1,18 @@
 package com.nashss.se.musicplaylistservice.dynamodb.models;
 
-import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBAttribute;
-import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBHashKey;
-import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBRangeKey;
-import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable;
+import com.nashss.se.musicplaylistservice.converters.BeerTypeConverter;
+import com.nashss.se.musicplaylistservice.converters.PackagingTypeConverter;
 import com.nashss.se.musicplaylistservice.models.beerenums.BeerType;
 import com.nashss.se.musicplaylistservice.models.beerenums.PackagingType;
+
+import com.amazonaws.services.dynamodbv2.datamodeling.*;
 
 import java.math.BigDecimal;
 import java.util.Objects;
 
 @DynamoDBTable(tableName = "inventory")
 public class Beer {
+    public static final String BEERS_BY_TYPE_INDEX = "BeersByBeerTypeIndex";
     private String beerId;
     private BeerType beerType;
     private String name;
@@ -20,16 +21,18 @@ public class Beer {
     private Integer availableUnits;
     private Integer reservedUnits;
 
-    @DynamoDBHashKey(attributeName = "id")
+    @DynamoDBHashKey(attributeName = "beerId")
     public String getBeerId() {
         return beerId;
     }
-
-    @DynamoDBRangeKey(attributeName = "packagingType")
+    @DynamoDBTypeConverted(converter = PackagingTypeConverter.class)
+    @DynamoDBRangeKey(attributeName = "packageType")
     public PackagingType getPackagingType() {
         return packagingType;
     }
 
+    @DynamoDBTypeConverted(converter = BeerTypeConverter.class)
+    @DynamoDBIndexHashKey(globalSecondaryIndexName = BEERS_BY_TYPE_INDEX, attributeName = "beerType")
     @DynamoDBAttribute(attributeName = "beerType")
     public BeerType getBeerType() {
         return beerType;
@@ -86,10 +89,20 @@ public class Beer {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o){ return true;}
-        if (o == null || getClass() != o.getClass()){ return false;}
+        if (this == o) {
+            return true;
+        }
+
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+
         Beer beer = (Beer) o;
-        return Objects.equals(beerId, beer.beerId) && Objects.equals(beerType, beer.beerType) && Objects.equals(name, beer.name) && Objects.equals(packagingType, beer.packagingType) && Objects.equals(unitPrice, beer.unitPrice) && Objects.equals(availableUnits, beer.availableUnits) && Objects.equals(reservedUnits, beer.reservedUnits);
+
+        return Objects.equals(beerId, beer.beerId) && Objects.equals(beerType, beer.beerType) &&
+                Objects.equals(name, beer.name) && Objects.equals(packagingType, beer.packagingType) &&
+                Objects.equals(unitPrice, beer.unitPrice) && Objects.equals(availableUnits, beer.availableUnits) &&
+                Objects.equals(reservedUnits, beer.reservedUnits);
     }
 
     @Override

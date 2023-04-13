@@ -11,7 +11,6 @@ import java.math.BigDecimal;
 import java.util.Objects;
 
 
-@DynamoDBTable(tableName = "inventory")
 public class BeerModel {
     private String beerId;
     private BeerType beerType;
@@ -31,37 +30,30 @@ public class BeerModel {
         this.availableUnits = availableUnits;
         this.reservedUnits = reservedUnits;
     }
-    @DynamoDBHashKey(attributeName = "id")
     public String getBeerId() {
         return beerId;
     }
 
-    @DynamoDBRangeKey(attributeName = "packagingType")
-    public PackagingType getPackagingType() {
+   public PackagingType getPackagingType() {
         return packagingType;
     }
 
-    @DynamoDBAttribute(attributeName = "beerType")
     public BeerType getBeerType() {
         return beerType;
     }
 
-    @DynamoDBAttribute(attributeName = "beerName")
     public String getName() {
         return name;
     }
 
-    @DynamoDBAttribute(attributeName = "unitPrice")
     public BigDecimal getUnitPrice() {
         return unitPrice;
     }
 
-    @DynamoDBAttribute(attributeName = "availableUnits")
     public Integer getAvailableUnits() {
         return availableUnits;
     }
 
-    @DynamoDBAttribute(attributeName = "reservedUnits")
     public Integer getReservedUnits() {
         return reservedUnits;
     }
@@ -100,7 +92,9 @@ public class BeerModel {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         BeerModel beer = (BeerModel) o;
-        return Objects.equals(beerId, beer.beerId) && Objects.equals(beerType, beer.beerType) && Objects.equals(name, beer.name) && Objects.equals(packagingType, beer.packagingType) && Objects.equals(unitPrice, beer.unitPrice) && Objects.equals(availableUnits, beer.availableUnits) && Objects.equals(reservedUnits, beer.reservedUnits);
+        return Objects.equals(beerId, beer.beerId) && Objects.equals(beerType, beer.beerType)
+                && Objects.equals(name, beer.name) && Objects.equals(packagingType, beer.packagingType) && Objects.equals(unitPrice, beer.unitPrice)
+                && Objects.equals(availableUnits, beer.availableUnits) && Objects.equals(reservedUnits, beer.reservedUnits);
     }
 
     @Override

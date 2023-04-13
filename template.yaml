@@ -343,6 +343,26 @@ Resources:
             Path: /playlists/{id}
             Method: put
 
+  UpdateInventoryLambda:
+    Type: AWS::Serverless::Function
+    Properties:
+      Role: !GetAtt AccessRole.Arn
+      CodeUri: MusicPlaylistServiceLambda
+      Handler: com.nashss.se.musicplaylistservice.lambda.UpdateInventoryLambda::handleRequest
+      Runtime: java11
+      Architectures:
+        - x86_64
+      MemorySize: 512
+      Environment:
+        Variables:
+          JAVA_TOOL_OPTIONS: -XX:+TieredCompilation -XX:TieredStopAtLevel=1
+      Events:
+        MusicPlaylistService:
+          Type: Api
+          Properties:
+            Path: /inventory/{BeerId}/{packagingType}
+            Method: put
+
   AddSongToPlaylistLambda:
     Type: AWS::Serverless::Function
     Properties:
@@ -362,6 +382,28 @@ Resources:
           Properties:
             Path: /playlists/{id}/songs
             Method: post
+
+  GetBeerInventoryLambda:
+    Type: AWS::Serverless::Function
+    Properties:
+      Role: !GetAtt AccessRole.Arn
+      CodeUri: MusicPlaylistServiceLambda
+      Handler: com.nashss.se.musicplaylistservice.lambda.GetBeerInventoryLambda::handleRequest
+      Runtime: java11
+      Architectures:
+        - x86_64
+      MemorySize: 512
+      Environment:
+        Variables:
+          JAVA_TOOL_OPTIONS: -XX:+TieredCompilation -XX:TieredStopAtLevel=1
+      Events:
+        MusicPlaylistService:
+          Type: Api
+          Properties:
+            Path: /inventory/{beerType}
+            Method: get
+            Auth:
+              Authorizer: 'NONE'
 
   #-----------------------------------------------------
   # DynamoDB Configuration
@@ -401,15 +443,24 @@ Resources:
       AttributeDefinitions:
         - AttributeName: "beerId"
           AttributeType: "S"
-        - AttributeName: "packageType"
+        - AttributeName: "packagingType"
+          AttributeType: "S"
+        - AttributeName: "beerType"
           AttributeType: "S"
       KeySchema:
         - AttributeName: "beerId"
           KeyType: "HASH"
-        - AttributeName: "packageType"
+        - AttributeName: "packagingType"
           KeyType: "RANGE"
       BillingMode: "PAY_PER_REQUEST"
       TableName: "inventory"
+      GlobalSecondaryIndexes:
+        - IndexName: "BeersByBeerTypeIndex"
+          KeySchema:
+            - AttributeName: "beerType"
+              KeyType: "HASH"
+          Projection:
+            ProjectionType: "KEYS_ONLY"
 
   BeerOrderTable:
     Type: AWS::DynamoDB::Table

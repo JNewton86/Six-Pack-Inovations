@@ -1,6 +1,7 @@
 package com.nashss.se.musicplaylistservice.dynamodb;
 
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
+import com.nashss.se.musicplaylistservice.dynamodb.models.Playlist;
 import com.nashss.se.musicplaylistservice.exceptions.BeerNotFoundException;
 import com.nashss.se.musicplaylistservice.dynamodb.models.Beer;
 import com.nashss.se.musicplaylistservice.models.beerenums.PackagingType;
@@ -57,5 +58,18 @@ class InventoryDaoTest {
 
         // WHEN + THEN
         assertThrows(BeerNotFoundException.class, () -> inventoryDao.getBeer(beerId, PackagingType.CASE));
+    }
+
+    @Test
+    void saveBeer_callsMapperWithBeer() {
+        // GIVEN
+        Beer beer = new Beer();
+
+        // WHEN
+        Beer result = inventoryDao.saveBeer(beer);
+
+        // THEN
+        verify(dynamoDBMapper).save(beer);
+        assertEquals(beer, result);
     }
 }

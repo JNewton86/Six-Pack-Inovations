@@ -4,13 +4,12 @@
       "PutRequest": {
         "Item": {
           "beerId": { "S": "B019HKJTCI" },
-          "beerType": {"S":  "IPA"},
           "packagingType": { "S": "Keg" },
+          "beerType": {"S":  "IPA"},
           "name": { "S": "Werewolf Beach Party" },
           "availableUnits": { "N": "30" },
           "reservedUnits": { "N": "5" },
-          "totalUnits": { "N": "35" },
-          "pricePerUnit": { "N": "100" }
+          "unitPrice": { "N": "100" }
         }
       }
     },
@@ -18,13 +17,12 @@
       "PutRequest": {
         "Item": {
           "beerId": { "S": "B019HKJTCJ" },
-          "beerType": {"S":  "Stout"},
           "packagingType": { "S": "Keg" },
+          "beerType": {"S":  "Stout"},
           "name": { "S": "The Dark Knight" },
           "availableUnits": { "N": "34" },
           "reservedUnits": { "N": "10" },
-          "totalUnits": { "N": "44" },
-          "pricePerUnit": { "N": "100" }
+          "unitPrice": { "N": "100" }
         }
       }
     },
@@ -32,13 +30,12 @@
       "PutRequest": {
         "Item": {
           "beerId": { "S": "B019HKJTCK" },
-          "beerType": {"S":  "Lager"},
           "packagingType": { "S": "Keg" },
+          "beerType": {"S":  "Lager"},
           "name": { "S": "Midnight Sun Kodiak" },
           "availableUnits": { "N": "45" },
           "reservedUnits": { "N": "5" },
-          "totalUnits": { "N": "50" },
-          "pricePerUnit": { "N": "100" }
+          "unitPrice": { "N": "100" }
         }
       }
     },
@@ -46,13 +43,12 @@
       "PutRequest": {
         "Item": {
           "beerId": { "S": "B019HKJTCL" },
-          "beerType": {"S":  "Porter"},
           "packagingType": { "S": "Keg" },
+          "beerType": {"S":  "Porter"},
           "name": { "S": "Porter Potty" },
           "availableUnits": { "N": "25" },
           "reservedUnits": { "N": "20" },
-          "totalUnits": { "N": "45" },
-          "pricePerUnit": { "N": "100" }
+          "unitPrice": { "N": "100" }
         }
       }
     },
@@ -60,13 +56,12 @@
       "PutRequest": {
         "Item": {
           "beerId": { "S": "B019HKJTCI" },
-          "beerType": {"S":  "IPA"},
           "packagingType": { "S": "Case" },
+          "beerType": {"S":  "IPA"},
           "name": { "S": "Werewolf Beach Party" },
           "availableUnits": { "N": "30" },
           "reservedUnits": { "N": "5" },
-          "totalUnits": { "N": "35" },
-          "pricePerUnit": { "N": "35" }
+          "unitPrice": { "N": "35" }
         }
       }
     },
@@ -74,13 +69,12 @@
       "PutRequest": {
         "Item": {
           "beerId": { "S": "B019HKJTCJ" },
-          "beerType": {"S":  "Stout"},
           "packagingType": { "S": "Case" },
+          "beerType": {"S":  "Stout"},
           "name": { "S": "The Dark Knight" },
           "availableUnits": { "N": "34" },
           "reservedUnits": { "N": "10" },
-          "totalUnits": { "N": "44" },
-          "pricePerUnit": { "N": "35" }
+          "unitPrice": { "N": "35" }
         }
       }
     },
@@ -88,13 +82,12 @@
       "PutRequest": {
         "Item": {
           "beerId": { "S": "B019HKJTCK" },
-          "beerType": {"S":  "Lager"},
           "packagingType": { "S": "Case" },
+          "beerType": {"S":  "Lager"},
           "name": { "S": "Midnight Sun Kodiak" },
           "availableUnits": { "N": "45" },
           "reservedUnits": { "N": "5" },
-          "totalUnits": { "N": "50" },
-          "pricePerUnit": { "N": "35" }
+          "unitPrice": { "N": "35" }
         }
       }
     },
@@ -102,13 +95,12 @@
       "PutRequest": {
         "Item": {
           "beerId": { "S": "B019HKJTCL" },
-          "beerType": {"S":  "Porter"},
           "packagingType": { "S": "Case" },
+          "beerType": {"S":  "Porter"},
           "name": { "S": "Porter Potty" },
           "availableUnits": { "N": "25" },
           "reservedUnits": { "N": "20" },
-          "totalUnits": { "N": "45" },
-          "pricePerUnit": { "N": "35" }
+          "unitPrice": { "N": "35" }
         }
       }
     }
