@@ -1,57 +1,23 @@
+<!DOCTYPE html>
 <html>
-
-<head>
-    <title>Orders</title>
+  <head>
+    <script type="module" src="assets/inventory.js"></script>
     <link rel="stylesheet" type="text/css" href="css/stylebeer.css">
-    <script type="text/javascript" src="assets/inventory.js"></script>
-    <script src="inventory.js"></script>
-</head>
-
-<body class="background">
-<header class="header" id="header">
-    <a href="index1.html"><img src="sixpacklogo.png" alt="logo placeholder"
-                               style="width:150px;height:150px;">
+  </head>
+  <header class="header" id="header">
+    <a href="index1.html">
+      <img src="sixpacklogo.png" alt="logo placeholder" style="width:150px;height:150px;">
     </a>
-</header>
-<h1 style="color: #FFB563;">Inventory</h1>
-<a href="employeeDashboard.html">Dashboard</a>
-<h1>Warehouse No.01, Nashville, TN</h1>
-
-<table>
-    <thead>
-    <tr>
-        <th>Product Line</th>
-        <th>ID</th>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Packaging Type</th>
-        <th>Unit Price</th>
-        <th>Available Qty</th>
-        <th>Reserved Qty</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr>
-        <td> <img src="StoutDemoLogo.png" alt="Stout Logo" width="100" height="100"> </td>
-        <td>$100</td>
-    </tr>
-    <tr>
-        <td><img src="LagerDemoLogo.png" alt="Lager Logo" width="100" height="100"> </td>
-        <td>$80</td>
-    </tr>
-    <tr>
-        <td><img src="IPADemoLogo.png" alt="IPA Logo" width="100" height="100"></td>
-        <td>$80</td>
-    </tr>
-    <tr>
-        <td><img src="PorterDemoLogo.png" alt="Porter Logo" width="100" height="100"></td>
-        <td>$80</td>
-    </tr>
-    </tbody>
-    <tfoot>
-    </tfoot>
-</table>
-<a href="updateinventory.html">Update Inventory</a>
-
-</body>
+  </header>
+  <body class="background">
+    <div class="card">
+        <h1 style="color: #FFB563;">Inventory</h1>
+        <h2>Warehouse No.01, Nashville, TN</h2>
+        <div id="table-container"></div>
+        <p class="button-group">
+            <a href="updateinventory.html">Update Inventory</a>
+            <a href="employeeDashboard.html">Dashboard</a>
+        </p>
+    </div>
+  </body>
 </html>

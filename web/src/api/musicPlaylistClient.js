@@ -191,5 +191,37 @@ export default class MusicPlaylistClient extends BindingClass {
     }
 
     async getData() {
+        try {
+            const response = await fetch('/api/playlist');
+            const data = await response.json();
+            return data;
+        } catch (error) {
+            console.error(`Error fetching data: ${error}`);
+            // Return some sample data
+            return [
+                {
+                    beerId: 1,
+                    packagingType: 'Case',
+                    beerType: 'IPA',
+                    availableInventory: 100,
+                    reservedInventory: 10,
+                },
+                {
+                    beerId: 2,
+                    packagingType: 'Case',
+                    beerType: 'Stout',
+                    availableInventory: 50,
+                    reservedInventory: 20,
+                },
+                {
+                    beerId: 3,
+                    packagingType: 'Keg',
+                    beerType: 'Pilsner',
+                    availableInventory: 20,
+                    reservedInventory: 5,
+                }
+            ];
+        }
     }
 }
+
