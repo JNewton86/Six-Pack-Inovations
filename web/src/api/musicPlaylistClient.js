@@ -201,19 +201,17 @@ export default class MusicPlaylistClient extends BindingClass {
             return [
                 {
                     beerId: 1,
-                    packagingType: 'Can',
+                    packagingType: 'Case',
                     beerType: 'IPA',
                     availableInventory: 100,
                     reservedInventory: 10,
-                    totalInventory: 110
                 },
                 {
                     beerId: 2,
-                    packagingType: 'Bottle',
+                    packagingType: 'Case',
                     beerType: 'Stout',
                     availableInventory: 50,
                     reservedInventory: 20,
-                    totalInventory: 70
                 },
                 {
                     beerId: 3,
@@ -221,7 +219,6 @@ export default class MusicPlaylistClient extends BindingClass {
                     beerType: 'Pilsner',
                     availableInventory: 20,
                     reservedInventory: 5,
-                    totalInventory: 25
                 }
             ];
         }
