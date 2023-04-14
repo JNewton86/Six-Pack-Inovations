@@ -146,5 +146,21 @@ a {
   padding: 1rem 1rem;
   vertical-align: middle;
 }
+.table-container {
+    border-collapse: collapse;
+    width: 100%;
+    font-size: 1rem;
+}
 
-.
+.table-container th {
+    font-weight: bold;
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+    padding: 0.5rem;
+}
+
+.table-container td {
+    border: 1px solid var(--primary-color);
+    padding: 0.5rem;
+}
+

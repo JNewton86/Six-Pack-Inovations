@@ -1,18 +1,8 @@
 import MusicPlaylistClient from '../api/musicPlaylistClient';
-import Header from '../components/header';
 import BindingClass from "../util/bindingClass";
 import DataStore from "../util/DataStore";
+import Table from '../components/table';
 
-/*
-The code below this comment is equivalent to...
-const EMPTY_DATASTORE_STATE = {
-    'search-criteria': '',
-    'search-results': [],
-};
-
-...but uses the "KEY" constants instead of "magic strings".
-The "KEY" constants will be reused a few times below.
-*/
 
 const SEARCH_CRITERIA_KEY = 'search-criteria';
 const SEARCH_RESULTS_KEY = 'search-results';
@@ -23,9 +13,9 @@ const EMPTY_DATASTORE_STATE = {
 
 
 /**
- * Logic needed for the view playlist page of the website.
+ * Logic needed for the view table page of the website.
  */
-class SearchPlaylists extends BindingClass {
+class Inventory extends BindingClass {
     constructor() {
         super();
 
@@ -35,19 +25,23 @@ class SearchPlaylists extends BindingClass {
         this.dataStore = new DataStore(EMPTY_DATASTORE_STATE);
         this.table = new Table(this.dataStore);
         this.dataStore.addChangeListener(this.displaySearchResults);
-        console.log("searchPlaylists constructor");
     }
 
     /**
-     * Add the header to the page and load the MusicPlaylistClient.
+     * Add the table to the page and load the MusicPlaylistClient.
      */
     mount() {
-        // Wire up the form's 'submit' event and the button's 'click' event to the search method.
-        // document.getElementById('search-playlists-form').addEventListener('submit', this.search);
-        // document.getElementById('search-btn').addEventListener('click', this.search);
+        console.log('Inventory.js mounting...');
 
         this.table.addTableToPage();
 
         this.client = new MusicPlaylistClient();
     }
 }
+
+    const main = async () => {
+        const inventory = new Inventory();
+        inventory.mount();
+    };
+    
+    window.addEventListener('DOMContentLoaded', main);
