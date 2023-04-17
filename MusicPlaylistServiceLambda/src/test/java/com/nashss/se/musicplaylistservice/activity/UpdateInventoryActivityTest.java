@@ -46,7 +46,7 @@ public class UpdateInventoryActivityTest {
         int reservedUnits = 10;
 
         UpdateInventoryRequest request = UpdateInventoryRequest.builder()
-                .withId(id)
+                .withBeerId(id)
                 .withPackagingType(packagingType)
                 .withAvailableUnits(availableUnits)
                 .withReservedUnits(reservedUnits)
@@ -74,7 +74,7 @@ public class UpdateInventoryActivityTest {
     public void handleRequest_invalidAvailable_throwsInvalidAttributeValueException() {
         // GIVEN
         UpdateInventoryRequest request = UpdateInventoryRequest.builder()
-                .withId("id")
+                .withBeerId("id")
                 .withPackagingType("KEG")
                 .withAvailableUnits(-10)
                 .withReservedUnits(10)
@@ -94,7 +94,7 @@ public class UpdateInventoryActivityTest {
         // GIVEN
         String id = "id";
         UpdateInventoryRequest request = UpdateInventoryRequest.builder()
-                .withId(id)
+                .withBeerId(id)
                 .withPackagingType("KEG")
                 .withAvailableUnits(10)
                 .withReservedUnits(10)

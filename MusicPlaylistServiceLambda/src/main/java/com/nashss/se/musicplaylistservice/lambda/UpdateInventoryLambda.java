@@ -24,7 +24,7 @@ public class UpdateInventoryLambda
                 return input.fromUserClaims(claims -> {
                     log.info("request body in lambda : '{}'", authenticatedRequest.toString());
                           return   UpdateInventoryRequest.builder()
-                                .withId(authenticatedRequest.getBeerId())
+                                .withBeerId(authenticatedRequest.getBeerId())
                                 .withPackagingType(authenticatedRequest.getPackagingType())
                                 .withAvailableUnits(authenticatedRequest.getAvailableUnits())
                                 .withReservedUnits(authenticatedRequest.getReservedUnits())

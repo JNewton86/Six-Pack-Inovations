@@ -70,7 +70,7 @@ public class UpdateInventoryRequest {
         private Integer reservedUnits;
         private Double unitPrice;
 
-        public Builder withId(String beerId) {
+        public Builder withBeerId(String beerId) {
             this.beerId = beerId;
             return this;
         }
