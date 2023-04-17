@@ -6,10 +6,8 @@ import com.nashss.se.musicplaylistservice.dynamodb.InventoryDao;
 import com.nashss.se.musicplaylistservice.dynamodb.models.Beer;
 import com.nashss.se.musicplaylistservice.exceptions.BeerNotFoundException;
 import com.nashss.se.musicplaylistservice.exceptions.InvalidAttributeValueException;
-import com.nashss.se.musicplaylistservice.metrics.MetricsConstants;
 import com.nashss.se.musicplaylistservice.metrics.MetricsConstantsSPI;
 import com.nashss.se.musicplaylistservice.metrics.MetricsPublisher;
-import com.nashss.se.musicplaylistservice.models.beerenums.PackagingType;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
@@ -43,7 +41,7 @@ public class UpdateInventoryActivityTest {
     public void handleRequest_goodRequest_updatesAvailableUnits() {
         // GIVEN
         String id = "id";
-        PackagingType packagingType = PackagingType.KEG;
+        String packagingType = "KEG";
         int availableUnits = 10;
         int reservedUnits = 10;
 
@@ -77,7 +75,7 @@ public class UpdateInventoryActivityTest {
         // GIVEN
         UpdateInventoryRequest request = UpdateInventoryRequest.builder()
                 .withId("id")
-                .withPackagingType(PackagingType.KEG)
+                .withPackagingType("KEG")
                 .withAvailableUnits(-10)
                 .withReservedUnits(10)
                 .build();
@@ -88,7 +86,6 @@ public class UpdateInventoryActivityTest {
             fail("Expected InvalidAttributeValueException to be thrown");
         } catch (InvalidAttributeValueException e) {
             verify(metricsPublisher).addCount(MetricsConstantsSPI.UPDATEINVENTORY_INVALIDATTRIBUTEVALUE_COUNT, 1);
-            verify(metricsPublisher).addCount(MetricsConstantsSPI.UPDATEINVENTORY_INVALIDATTRIBUTECHANGE_COUNT, 0);
         }
     }
 
@@ -98,12 +95,12 @@ public class UpdateInventoryActivityTest {
         String id = "id";
         UpdateInventoryRequest request = UpdateInventoryRequest.builder()
                 .withId(id)
-                .withPackagingType(PackagingType.KEG)
+                .withPackagingType("KEG")
                 .withAvailableUnits(10)
                 .withReservedUnits(10)
                 .build();
 
-        when(inventoryDao.getBeer(id, PackagingType.CASE)).thenThrow(new BeerNotFoundException());
+        when(inventoryDao.getBeer(id, "CASE")).thenThrow(new BeerNotFoundException());
 
         // THEN
         assertThrows(BeerNotFoundException.class, () -> updateInventoryActivity.handleRequest(request));

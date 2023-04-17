@@ -1,27 +1,20 @@
 package com.nashss.se.musicplaylistservice.models;
 
-import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBAttribute;
-import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBHashKey;
-import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBRangeKey;
-import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable;
-import com.nashss.se.musicplaylistservice.models.beerenums.BeerType;
-import com.nashss.se.musicplaylistservice.models.beerenums.PackagingType;
-
 import java.math.BigDecimal;
 import java.util.Objects;
 
 
 public class BeerModel {
     private String beerId;
-    private BeerType beerType;
+    private String beerType;
     private String name;
-    private PackagingType packagingType;
-    private BigDecimal unitPrice;
+    private String packagingType;
+    private Double unitPrice;
     private Integer availableUnits;
     private Integer reservedUnits;
 
-    public BeerModel(String id, BeerType beerType, String name, PackagingType packagingType,
-                     BigDecimal unitPrice, Integer availableUnits, Integer reservedUnits) {
+    public BeerModel(String id, String beerType, String name, String packagingType,
+                     Double unitPrice, Integer availableUnits, Integer reservedUnits) {
         this.beerId = id;
         this.beerType = beerType;
         this.name = name;
@@ -34,11 +27,11 @@ public class BeerModel {
         return beerId;
     }
 
-   public PackagingType getPackagingType() {
+   public String getPackagingType() {
         return packagingType;
     }
 
-    public BeerType getBeerType() {
+    public String getBeerType() {
         return beerType;
     }
 
@@ -46,7 +39,7 @@ public class BeerModel {
         return name;
     }
 
-    public BigDecimal getUnitPrice() {
+    public Double getUnitPrice() {
         return unitPrice;
     }
 
@@ -62,7 +55,7 @@ public class BeerModel {
         this.beerId = beerId;
     }
 
-    public void setBeerType(BeerType beerType) {
+    public void setBeerType(String beerType) {
         this.beerType = beerType;
     }
 
@@ -70,11 +63,11 @@ public class BeerModel {
         this.name = name;
     }
 
-    public void setPackagingType(PackagingType packagingType) {
+    public void setPackagingType(String packagingType) {
         this.packagingType = packagingType;
     }
 
-    public void setUnitPrice(BigDecimal unitPrice) {
+    public void setUnitPrice(Double unitPrice) {
         this.unitPrice = unitPrice;
     }
 
@@ -108,10 +101,10 @@ public class BeerModel {
 
     public static class Builder {
         private String beerId;
-        private BeerType beerType;
+        private String beerType;
         private String name;
-        private PackagingType packagingType;
-        private BigDecimal unitPrice;
+        private String packagingType;
+        private Double unitPrice;
         private Integer availableUnits;
         private Integer reservedUnits;
 
@@ -121,7 +114,7 @@ public class BeerModel {
         }
 
         //how to do this with ENUMS
-        public BeerModel.Builder withBeerType(BeerType beerType) {
+        public BeerModel.Builder withBeerType(String beerType) {
             this.beerType = beerType;
             return this;
         }
@@ -132,12 +125,12 @@ public class BeerModel {
         }
 
         //how to do this with an Enum?
-        public BeerModel.Builder withPackagingType(PackagingType packagingType) {
+        public BeerModel.Builder withPackagingType(String packagingType) {
             this.packagingType = packagingType;
             return this;
         }
 
-        public BeerModel.Builder withUnitPrice(BigDecimal unitPrice) {
+        public BeerModel.Builder withUnitPrice(Double unitPrice) {
             this.unitPrice = unitPrice;
             return this;
         }

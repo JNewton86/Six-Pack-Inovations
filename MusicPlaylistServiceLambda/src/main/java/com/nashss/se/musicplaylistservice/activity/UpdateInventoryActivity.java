@@ -65,33 +65,25 @@ public class UpdateInventoryActivity {
     public UpdateInventoryResult handleRequest(final UpdateInventoryRequest updateInventoryRequest) {
         log.info("Received UpdateInventoryRequest {}", updateInventoryRequest);
 
-        // TODO this is legacy code, are we keeping it?
-        if (!MusicPlaylistServiceUtils.isValidString(updateInventoryRequest.getbeerId())) {
-            publishExceptionMetrics(true, false);
-            throw new InvalidAttributeValueException("BeerID [" + updateInventoryRequest.getbeerId() +
-                    "] contains illegal characters");
-        }
-
         // Check to ensure requested changes will not result in a negative inventory amount, add count to CloudWatch
-        if (updateInventoryRequest.getavailableUnits() < 0 || updateInventoryRequest.getavreservedUnits() < 0) {
-            metricsPublisher.addCount(MetricsConstantsSPI.UPDATEINVENTORY_INVALIDATTRIBUTEVALUE_COUNT, 1);
-            metricsPublisher.addCount(MetricsConstantsSPI.UPDATEINVENTORY_INVALIDATTRIBUTECHANGE_COUNT, 0);
+        if (updateInventoryRequest.getAvailableUnits() < 0 || updateInventoryRequest.getReservedUnits() < 0) {
+            publishExceptionMetrics(true);
             throw new InvalidAttributeValueException("requested availableUnit or reservedUnits invalid");
         }
-
-        Beer beer = inventoryDao.getBeer(updateInventoryRequest.getbeerId(), updateInventoryRequest.getPackagingType());
-
+        log.info("passed check to confirm request did not contain update to less than zero");
+        Beer beer = inventoryDao.getBeer(updateInventoryRequest.getBeerId(), updateInventoryRequest.getPackagingType());
+        log.info("passed call to talbe");
         // If beer not found in the table throws BeerNotFound and adds count to CloudWatch
         if (beer == null) {
             metricsPublisher.addCount(MetricsConstantsSPI.UPDATEINVENTORY_BEERNOTFOUND_COUNT, 0);
             throw new BeerNotFoundException("beer inventory object not found to update");
         }
-
-        beer.setAvailableUnits(updateInventoryRequest.getavailableUnits());
-        beer.setReservedUnits(updateInventoryRequest.getavreservedUnits());
+        log.info("passed call to inventory table beer = {}", beer);
+        beer.setAvailableUnits(updateInventoryRequest.getAvailableUnits());
+        beer.setReservedUnits(updateInventoryRequest.getReservedUnits());
         beer = inventoryDao.saveBeer(beer);
-
-        publishExceptionMetrics(false, false);
+        log.info("updated retrieved object and saved beer to table beer = {}", beer);
+        publishExceptionMetrics(false);
         return UpdateInventoryResult.builder()
                 .withBeerModel(new BeerToBeerModelConverter().toBeerModel(beer))
                 .build();
@@ -100,14 +92,10 @@ public class UpdateInventoryActivity {
     /**
      * Helper method to publish exception metrics.
      * @param isInvalidAttributeValue indicates whether InvalidAttributeValueException is thrown
-     * @param isInvalidAttributeChange indicates whether InvalidAttributeChangeException is thrown
      */
-    private void publishExceptionMetrics(final boolean isInvalidAttributeValue,
-                                         final boolean isInvalidAttributeChange) {
-        metricsPublisher.addCount(MetricsConstants.UPDATEPLAYLIST_INVALIDATTRIBUTEVALUE_COUNT,
+    private void publishExceptionMetrics(final boolean isInvalidAttributeValue) {
+        metricsPublisher.addCount(MetricsConstantsSPI.UPDATEINVENTORY_INVALIDATTRIBUTEVALUE_COUNT,
                 isInvalidAttributeValue ? 1 : 0);
-        metricsPublisher.addCount(MetricsConstants.UPDATEPLAYLIST_INVALIDATTRIBUTECHANGE_COUNT,
-                isInvalidAttributeChange ? 1 : 0);
     }
 
 

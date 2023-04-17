@@ -1,16 +1,15 @@
 package com.nashss.se.musicplaylistservice.activity.requests;
 
-import com.nashss.se.musicplaylistservice.models.beerenums.BeerType;
 
 public class GetBeerInventoryRequest {
 
-    private final BeerType beerType;
+    private final String beerType;
 
-    public GetBeerInventoryRequest(BeerType beerType) {
+    public GetBeerInventoryRequest(String beerType) {
         this.beerType = beerType;
     }
 
-    public BeerType getBeerType() {
+    public String getBeerType() {
         return beerType;
     }
 
@@ -26,9 +25,9 @@ public class GetBeerInventoryRequest {
     }
 
     public static class Builder{
-        private BeerType beerType;
+        private String beerType;
 
-        public Builder withBeerType(BeerType beerType){
+        public Builder withBeerType(String beerType){
             this.beerType = beerType;
             return this;
         }

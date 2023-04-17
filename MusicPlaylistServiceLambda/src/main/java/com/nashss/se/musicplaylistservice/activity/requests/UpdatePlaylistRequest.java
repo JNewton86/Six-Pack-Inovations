@@ -2,12 +2,16 @@ package com.nashss.se.musicplaylistservice.activity.requests;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 @JsonDeserialize(builder = UpdatePlaylistRequest.Builder.class)
 public class UpdatePlaylistRequest {
     private final String id;
     private final String name;
     private final String customerId;
+
+    private final Logger log = LogManager.getLogger();
 
     private UpdatePlaylistRequest(String id, String name, String customerId) {
         this.id = id;
