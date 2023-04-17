@@ -224,6 +224,10 @@ Resources:
             - Effect: Allow
               Action: dynamodb:*
               Resource: !Sub "arn:aws:dynamodb:${AWS::Region}:${AWS::AccountId}:table/inventory"
+            - Effect: Allow
+              Action:
+                - dynamodb:Query
+              Resource: !Sub "arn:aws:dynamodb:${AWS::Region}:${AWS::AccountId}:table/inventory/index/BeersByBeerTypeIndex"
 
         - PolicyName: 'AccessBeerOrderTable'
           PolicyDocument:
