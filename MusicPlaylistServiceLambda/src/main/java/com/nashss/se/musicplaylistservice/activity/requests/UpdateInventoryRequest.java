@@ -1,6 +1,6 @@
 package com.nashss.se.musicplaylistservice.activity.requests;
 
-import com.nashss.se.musicplaylistservice.models.beerenums.PackagingType;
+import com.fasterxml.jackson.annotation.JsonValue;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
@@ -11,13 +11,13 @@ import java.math.BigDecimal;
 @JsonDeserialize(builder = UpdateInventoryRequest.Builder.class)
 public class UpdateInventoryRequest {
     private final String beerId;
-    private final PackagingType packagingType;
+    private final String packagingType;
     private Integer availableUnits;
     private Integer reservedUnits;
-    private BigDecimal unitPrice;
+    private Double unitPrice;
 
-    private UpdateInventoryRequest(String beerId, PackagingType packagingType, Integer availableUnits,
-                                   Integer reservedUnits, BigDecimal unitPrice) {
+    private UpdateInventoryRequest(String beerId, String packagingType, Integer availableUnits,
+                                   Integer reservedUnits, Double unitPrice) {
         this.beerId = beerId;
         this.packagingType = packagingType;
         this.availableUnits = availableUnits;
@@ -25,23 +25,24 @@ public class UpdateInventoryRequest {
         this.unitPrice = unitPrice;
     }
 
-    public String getbeerId() {
+    public String getBeerId() {
         return beerId;
     }
 
-    public PackagingType getPackagingType() {
+    @JsonValue
+    public String getPackagingType() {
         return packagingType;
     }
 
-    public Integer getavailableUnits() {
+    public Integer getAvailableUnits() {
         return availableUnits;
     }
 
-    public Integer getavreservedUnits() {
+    public Integer getReservedUnits() {
         return reservedUnits;
     }
 
-    public BigDecimal getUnitPrice() {
+    public Double getUnitPrice() {
         return unitPrice;
     }
 
@@ -64,17 +65,17 @@ public class UpdateInventoryRequest {
     @JsonPOJOBuilder
     public static class Builder {
         private String beerId;
-        private PackagingType packagingType;
+        private String packagingType;
         private Integer availableUnits;
         private Integer reservedUnits;
-        private BigDecimal unitPrice;
+        private Double unitPrice;
 
-        public Builder withId(String beerId) {
+        public Builder withBeerId(String beerId) {
             this.beerId = beerId;
             return this;
         }
 
-        public Builder withPackagingType(PackagingType packagingType) {
+        public Builder withPackagingType(String packagingType) {
             this.packagingType = packagingType;
             return this;
         }
@@ -88,7 +89,7 @@ public class UpdateInventoryRequest {
             return this;
         }
 
-        public Builder withUnitPrice(BigDecimal unitPrice) {
+        public Builder withUnitPrice(Double unitPrice) {
             this.unitPrice = unitPrice;
             return this;
         }

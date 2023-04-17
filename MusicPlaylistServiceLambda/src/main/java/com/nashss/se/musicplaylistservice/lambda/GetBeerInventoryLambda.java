@@ -6,7 +6,7 @@ import com.nashss.se.musicplaylistservice.activity.results.GetBeerInventoryResul
 
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
-import com.nashss.se.musicplaylistservice.models.beerenums.BeerType;
+
 
 public class GetBeerInventoryLambda extends LambdaActivityRunner<GetBeerInventoryRequest, GetBeerInventoryResult>
         implements RequestHandler<LambdaRequest<GetBeerInventoryRequest>, LambdaResponse> {
@@ -16,7 +16,7 @@ public class GetBeerInventoryLambda extends LambdaActivityRunner<GetBeerInventor
         return super.runActivity(
                 () -> input.fromPath(path ->
                         GetBeerInventoryRequest.builder()
-                                .withBeerType(BeerType.valueOf(path.get("beerType")))
+                                .withBeerType(path.get("beer"))
                                 .build()),
                 (request, serviceComponent) ->
                         serviceComponent.provideGetBeerInventoryActivity().handleRequest(request)

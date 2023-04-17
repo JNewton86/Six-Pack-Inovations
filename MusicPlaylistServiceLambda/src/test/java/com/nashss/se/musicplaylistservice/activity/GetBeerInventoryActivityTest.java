@@ -5,8 +5,6 @@ import com.nashss.se.musicplaylistservice.activity.results.GetBeerInventoryResul
 import com.nashss.se.musicplaylistservice.dynamodb.InventoryDao;
 import com.nashss.se.musicplaylistservice.dynamodb.models.Beer;
 import com.nashss.se.musicplaylistservice.exceptions.BeerNotFoundException;
-import com.nashss.se.musicplaylistservice.models.beerenums.BeerType;
-import com.nashss.se.musicplaylistservice.models.beerenums.PackagingType;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
@@ -35,7 +33,7 @@ public class GetBeerInventoryActivityTest {
 
     @Test
     void handleRequest_validBeerType_ReturnsBeerModels() {
-        BeerType beerType = BeerType.ALE;
+        String beerType = "ALE";
         List<Beer> beers = new ArrayList<>();
         Beer beer = new Beer();
         beer.setName("Test Beer");
@@ -72,27 +70,27 @@ public class GetBeerInventoryActivityTest {
         List<Beer> beerList = new ArrayList<>();
         Beer beer1 = new Beer();
         beer1.setBeerId("1");
-        beer1.setBeerType(BeerType.ALE);
+        beer1.setBeerType("ALE");
         beer1.setName("Barnacle Brew");
-        beer1.setPackagingType(PackagingType.KEG);
-        beer1.setUnitPrice(BigDecimal.valueOf(5));
+        beer1.setPackagingType("KEG");
+        beer1.setUnitPrice(5.0);
         beer1.setAvailableUnits(10);
         beer1.setReservedUnits(2);
         beerList.add(beer1);
 
         Beer beer2 = new Beer();
         beer2.setBeerId("2");
-        beer2.setBeerType(BeerType.LAGER);
+        beer2.setBeerType("LAGER");
         beer2.setName("Cat Paw IPA");
-        beer2.setPackagingType(PackagingType.CASE);
-        beer2.setUnitPrice(BigDecimal.valueOf(6));
+        beer2.setPackagingType("CASE");
+        beer2.setUnitPrice(6.0);
         beer2.setAvailableUnits(5);
         beer2.setReservedUnits(0);
         beerList.add(beer2);
 
-        Mockito.when(inventoryDao.getBeersByType(BeerType.ALE)).thenReturn(beerList);
+        Mockito.when(inventoryDao.getBeersByType("ALE")).thenReturn(beerList);
         GetBeerInventoryActivity activity = new GetBeerInventoryActivity(inventoryDao);
-        GetBeerInventoryRequest request = GetBeerInventoryRequest.builder().withBeerType(BeerType.ALE).build();
+        GetBeerInventoryRequest request = GetBeerInventoryRequest.builder().withBeerType("ALE").build();
 
         GetBeerInventoryResult result = activity.handleRequest(request);
 

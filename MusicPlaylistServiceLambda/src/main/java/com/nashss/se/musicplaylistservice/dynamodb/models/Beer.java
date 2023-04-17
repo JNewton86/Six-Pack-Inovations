@@ -1,10 +1,5 @@
 package com.nashss.se.musicplaylistservice.dynamodb.models;
 
-import com.nashss.se.musicplaylistservice.converters.BeerTypeConverter;
-import com.nashss.se.musicplaylistservice.converters.PackagingTypeConverter;
-import com.nashss.se.musicplaylistservice.models.beerenums.BeerType;
-import com.nashss.se.musicplaylistservice.models.beerenums.PackagingType;
-
 import com.amazonaws.services.dynamodbv2.datamodeling.*;
 
 import java.math.BigDecimal;
@@ -14,10 +9,10 @@ import java.util.Objects;
 public class Beer {
     public static final String BEERS_BY_TYPE_INDEX = "BeersByBeerTypeIndex";
     private String beerId;
-    private BeerType beerType;
+    private String beerType;
     private String name;
-    private PackagingType packagingType;
-    private BigDecimal unitPrice;
+    private String packagingType;
+    private Double unitPrice;
     private Integer availableUnits;
     private Integer reservedUnits;
 
@@ -25,16 +20,16 @@ public class Beer {
     public String getBeerId() {
         return beerId;
     }
-    @DynamoDBTypeConverted(converter = PackagingTypeConverter.class)
+
     @DynamoDBRangeKey(attributeName = "packagingType")
-    public PackagingType getPackagingType() {
+    public String getPackagingType() {
         return packagingType;
     }
 
-    @DynamoDBTypeConverted(converter = BeerTypeConverter.class)
+//    @DynamoDBTypeConverted(converter = BeerTypeConverter.class)
     @DynamoDBIndexHashKey(globalSecondaryIndexName = BEERS_BY_TYPE_INDEX, attributeName = "beerType")
     @DynamoDBAttribute(attributeName = "beerType")
-    public BeerType getBeerType() {
+    public String getBeerType() {
         return beerType;
     }
 
@@ -44,7 +39,7 @@ public class Beer {
     }
 
     @DynamoDBAttribute(attributeName = "unitPrice")
-    public BigDecimal getUnitPrice() {
+    public Double getUnitPrice() {
         return unitPrice;
     }
 
@@ -62,7 +57,7 @@ public class Beer {
         this.beerId = beerId;
     }
 
-    public void setBeerType(BeerType beerType) {
+    public void setBeerType(String beerType) {
         this.beerType = beerType;
     }
 
@@ -70,11 +65,11 @@ public class Beer {
         this.name = name;
     }
 
-    public void setPackagingType(PackagingType packagingType) {
+    public void setPackagingType(String packagingType) {
         this.packagingType = packagingType;
     }
 
-    public void setUnitPrice(BigDecimal unitPrice) {
+    public void setUnitPrice(Double unitPrice) {
         this.unitPrice = unitPrice;
     }
 

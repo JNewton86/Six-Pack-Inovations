@@ -5,8 +5,6 @@ import static com.nashss.se.musicplaylistservice.dynamodb.models.Beer.BEERS_BY_T
 import com.amazonaws.services.dynamodbv2.model.AttributeValue;
 import com.nashss.se.musicplaylistservice.dynamodb.models.Beer;
 import com.nashss.se.musicplaylistservice.exceptions.BeerNotFoundException;
-import com.nashss.se.musicplaylistservice.models.beerenums.BeerType;
-import com.nashss.se.musicplaylistservice.models.beerenums.PackagingType;
 
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
 
@@ -47,7 +45,7 @@ public class InventoryDao {
      * @param packageType the type of packaging
      * @return The corresponding AlbumTrack if found
      */
-    public Beer getBeer(String beerId, PackagingType packageType) {
+    public Beer getBeer(String beerId, String packageType) {
         Beer beer = dynamoDbMapper.load(Beer.class, beerId, packageType);
         if (null == beer) {
             throw new BeerNotFoundException(
@@ -68,7 +66,7 @@ public class InventoryDao {
         return beer;
     }
 
-    public List<Beer> getBeersByType(BeerType beerType){
+    public List<Beer> getBeersByType(String beerType){
         DynamoDBMapper mapper = new DynamoDBMapper(DynamoDbClientProvider.getDynamoDBClient());
         Map<String, AttributeValue> valueMap = new HashMap<>();
         valueMap.put(":beerType", new AttributeValue().withS(String.valueOf(beerType)));
