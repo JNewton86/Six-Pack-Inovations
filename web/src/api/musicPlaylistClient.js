@@ -227,7 +227,7 @@ export default class MusicPlaylistClient extends BindingClass {
 
     async getStoutData() {
           try {
-            const response = await axios.get('/inventory/STOUT');
+            const response = await axios.get('/inventory/Stout');
             return response.data.beerModelList.map((beer) => {
               return {
                 beerId: beer.beerId,
@@ -289,7 +289,7 @@ export default class MusicPlaylistClient extends BindingClass {
 
     async getLagerData() {
           try {
-            const response = await axios.get('/inventory/LAGER');
+            const response = await axios.get('/inventory/Lager');
             return response.data.beerModelList.map((beer) => {
               return {
                 beerId: beer.beerId,
