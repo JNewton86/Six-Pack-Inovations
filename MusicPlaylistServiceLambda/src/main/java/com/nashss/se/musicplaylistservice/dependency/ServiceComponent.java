@@ -60,6 +60,11 @@ public interface ServiceComponent {
      * @return GetBeerInventoryActivity
      */
     GetBeerInventoryActivity provideGetBeerInventoryActivity();
+    /**
+     * Provides the relevant activity.
+     * @return UpdateInventoryActivity
+     */
+    GetOrderActivity provideGetOrderActivity();
 
 
 }

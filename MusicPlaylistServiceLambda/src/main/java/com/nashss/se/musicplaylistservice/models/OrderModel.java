@@ -10,21 +10,21 @@ import static com.nashss.se.musicplaylistservice.utils.CollectionUtils.copyToLis
 
 public class OrderModel {
 
-    private final String id;
+    private final String orderId;
     private final String clientId;
     private final List<OrderItem> orderItems;
-    private final BigDecimal totalCost;
+    private final Double totalCost;
     private boolean orderProcessed;
 
-    public OrderModel(String id, String clientId, List<OrderItem> orderItems, BigDecimal totalCost) {
-        this.id = id;
+    public OrderModel(String id, String clientId, List<OrderItem> orderItems, Double totalCost) {
+        this.orderId = id;
         this.clientId = clientId;
         this.orderItems = orderItems;
         this.totalCost = totalCost;
     }
 
-    public String getId() {
-        return id;
+    public String getOrderId() {
+        return orderId;
     }
 
     public String getClientId() {
@@ -36,7 +36,7 @@ public class OrderModel {
         return orderItems;
     }
 
-    public BigDecimal getTotalCost() {
+    public Double getTotalCost() {
         return totalCost;
     }
 
@@ -55,7 +55,7 @@ public class OrderModel {
 
         OrderModel that = (OrderModel) o;
 
-        return Objects.equals(id, that.id) &&
+        return Objects.equals(orderId, that.orderId) &&
                 Objects.equals(clientId, that.clientId) &&
                 Objects.equals(orderItems, that.orderItems) &&
                 Objects.equals(totalCost, that.totalCost);
@@ -63,7 +63,7 @@ public class OrderModel {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, clientId, orderItems, totalCost);
+        return Objects.hash(orderId, clientId, orderItems, totalCost);
     }
 
     //CHECKSTYLE:OFF:Builder
@@ -75,9 +75,9 @@ public class OrderModel {
         private String id;
         private String clientId;
         private List<OrderItem> orderItems;
-        private BigDecimal totalCost;
+        private Double totalCost;
 
-        public Builder withId(String id) {
+        public Builder withOrderId(String id) {
             this.id = id;
             return this;
         }
@@ -87,7 +87,7 @@ public class OrderModel {
             return this;
         }
 
-        public Builder withTotalCost(BigDecimal totalCost) {
+        public Builder withTotalCost(Double totalCost) {
             this.totalCost = totalCost;
             return this;
         }
