@@ -464,7 +464,7 @@ Resources:
             - AttributeName: "beerType"
               KeyType: "HASH"
           Projection:
-            ProjectionType: "KEYS_ONLY"
+            ProjectionType: "ALL"
 
   BeerOrderTable:
     Type: AWS::DynamoDB::Table
@@ -480,7 +480,7 @@ Resources:
       BillingMode: "PAY_PER_REQUEST"
       TableName: "orders"
       GlobalSecondaryIndexes:
-        - IndexName: "OrdersByClientId"
+        - IndexName: "OrdersByClientIdWithData"
           KeySchema:
             - AttributeName: "customerId"
               KeyType: "HASH"
