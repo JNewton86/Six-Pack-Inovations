@@ -2,6 +2,7 @@ import MusicPlaylistClient from '../api/musicPlaylistClient';
 import BindingClass from "../util/bindingClass";
 import DataStore from "../util/DataStore";
 import Table from '../components/table';
+import UpdateTable from '../components/updateTable';
 
 
 const SEARCH_CRITERIA_KEY = 'search-criteria';
@@ -24,6 +25,7 @@ class Inventory extends BindingClass {
         // Create a enw datastore with an initial "empty" state.
         this.dataStore = new DataStore(EMPTY_DATASTORE_STATE);
         this.table = new Table(this.dataStore);
+        this.updateTable = new UpdateTable(this.dataStore);
         this.dataStore.addChangeListener(this.displaySearchResults);
     }
 
@@ -34,7 +36,7 @@ class Inventory extends BindingClass {
         console.log('Inventory.js mounting...');
 
         this.table.addTableToPage();
-
+        this.updateTable.addTableToPage();
         this.client = new MusicPlaylistClient();
     }
 }
