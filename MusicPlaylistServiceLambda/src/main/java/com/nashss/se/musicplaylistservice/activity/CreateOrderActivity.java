@@ -1,6 +1,7 @@
 package com.nashss.se.musicplaylistservice.activity;
 
 import com.nashss.se.musicplaylistservice.activity.requests.CreateOrderRequest;
+import com.nashss.se.musicplaylistservice.activity.results.CreateOrderResult;
 import com.nashss.se.musicplaylistservice.activity.results.CreatePlaylistResult;
 import com.nashss.se.musicplaylistservice.converters.BeerToBeerModelConverter;
 import com.nashss.se.musicplaylistservice.dynamodb.OrderDao;
@@ -22,7 +23,7 @@ public class CreateOrderActivity {
         this.orderDao = orderDao;
     }
 
-    public CreatePlaylistResult handleRequest(final CreateOrderRequest createOrderRequest) {
+    public CreateOrderResult handleRequest(final CreateOrderRequest createOrderRequest) {
         log.info("Received OrderRequest {}", createOrderRequest);
 /*      TODO: I DON'T THINK WE NEED THIS FUNCTIONALITY IN OUR DESIGN.
  */
@@ -51,8 +52,8 @@ public class CreateOrderActivity {
         orderDao.saveOrder(newOrder);
 //ToDo this part below shouldn't have errors once I make a CreateOrderResult
         OrderModel orderModel = new BeerToBeerModelConverter().toOrderModel(newOrder);
-        return CreatePlaylistResult.builder()
-                .withPlaylist(playlistModel)
+        return CreateOrderResult.builder()
+                .withOrder(orderModel)
                 .build();
     }
 }
