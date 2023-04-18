@@ -16,11 +16,12 @@ public class OrderModel {
     private final BigDecimal totalCost;
     private boolean orderProcessed;
 
-    public OrderModel(String id, String clientId, List<OrderItem> orderItems, BigDecimal totalCost) {
+    public OrderModel(String id, String clientId, List<OrderItem> orderItems, BigDecimal totalCost, boolean orderProcessed) {
         this.id = id;
         this.clientId = clientId;
         this.orderItems = orderItems;
         this.totalCost = totalCost;
+        this.orderProcessed = orderProcessed;
     }
 
     public String getId() {
@@ -31,6 +32,7 @@ public class OrderModel {
         return clientId;
     }
 
+    //todo: below do we need to revisit this? also a couple
     //change String to Beer object when merged
     public List<OrderItem> getOrderItems() {
         return orderItems;
@@ -44,31 +46,23 @@ public class OrderModel {
         return orderProcessed;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-
-        OrderModel that = (OrderModel) o;
-
-        return Objects.equals(id, that.id) &&
-                Objects.equals(clientId, that.clientId) &&
-                Objects.equals(orderItems, that.orderItems) &&
-                Objects.equals(totalCost, that.totalCost);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, clientId, orderItems, totalCost);
-    }
 
     //CHECKSTYLE:OFF:Builder
     public static Builder builder() {
         return new Builder();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        OrderModel that = (OrderModel) o;
+        return orderProcessed == that.orderProcessed && Objects.equals(id, that.id) && Objects.equals(clientId, that.clientId) && Objects.equals(orderItems, that.orderItems) && Objects.equals(totalCost, that.totalCost);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, clientId, orderItems, totalCost, orderProcessed);
     }
 
     public static class Builder {
@@ -76,6 +70,7 @@ public class OrderModel {
         private String clientId;
         private List<OrderItem> orderItems;
         private BigDecimal totalCost;
+        private boolean orderProcessed;
 
         public Builder withId(String id) {
             this.id = id;
@@ -96,9 +91,14 @@ public class OrderModel {
             this.orderItems = copyToList(orderItems);
             return this;
         }
+        public Builder withOrderProcessed(boolean orderProcessed) {
+            this.orderProcessed = orderProcessed;
+            return this;
+        }
+
 
         public OrderModel build() {
-            return new OrderModel(id, clientId, orderItems, totalCost);
+            return new OrderModel(id, clientId, orderItems, totalCost, orderProcessed);
         }
     }
 }

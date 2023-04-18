@@ -1,7 +1,9 @@
 package com.nashss.se.musicplaylistservice.converters;
 
 import com.nashss.se.musicplaylistservice.dynamodb.models.Beer;
+import com.nashss.se.musicplaylistservice.dynamodb.models.Order;
 import com.nashss.se.musicplaylistservice.models.BeerModel;
+import com.nashss.se.musicplaylistservice.models.OrderModel;
 
 public class BeerToBeerModelConverter {
 
@@ -23,6 +25,17 @@ public class BeerToBeerModelConverter {
                 .withAvailableUnits(beer.getAvailableUnits())
                 .withReservedUnits(beer.getReservedUnits())
                 .withUnitPrice(beer.getUnitPrice())
+                .build();
+    }
+
+    public OrderModel toOrderModel(Order order) {
+
+        return OrderModel.builder()
+                .withId(order.getId())
+                .withClientId(order.getId())
+                .withOrderItems(order.getOrderItems())
+                .withTotalCost(order.getTotalCost())
+                .withOrderProcessed(order.getOrderProcessed())
                 .build();
     }
 }

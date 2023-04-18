@@ -4,7 +4,7 @@ import com.google.gson.reflect.TypeToken;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTypeConverter;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
+//TODO THIS IS GONE BECAUSE WE WENT TO STRINGS RIGHT?
 //public class BeerTypeConverter implements DynamoDBTypeConverter<String, BeerType> {
 //    private static final Gson GSON = new Gson();
 //    private final Logger log = LogManager.getLogger();

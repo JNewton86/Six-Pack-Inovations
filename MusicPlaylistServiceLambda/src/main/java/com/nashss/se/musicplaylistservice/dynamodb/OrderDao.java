@@ -23,6 +23,7 @@ public class OrderDao {
      */
     public OrderDao(DynamoDBMapper dynamoDbMapper, MetricsPublisher metricsPublisher) {
         this.dynamoDbMapper = dynamoDbMapper;
+        //TODO:should this metricsPublisher be commented out?
         //this.metricsPublisher = metricsPublisher;
     }
 
