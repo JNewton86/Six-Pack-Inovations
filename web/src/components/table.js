@@ -34,7 +34,7 @@ export default class Table extends BindingClass {
 
         // Create the table header row
         const headerRow = table.insertRow();
-        const headers = ['Beer ID', 'Beer Type', 'Name', 'Packaging Type', 'Unit Price', 'Available Units', 'Reserved Units'];
+        const headers = ['Beer ID', 'Beer Type', 'Name', 'Packaging Type', 'Unit Price', 'Available Units', 'Reserved Units', 'Total Units'];
         headers.forEach(header => {
             const th = document.createElement('th');
             th.innerText = header;
@@ -45,7 +45,7 @@ export default class Table extends BindingClass {
         data.forEach(item => {
             const row = table.insertRow();
             row.classList.add('playlist-row'); // Add a class to style the row
-            const cells = [item.beerId, item.beerType, item.name, item.packagingType, item.unitPrice, item.availableUnits, item.reservedUnits];
+            const cells = [item.beerId, item.beerType, item.name, item.packagingType, item.unitPrice, item.availableUnits, item.reservedUnits, item.reservedUnits + item.availableUnits];
             cells.forEach(cell => {
                 const td = document.createElement('td');
                 td.innerText = cell;
