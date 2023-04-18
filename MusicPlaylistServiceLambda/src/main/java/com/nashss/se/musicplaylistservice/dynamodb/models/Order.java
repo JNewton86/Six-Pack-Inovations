@@ -12,7 +12,6 @@ import java.util.Objects;
 
 @DynamoDBTable(tableName = "orders")
 public class Order {
-
     private String orderId;
     private String clientId;
     private List<OrderItem> orderItems;
