@@ -32,7 +32,7 @@ public class OrderModel {
         return clientId;
     }
 
-    //todo: below do we need to revisit this? also a couple
+    //todo: below do we need to revisit this comment below?
     //change String to Beer object when merged
     public List<OrderItem> getOrderItems() {
         return orderItems;
@@ -44,12 +44,6 @@ public class OrderModel {
 
     public boolean isOrderProcessed() {
         return orderProcessed;
-    }
-
-
-    //CHECKSTYLE:OFF:Builder
-    public static Builder builder() {
-        return new Builder();
     }
 
     @Override
@@ -64,6 +58,8 @@ public class OrderModel {
     public int hashCode() {
         return Objects.hash(id, clientId, orderItems, totalCost, orderProcessed);
     }
+    //CHECKSTYLE:OFF:Builder
+    public static Builder builder() { return new Builder(); }
 
     public static class Builder {
         private String id;

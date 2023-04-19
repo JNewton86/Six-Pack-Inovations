@@ -28,13 +28,14 @@ public class Order {
     }
 
     @DynamoDBAttribute(attributeName = "clientId")
-    public String getClientIdd() {
+    public String getClientId() {
         return clientId;
     }
 
     public void setClientId(String clientId) {
         this.clientId = clientId;
     }
+
     /**
      * Returns the list of orderItems associated with this Order, null if there are none.
      *

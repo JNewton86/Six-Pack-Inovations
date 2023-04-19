@@ -1,23 +1,22 @@
 package com.nashss.se.musicplaylistservice.activity.results;
 
 import com.nashss.se.musicplaylistservice.models.OrderModel;
-import com.nashss.se.musicplaylistservice.models.PlaylistModel;
 
 public class CreateOrderResult {
-    private final OrderModel orderModel;
+    private final OrderModel order;
 
-    public CreateOrderResult(OrderModel orderModel) {
-        this.orderModel = orderModel;
+    public CreateOrderResult(OrderModel order) {
+        this.order = order;
     }
-
-    public OrderModel getOrderModel() {
-        return orderModel;
+    //this method below seems like it will be used for just the test
+    public OrderModel getOrder() {
+        return order;
     }
 
     @Override
     public String toString() {
         return "CreateOrderResult{" +
-                "orderModel=" + orderModel +
+                "order=" + order +
                 '}';
     }
 
@@ -29,7 +28,7 @@ public class CreateOrderResult {
     public static class Builder {
         private OrderModel order;
 
-        public Builder withOrder(OrderModel Order) {
+        public Builder withOrder(OrderModel order) {
             this.order = order;
             return this;
         }

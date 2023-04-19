@@ -2,7 +2,6 @@ package com.nashss.se.musicplaylistservice.activity;
 
 import com.nashss.se.musicplaylistservice.activity.requests.CreateOrderRequest;
 import com.nashss.se.musicplaylistservice.activity.results.CreateOrderResult;
-import com.nashss.se.musicplaylistservice.activity.results.CreatePlaylistResult;
 import com.nashss.se.musicplaylistservice.converters.BeerToBeerModelConverter;
 import com.nashss.se.musicplaylistservice.dynamodb.OrderDao;
 import com.nashss.se.musicplaylistservice.dynamodb.models.Order;
@@ -13,16 +12,33 @@ import com.nashss.se.projectresources.music.playlist.servic.util.MusicPlaylistSe
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import javax.inject.Inject;
 
+/**
+ * Implementation of the CreateOrderActivity for the MusicPlaylistService's CreatePlaylist API.
+ * <p>
+ * This API allows the customer to create a new order.
+ */
 public class CreateOrderActivity {
     private final Logger log = LogManager.getLogger();
     private final OrderDao orderDao;
 
-
+    /**
+     * Instantiates a new CreatePlaylistActivity object.
+     *
+     * @param orderDao OrderDao to access the order table.
+     */
+    @Inject
     public CreateOrderActivity(OrderDao orderDao) {
         this.orderDao = orderDao;
     }
 
+    /**
+     * Creates and returns an order.
+     *
+     * @param createOrderRequest request object containing the orderId, clientId, orderItems, totalCost, and processing status.
+     * @return createOrderResult result object containing the API defined {@link OrderModel}
+     */
     public CreateOrderResult handleRequest(final CreateOrderRequest createOrderRequest) {
         log.info("Received OrderRequest {}", createOrderRequest);
 /*      TODO: I DON'T THINK WE NEED THIS FUNCTIONALITY IN OUR DESIGN.
@@ -50,7 +66,7 @@ public class CreateOrderActivity {
         newOrder.setOrderProcessed(createOrderRequest.isOrderProcessed());
 
         orderDao.saveOrder(newOrder);
-//ToDo this part below shouldn't have errors once I make a CreateOrderResult
+
         OrderModel orderModel = new BeerToBeerModelConverter().toOrderModel(newOrder);
         return CreateOrderResult.builder()
                 .withOrder(orderModel)
