@@ -3,8 +3,6 @@ package com.nashss.se.musicplaylistservice.dynamodb.models;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBDocument;
 import com.nashss.se.musicplaylistservice.utils.ServiceUtilsSPI;
 
-import java.math.BigDecimal;
-
 @DynamoDBDocument
 public class OrderItem {
     private String id;

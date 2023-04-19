@@ -17,7 +17,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import javax.inject.Inject;
-import java.util.List;
+import java.util.ArrayList;
 
 /**
  * Implementation of the CreateOrderActivity for the MusicPlaylistService's CreatePlaylist API.
@@ -48,59 +48,15 @@ public class CreateOrderActivity {
      */
     public CreateOrderResult handleRequest(final CreateOrderRequest createOrderRequest) {
         log.info("Received OrderRequest {}", createOrderRequest);
-/*      TODO: I DON'T THINK WE NEED THIS FUNCTIONALITY IN OUR DESIGN.
- */
-//        if (!MusicPlaylistServiceUtils.isValidString(createOrderRequest.getName())) {
-//            throw new InvalidAttributeValueException("Playlist name [" + createPlaylistRequest.getName() +
-//                    "] contains illegal characters");
-//        }
-//
-//        if (!MusicPlaylistServiceUtils.isValidString(createPlaylistRequest.getCustomerId())) {
-//            throw new InvalidAttributeValueException("Playlist customer ID [" + createPlaylistRequest.getCustomerId() +
-//                    "] contains illegal characters");
-//        }
-//
-//        Set<String> playlistTags = null;
-//        if (createOrderRequest.getTags() != null) {
-//            playlistTags = new HashSet<>(createOrderRequest.getTags());
-//        }
 
         Order newOrder = new Order();
         newOrder.setId(MusicPlaylistServiceUtils.generatePlaylistId());
-        newOrder.setClientId(createOrderRequest.getClientId());
-        newOrder.setOrderItems(createOrderRequest.getOrderItems());
-        //To reviewer: double check the logic of this line below
-        newOrder.setTotalCost(createOrderRequest.getOrderItems());
-        newOrder.setOrderProcessed(createOrderRequest.isOrderProcessed());
+        newOrder.setOrderItems(new ArrayList<OrderItem>());
+        newOrder.setTotalCost(0.0);
+        newOrder.setOrderProcessed(false);
+        //Todo This needs the rest of the attributes from CreateOrderRequest after it has had the right attributes added from the Order.java class.
 
         orderDao.saveOrder(newOrder);
-
-        for(OrderItem item : newOrder.getOrderItems()) {
-            //for each item on list, get quantity, type, and packaging, name.
-            int units = item.getUnits();
-            String beerType = item.getBeerType();
-            String beerPackaging = item.getBeerType();
-            String beerName = item.getName();
-
-            //from Dao, load all beers of type and packaging
-            List<Beer> allBeersOfSameType = inventoryDao.getBeersByType(beerType);
-            for(Beer beer : allBeersOfSameType) {
-                //identifying the beer item in the inventory table that should be updated
-                if (beer.getName() == beerName && beer.getPackagingType() == beerPackaging) {
-                    //calculate update to available units
-                    int availableUnitsBefore = beer.getAvailableUnits();
-                    int updatedAvailableUnits = availableUnitsBefore - units;
-                    beer.setAvailableUnits(updatedAvailableUnits);
-                    //calculate update to reserved units
-                    int reservedUnitsBefore = beer.getReservedUnits();
-                    int updatedReservedUnits = reservedUnitsBefore + units;
-                    beer.setReservedUnits(updatedReservedUnits);
-                    inventoryDao.saveBeer(beer);
-                }
-            }
-
-
-        }
 
         OrderModel orderModel = new BeerToBeerModelConverter().toOrderModel(newOrder);
         return CreateOrderResult.builder()
@@ -108,3 +64,11 @@ public class CreateOrderActivity {
                 .build();
     }
 }
+//If this is the place we ultimately decide to calculate totalCost, then this code may be helpful:
+//        private Double calculateTotalCost(List<OrderItem> order) {
+//            Double totalCost = 0.0;
+//            for(OrderItem item : order) {
+//                totalCost = totalCost + item.getLineItemPrice();
+//            }
+//            return totalCost;
+//        }

@@ -3,7 +3,6 @@ package com.nashss.se.musicplaylistservice.dynamodb.models;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBAttribute;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBHashKey;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable;
-import com.nashss.se.musicplaylistservice.utils.ServiceUtilsSPI;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +14,6 @@ public class Order {
     private String orderId;
     private String clientId;
     private List<OrderItem> orderItems;
-    //TODO CHANGE THIS TO A DOUBLE
     private Double totalCost;
     private boolean orderProcessed;
 
@@ -25,7 +23,7 @@ public class Order {
     }
 
     public void setId(String orderId) {
-        this.orderId = ServiceUtilsSPI.generateUserId();
+        this.orderId = orderId ;
     }
 
     @DynamoDBAttribute(attributeName = "clientId")
@@ -43,14 +41,6 @@ public class Order {
      * @return Set of tags for this playlist
      */
 
-
-    private Double calculateTotalCost(List<OrderItem> order) {
-        Double totalCost = 0.0;
-        for(OrderItem item : order) {
-                totalCost = totalCost + item.getLineItemPrice();
-        }
-        return totalCost;
-    }
     @DynamoDBAttribute(attributeName = "orderItems")
     public List<OrderItem> getOrderItems() {
         // normally, we would prefer to return an empty Set if there are no
@@ -76,8 +66,7 @@ public class Order {
         return totalCost;
     }
 
-    public void setTotalCost(List<OrderItem> orderItems) {
-        Double totalCost = calculateTotalCost(orderItems);
+    public void setTotalCost(Double totalCost) {
         this.totalCost = totalCost;
     }
 

@@ -2,7 +2,6 @@ package com.nashss.se.musicplaylistservice.models;
 
 import com.nashss.se.musicplaylistservice.dynamodb.models.OrderItem;
 
-import java.math.BigDecimal;
 import java.util.List;
 import java.util.Objects;
 
@@ -13,10 +12,10 @@ public class OrderModel {
     private final String id;
     private final String clientId;
     private final List<OrderItem> orderItems;
-    private final BigDecimal totalCost;
+    private final Double totalCost;
     private boolean orderProcessed;
 
-    public OrderModel(String id, String clientId, List<OrderItem> orderItems, BigDecimal totalCost, boolean orderProcessed) {
+    public OrderModel(String id, String clientId, List<OrderItem> orderItems, Double totalCost, boolean orderProcessed) {
         this.id = id;
         this.clientId = clientId;
         this.orderItems = orderItems;
@@ -32,13 +31,12 @@ public class OrderModel {
         return clientId;
     }
 
-    //todo: below do we need to revisit this comment below?
     //change String to Beer object when merged
     public List<OrderItem> getOrderItems() {
         return orderItems;
     }
 
-    public BigDecimal getTotalCost() {
+    public Double getTotalCost() {
         return totalCost;
     }
 
@@ -65,7 +63,7 @@ public class OrderModel {
         private String id;
         private String clientId;
         private List<OrderItem> orderItems;
-        private BigDecimal totalCost;
+        private Double totalCost;
         private boolean orderProcessed;
 
         public Builder withId(String id) {
@@ -78,7 +76,7 @@ public class OrderModel {
             return this;
         }
 
-        public Builder withTotalCost(BigDecimal totalCost) {
+        public Builder withTotalCost(Double totalCost) {
             this.totalCost = totalCost;
             return this;
         }
