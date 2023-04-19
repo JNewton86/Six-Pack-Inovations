@@ -14,10 +14,10 @@ public class CreateOrderRequest {
     private String orderId;
     private String clientId;
     private List<OrderItem> orderItems;
-    private BigDecimal totalCost;
+    private Double totalCost;
     private boolean orderProcessed;
 
-    public CreateOrderRequest(String orderId, String clientId, List<OrderItem> orderItems, BigDecimal totalCost, boolean orderProcessed) {
+    public CreateOrderRequest(String orderId, String clientId, List<OrderItem> orderItems, Double totalCost, boolean orderProcessed) {
         this.orderId = orderId;
         this.clientId = clientId;
         this.orderItems = orderItems;
@@ -37,7 +37,7 @@ public class CreateOrderRequest {
         return copyToList(orderItems);
     }
 
-    public BigDecimal getTotalCost() {
+    public Double getTotalCost() {
         return totalCost;
     }
 
@@ -66,7 +66,7 @@ public class CreateOrderRequest {
         private String orderId;
         private String clientId;
         private List<OrderItem> orderItems;
-        private BigDecimal totalCost;
+        private Double totalCost;
         private boolean orderProcessed;
 
         public CreateOrderRequest.Builder withOrderId(String orderId) {
@@ -84,7 +84,7 @@ public class CreateOrderRequest {
             return this;
         }
         //TODO: LOOK AT THIS TOTAL COST MAKE SURE IT IS A BIGDECIMAL
-        public CreateOrderRequest.Builder withTotalCost(BigDecimal totalCost) {
+        public CreateOrderRequest.Builder withTotalCost(Double totalCost) {
             this.totalCost = totalCost;
             return this;
         }

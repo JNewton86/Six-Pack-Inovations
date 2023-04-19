@@ -44,9 +44,9 @@ public class Order {
      */
 
 
-    private Double calculateTotalCost(Order order) {
+    private Double calculateTotalCost(List<OrderItem> order) {
         Double totalCost = 0.0;
-        for(OrderItem item : order.getOrderItems()) {
+        for(OrderItem item : order) {
                 totalCost = totalCost + item.getLineItemPrice();
         }
         return totalCost;
@@ -76,8 +76,8 @@ public class Order {
         return totalCost;
     }
 
-    public void setTotalCost(Order order) {
-        Double totalCost = calculateTotalCost(order);
+    public void setTotalCost(List<OrderItem> orderItems) {
+        Double totalCost = calculateTotalCost(orderItems);
         this.totalCost = totalCost;
     }
 
