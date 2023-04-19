@@ -164,3 +164,7 @@ a {
     padding: 0.5rem;
 }
 
+.add {
+    cursor: pointer;
+}
+

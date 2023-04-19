@@ -127,6 +127,26 @@ export default class MusicPlaylistClient extends BindingClass {
         }
     }
 
+
+    /**
+     * Creates the order, what are we doing for customer ID?.
+     * @param id Unique identifier for a order
+     * @param errorCallback (Optional) A function to execute if the call fails.
+     * @returns The order's metadata.
+     */
+    async createOrder(orderId, orderItems, errorCallback) {
+        try {
+            const response = await this.axiosClient.post(`orders`, {
+                orderId: orderId,
+                orderItems: items
+        });
+            return response.data.playlist;
+        } catch (error) {
+            this.handleError(error, errorCallback)
+        }
+    }
+
+
     /**
      * Add a song to a playlist.
      * @param id The id of the playlist to add a song to.
@@ -202,6 +222,7 @@ export default class MusicPlaylistClient extends BindingClass {
                 {
                     beerId: 1,
                     packagingType: 'Case',
+                    beerName: 'ICUpa',
                     beerType: 'IPA',
                     availableInventory: 100,
                     reservedInventory: 10,
@@ -209,6 +230,7 @@ export default class MusicPlaylistClient extends BindingClass {
                 {
                     beerId: 2,
                     packagingType: 'Case',
+                    beerName: 'porcupine porter',
                     beerType: 'Stout',
                     availableInventory: 50,
                     reservedInventory: 20,
@@ -217,6 +239,7 @@ export default class MusicPlaylistClient extends BindingClass {
                     beerId: 3,
                     packagingType: 'Keg',
                     beerType: 'Pilsner',
+                    beerName: 'pilsner dough boy',
                     availableInventory: 20,
                     reservedInventory: 5,
                 }

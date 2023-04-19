@@ -10,9 +10,11 @@ class CreateOrder extends BindingClass{
         
         this.bindClassMethods(['mount', 'submit', 'redirectToViewPlaylist'], this);
 
-        this.dataStore = new DataStore(EMPTY_DATASTORE_STATE);
-
+        this.dataStore = new DataStore();
+        this.dataStore.addChangeListener(this.redirectToViewOrder);
         this.table = new Table(this.dataStore);
+
+        this.client = new MusicPlaylistClient();
 
     }
 
@@ -28,21 +30,7 @@ class CreateOrder extends BindingClass{
         createButton.innerText = 'Processing Order...';
 
         const newOrder = document.getElementById('new-Order').value;
-
-
-
-
-
-        // const orderItem = document.getElementById('tags').value;
-
-        // let tags;
-        // if (tagsText.length < 1) {
-        //     tags = null;
-        // } else {
-        //     tags = tagsText.split(/\s*,\s*/);
-        // }
-
-        const ordering = await this.client.CreateOrder(newOrder, (error) => {
+        const ordering = await this.client.createOrder(newOrder, (error) => {
             createButton.innerText = origButtonText;
             errorMessageDisplay.innerText = `Error: ${error.message}`;
             errorMessageDisplay.classList.remove('hidden');
@@ -50,15 +38,33 @@ class CreateOrder extends BindingClass{
         this.dataStore.set('ordering', ordering);
     }
 
+    redirectToViewOrder() {
+        const order = this.dataStore.get('order');
+        if (order != null){
+            // view order page needs to go here
+            window.location.href = `/viewOrder.html?id=${order.id}`
+        }
+    }
 
-
-
-
-
-
-
-
-
-
-
+    reset(){
+         document.getElementById("clear").value = "";
+    }
+      
 }
+    /**
+     * Main method to run when the page contents have loaded.
+     */
+
+const main = async () => {
+    const createOrder = new CreateOrder();
+    createOrder.mount();
+};
+
+window.addEventListener('DOMContentLoaded', main);  
+
+
+
+
+
+
+
