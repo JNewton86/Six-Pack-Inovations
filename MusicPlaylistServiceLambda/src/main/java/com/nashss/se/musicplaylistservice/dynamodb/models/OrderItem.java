@@ -1,23 +1,22 @@
 package com.nashss.se.musicplaylistservice.dynamodb.models;
 
-import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBHashKey;
-import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBDocument;
+import com.nashss.se.musicplaylistservice.utils.ServiceUtilsSPI;
 
 import java.math.BigDecimal;
 
+@DynamoDBDocument
 public class OrderItem {
     private String id;
     private int units;
-    private BigDecimal lineItemPrice;
+    private Double lineItemPrice;
 
     public String getId() {
         return id;
     }
 
-    //TODO: I THINK WE SHOULD MAYBE FIGURE OUT IF WE WANT TO USE THE UTILS TO MAKE THIS? WOULD THAT BE HERE OR IN THE MODEL?
-    //DO WE NEED A MODEL?
     public void setId(String id) {
-        this.id = id;
+        this.id = ServiceUtilsSPI.generateUserId();
     }
 
     public int getUnits() {
@@ -28,11 +27,11 @@ public class OrderItem {
         this.units = units;
     }
 
-    public BigDecimal getLineItemPrice() {
+    public Double getLineItemPrice() {
         return lineItemPrice;
     }
 
-    public void setLineItemPrice(BigDecimal lineItemPrice) {
+    public void setLineItemPrice(Double lineItemPrice) {
         this.lineItemPrice = lineItemPrice;
     }
 }

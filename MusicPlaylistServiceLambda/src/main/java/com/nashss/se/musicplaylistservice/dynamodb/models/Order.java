@@ -3,8 +3,8 @@ package com.nashss.se.musicplaylistservice.dynamodb.models;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBAttribute;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBHashKey;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable;
+import com.nashss.se.musicplaylistservice.utils.ServiceUtilsSPI;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -15,7 +15,8 @@ public class Order {
     private String orderId;
     private String clientId;
     private List<OrderItem> orderItems;
-    private BigDecimal totalCost;
+    //TODO CHANGE THIS TO A DOUBLE
+    private Double totalCost;
     private boolean orderProcessed;
 
     @DynamoDBHashKey(attributeName = "orderId")
@@ -24,7 +25,7 @@ public class Order {
     }
 
     public void setId(String orderId) {
-        this.orderId = orderId;
+        this.orderId = ServiceUtilsSPI.generateUserId();
     }
 
     @DynamoDBAttribute(attributeName = "clientId")
@@ -41,6 +42,15 @@ public class Order {
      *
      * @return Set of tags for this playlist
      */
+
+
+    private Double calculateTotalCost(Order order) {
+        Double totalCost = 0.0;
+        for(OrderItem item : order.getOrderItems()) {
+                totalCost = totalCost + item.getLineItemPrice();
+        }
+        return totalCost;
+    }
     @DynamoDBAttribute(attributeName = "orderItems")
     public List<OrderItem> getOrderItems() {
         // normally, we would prefer to return an empty Set if there are no
@@ -62,11 +72,12 @@ public class Order {
     }
 
     @DynamoDBAttribute(attributeName = "totalCost")
-    public BigDecimal getTotalCost() {
+    public Double getTotalCost() {
         return totalCost;
     }
 
-    public void setTotalCost(BigDecimal totalCost) {
+    public void setTotalCost(Order order) {
+        Double totalCost = calculateTotalCost(order);
         this.totalCost = totalCost;
     }
 

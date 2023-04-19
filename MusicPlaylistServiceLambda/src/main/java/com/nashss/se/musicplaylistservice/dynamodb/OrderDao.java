@@ -5,6 +5,7 @@ import com.nashss.se.musicplaylistservice.exceptions.OrderNotFoundException;
 
 import com.nashss.se.musicplaylistservice.metrics.MetricsPublisher;
 
+import javax.inject.Inject;
 import javax.inject.Singleton;
 
 /**
@@ -21,6 +22,8 @@ public class OrderDao {
      * @param dynamoDbMapper   the {@link DynamoDBMapper} used to interact with the playlists table
      * @param metricsPublisher the {@link MetricsPublisher} used to record metrics.
      */
+
+    @Inject
     public OrderDao(DynamoDBMapper dynamoDbMapper, MetricsPublisher metricsPublisher) {
         this.dynamoDbMapper = dynamoDbMapper;
         //TODO:should this metricsPublisher be commented out?
