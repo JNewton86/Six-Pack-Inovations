@@ -26,6 +26,7 @@ module.exports = {
     createPlaylist: path.resolve(__dirname, 'src', 'pages', 'createPlaylist.js'),
     viewPlaylist: path.resolve(__dirname, 'src', 'pages', 'viewPlaylist.js'),
     searchPlaylists: path.resolve(__dirname, 'src', 'pages', 'searchPlaylists.js'),
+    createOrder: path.resolve(__dirname, 'src', 'pages', 'createOrder.js'),
     home: path.resolve(__dirname, 'src', 'pages', 'home.js'),
     inventory: path.resolve(__dirname, 'src', 'pages', 'inventory.js')
   },

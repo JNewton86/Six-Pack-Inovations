@@ -9,10 +9,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-
 @DynamoDBTable(tableName = "orders")
 public class Order {
-
     private String orderId;
     private String clientId;
     private List<OrderItem> orderItems;
@@ -36,8 +34,10 @@ public class Order {
     public void setClientId(String clientId) {
         this.clientId = clientId;
     }
+
     /**
-     * Returns the list of orderItems associated with this Order, null if there are none.
+     * Returns the list of orderItems associated with this Order, null if there are
+     * none.
      *
      * @return Set of tags for this playlist
      */
@@ -101,3 +101,4 @@ public class Order {
         return Objects.hash(orderId, clientId, orderItems, totalCost);
     }
 }
+
