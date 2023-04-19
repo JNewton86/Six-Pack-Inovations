@@ -134,7 +134,7 @@ export default class MusicPlaylistClient extends BindingClass {
      * @param trackNumber The track number of the song on the album.
      * @returns The list of songs on a playlist.
      */
-    async addSongToPlaylist(id, asin, trackNumber, errorCallback) {
+    async faddSongToPlaylist(id, asin, trackNumber, errorCallback) {
         try {
             const token = await this.getTokenOrThrow("Only authenticated users can add a song to a playlist.");
             const response = await this.axiosClient.post(`playlists/${id}/songs`, {
@@ -196,18 +196,21 @@ export default class MusicPlaylistClient extends BindingClass {
      * @param beerId, packagingType, availableUnits, reservedUnits, and unitPrice.
      * @returns The list of songs on a playlist.
      */
-    async updateInventoryItem(updateInventoryItem, errorCallback) {
+//TODO
+    async updateInventoryItem(beerId, packagingType, availableUnits, reserveUnits, unitPrice, errorCallback) {
         try {
             const token = await this.getTokenOrThrow("Only authenticated users can update inventory.");
-            const res = await this.axios.put(`inventory/{beer}/{packagingType}`, {
+            console.log("**this is my token** " + token)
+            const response = await this.axiosClient.put(`inventory/${beerId}/${packagingType}`, {
                 beerId: beerId,
                 packagingType: packagingType,
                 availableUnits: availableUnits,
-                reservedUnits: reservedUnits,
-                unitPrice:unitPrice,
+                reservedUnits: reserveUnits,
+                unitPrice: unitPrice,
             }, {
                 headers: {
-                    Authorization: `Bearer ${token}`
+                    Authorization: `Bearer ${token}`,
+                    'Content-Type': 'application/json'
                 }
             });
         } catch (error) {
@@ -217,7 +220,8 @@ export default class MusicPlaylistClient extends BindingClass {
 
 
     async getData() {
-        const [ipaData, stoutData, porterData, lagerData] = await Promise.all([this.getIPAData(), this.getStoutData(), this.getPorterData(), this.getLagerData()]);
+        const [ipaData, stoutData, porterData, lagerData] = await Promise.all([this.getStoutData(),this.getIPAData(), this.getPorterData(), this.getLagerData()]);
+
         return [...ipaData, ...stoutData, ...porterData, ...lagerData];
     }
 

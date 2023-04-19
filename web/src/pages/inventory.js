@@ -1,4 +1,5 @@
 import MusicPlaylistClient from '../api/musicPlaylistClient';
+import Header from '../components/header';
 import BindingClass from "../util/bindingClass";
 import DataStore from "../util/DataStore";
 import Table from '../components/table';
@@ -32,10 +33,9 @@ class Inventory extends BindingClass {
      */
     mount() {
         console.log('Inventory.js mounting...');
-
         this.table.addTableToPage();
-
         this.client = new MusicPlaylistClient();
+        this.header.addHeaderToPage();
     }
 }
 

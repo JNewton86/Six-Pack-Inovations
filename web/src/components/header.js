@@ -31,31 +31,67 @@ export default class Header extends BindingClass {
         header.appendChild(userInfo);
     }
 
-    createSiteTitle() {
-        const homeButton = document.createElement('a');
-        homeButton.classList.add('header_home');
-        homeButton.href = 'index.html';
-        homeButton.innerText = 'Playlists';
+createSiteTitle() {
+    const homeButton = document.createElement('a');
+    homeButton.classList.add('header_home');
+    homeButton.href = 'index.html';
 
-        const siteTitle = document.createElement('div');
-        siteTitle.classList.add('site-title');
-        siteTitle.appendChild(homeButton);
+    const img = document.createElement('img');
+    img.src = 'sixpacklogo.png';
+    img.alt = 'Playlist';
+    img.style.width = '150px';
+    img.style.height = '150px';
+    homeButton.appendChild(img);
 
-        return siteTitle;
+    const siteTitle = document.createElement('div');
+    siteTitle.classList.add('site-title');
+    siteTitle.appendChild(homeButton);
+
+    return siteTitle;
+}
+
+createUserInfoForHeader(currentUser) {
+    const userInfo = document.createElement('div');
+    userInfo.classList.add('user');
+
+    if (currentUser) {
+        const dashboardButton = document.createElement('a');
+        dashboardButton.classList.add('button');
+        dashboardButton.href = 'employeeDashboard.html';
+        dashboardButton.innerText = 'Employee Dashboard';
+
+        const logoutButton = this.createLogoutButton(currentUser);
+
+        userInfo.appendChild(dashboardButton);
+        userInfo.appendChild(document.createTextNode('\u00A0')); // add a space between the buttons
+        userInfo.appendChild(logoutButton);
+
+        const style = window.getComputedStyle(logoutButton);
+        const leftOffset = parseInt(style.getPropertyValue('left'), 10);
+        const buttonWidth = parseInt(style.getPropertyValue('width'), 10);
+
+        dashboardButton.style.left = `${leftOffset - buttonWidth - 80}px`; // adjust the left position of the Dashboard button
+        userInfo.style.width = `${leftOffset + buttonWidth + 80}px`; // adjust the width of the userInfo container to include the gap and buttons
+    } else {
+        const loginButton = this.createLoginButton();
+        userInfo.appendChild(loginButton);
     }
 
-    createUserInfoForHeader(currentUser) {
-        const userInfo = document.createElement('div');
-        userInfo.classList.add('user');
+    return userInfo;
+}
 
-        const childContent = currentUser
-            ? this.createLogoutButton(currentUser)
-            : this.createLoginButton();
-
-        userInfo.appendChild(childContent);
-
-        return userInfo;
-    }
+//    createUserInfoForHeader(currentUser) {
+//        const userInfo = document.createElement('div');
+//        userInfo.classList.add('user');
+//
+//        const childContent = currentUser
+//            ? this.createLogoutButton(currentUser)
+//            : this.createLoginButton();
+//
+//        userInfo.appendChild(childContent);
+//
+//        return userInfo;
+//    }
 
     createLoginButton() {
         return this.createButton('Login', this.client.login);

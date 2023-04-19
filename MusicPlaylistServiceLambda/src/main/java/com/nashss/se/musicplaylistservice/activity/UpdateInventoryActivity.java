@@ -81,6 +81,7 @@ public class UpdateInventoryActivity {
         log.info("passed call to inventory table beer = {}", beer);
         beer.setAvailableUnits(updateInventoryRequest.getAvailableUnits());
         beer.setReservedUnits(updateInventoryRequest.getReservedUnits());
+
         beer = inventoryDao.saveBeer(beer);
         log.info("updated retrieved object and saved beer to table beer = {}", beer);
         publishExceptionMetrics(false);
