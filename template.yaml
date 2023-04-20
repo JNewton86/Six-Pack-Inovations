@@ -408,6 +408,7 @@ Resources:
             Method: get
             Auth:
               Authorizer: 'NONE'
+
   GetOrderLambda:
     Type: AWS::Serverless::Function
     Properties:
@@ -425,7 +426,7 @@ Resources:
         MusicPlaylistService:
           Type: Api
           Properties:
-            Path: /order/{orderId}
+            Path: /orders/{orderId}
             Method: get
             Auth:
               Authorizer: 'NONE'
