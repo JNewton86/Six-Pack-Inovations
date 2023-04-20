@@ -31,11 +31,11 @@
         <option value="Case">Case</option>
       </select>
         <label for="availableUnits">Available Units:</label>
-        <input type="number" id="availableUnits" class="input" name="availableUnits" min="0">
+        <input type="number" id="availableUnits" class="input" name="availableUnits" placeholder="required" min="0">
         <label for="reserveUnits">Reserved Units:</label>
-        <input type="number" id="reserveUnits" class="input" name="reserveUnits" min="0">
+        <input type="number" id="reserveUnits" class="input" name="reserveUnits" placeholder="required" min="0">
         <label for="unitPrice">Unit Price:</label>
-        <input type="number" id="unitPrice" class="input" name="unitPrice" min="10">
+        <input type="number" id="unitPrice" class="input" name="unitPrice" placeholder="required in XX.XX format" min="1.00" max="300.00">
         <button class="button-bordered" id="update">Update</button>
     </div>
   </form>
