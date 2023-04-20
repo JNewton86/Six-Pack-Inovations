@@ -84,7 +84,6 @@ public class Playlist {
         if (null == tags) {
             return null;
         }
-
         return new HashSet<>(tags);
     }
 

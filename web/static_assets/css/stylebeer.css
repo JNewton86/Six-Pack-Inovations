@@ -204,3 +204,7 @@ a {
   text-decoration: none;
   cursor: pointer;
 }
+.add {
+    cursor: pointer;
+}
+

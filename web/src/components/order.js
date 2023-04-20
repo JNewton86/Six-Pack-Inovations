@@ -4,7 +4,7 @@ import BindingClass from "../util/bindingClass";
 /**
  * The table component for the website.
  */
-export default class Table extends BindingClass {
+export default class Order extends BindingClass {
     constructor() {
         super();
 
@@ -15,7 +15,7 @@ export default class Table extends BindingClass {
     }
 
     async addTableToPage() {
-        console.log('Table.js building...');
+        console.log('Order.js building...');
         const currentUser = await this.client.getIdentity();
         const data = await this.client.getData();
         const table = this.buildTable(data);
@@ -34,7 +34,7 @@ export default class Table extends BindingClass {
 
         // Create the table header row
         const headerRow = table.insertRow();
-        const headers = ['Beer ID', 'Beer Type', 'Name', 'Packaging Type', 'Unit Price', 'Available Units', 'Reserved Units', 'Total Units'];
+        const headers = ['OrderID', 'Order Items', 'Total', 'Order Processed'];
         headers.forEach(header => {
             const th = document.createElement('th');
             th.innerText = header;
@@ -42,10 +42,10 @@ export default class Table extends BindingClass {
         });
 
         // Create the table body rows
-        data.forEach(item => {
+        data.forEach(order => {
             const row = table.insertRow();
-            row.classList.add('playlist-row'); // Add a class to style the row
-            const cells = [item.beerId, item.beerType, item.name, item.packagingType, item.unitPrice, item.availableUnits, item.reservedUnits, item.reservedUnits + item.availableUnits];
+            row.classList.add('order-row'); // Add a class to style the row
+            const cells = [order.orderId, order.orderItems, order.total, order.status];
             cells.forEach(cell => {
                 const td = document.createElement('td');
                 td.innerText = cell;
@@ -55,5 +55,5 @@ export default class Table extends BindingClass {
 
         return table;
     }
-    
+
 }
