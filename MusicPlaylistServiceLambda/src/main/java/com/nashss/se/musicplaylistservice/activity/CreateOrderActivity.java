@@ -54,7 +54,7 @@ public class CreateOrderActivity {
         newOrder.setOrderItems(new ArrayList<OrderItem>());
         newOrder.setTotalCost(0.0);
         newOrder.setOrderProcessed(false);
-        //Todo This needs the rest of the attributes from CreateOrderRequest after it has had the right attributes added from the Order.java class.
+        newOrder.setClientId(createOrderRequest.getClientId());
 
         orderDao.saveOrder(newOrder);
 
