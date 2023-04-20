@@ -28,7 +28,8 @@ module.exports = {
     searchPlaylists: path.resolve(__dirname, 'src', 'pages', 'searchPlaylists.js'),
     createOrder: path.resolve(__dirname, 'src', 'pages', 'createOrder.js'),
     home: path.resolve(__dirname, 'src', 'pages', 'home.js'),
-    inventory: path.resolve(__dirname, 'src', 'pages', 'inventory.js')
+    inventory: path.resolve(__dirname, 'src', 'pages', 'inventory.js'),
+    updateInventory: path.resolve(__dirname, 'src', 'pages', 'updateInventory.js')
   },
   output: {
     path: path.resolve(__dirname, 'build', 'assets'),

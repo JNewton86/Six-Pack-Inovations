@@ -4,7 +4,6 @@ import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBAttribute;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBHashKey;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -14,7 +13,7 @@ public class Order {
     private String orderId;
     private String clientId;
     private List<OrderItem> orderItems;
-    private BigDecimal totalCost;
+    private Double totalCost;
     private boolean orderProcessed;
 
     @DynamoDBHashKey(attributeName = "orderId")
@@ -23,11 +22,11 @@ public class Order {
     }
 
     public void setId(String orderId) {
-        this.orderId = orderId;
+        this.orderId = orderId ;
     }
 
     @DynamoDBAttribute(attributeName = "clientId")
-    public String getClientIdd() {
+    public String getClientId() {
         return clientId;
     }
 
@@ -41,6 +40,7 @@ public class Order {
      *
      * @return Set of tags for this playlist
      */
+
     @DynamoDBAttribute(attributeName = "orderItems")
     public List<OrderItem> getOrderItems() {
         // normally, we would prefer to return an empty Set if there are no
@@ -62,11 +62,11 @@ public class Order {
     }
 
     @DynamoDBAttribute(attributeName = "totalCost")
-    public BigDecimal getTotalCost() {
+    public Double getTotalCost() {
         return totalCost;
     }
 
-    public void setTotalCost(BigDecimal totalCost) {
+    public void setTotalCost(Double totalCost) {
         this.totalCost = totalCost;
     }
 

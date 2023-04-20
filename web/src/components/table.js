@@ -31,28 +31,28 @@ export default class Table extends BindingClass {
         }
         const table = document.createElement('table');
         table.classList.add('table-container'); // Add a class to style the table
-    
+
         // Create the table header row
         const headerRow = table.insertRow();
-        const headers = ['Beer ID', 'Packaging Type', 'Beer Type', 'Available Inventory', 'Reserved Inventory', 'Total Inventory'];
+        const headers = ['Beer ID', 'Beer Type', 'Name', 'Packaging Type', 'Unit Price', 'Available Units', 'Reserved Units', 'Total Units'];
         headers.forEach(header => {
             const th = document.createElement('th');
             th.innerText = header;
             headerRow.appendChild(th);
         });
-    
+
         // Create the table body rows
         data.forEach(item => {
             const row = table.insertRow();
             row.classList.add('playlist-row'); // Add a class to style the row
-            const cells = [item.beerId, item.packagingType, item.beerType, item.availableInventory, item.reservedInventory, item.availableInventory + item.reservedInventory];
+            const cells = [item.beerId, item.beerType, item.name, item.packagingType, item.unitPrice, item.availableUnits, item.reservedUnits, item.reservedUnits + item.availableUnits];
             cells.forEach(cell => {
                 const td = document.createElement('td');
                 td.innerText = cell;
                 row.appendChild(td);
             });
         });
-    
+
         return table;
     }
     

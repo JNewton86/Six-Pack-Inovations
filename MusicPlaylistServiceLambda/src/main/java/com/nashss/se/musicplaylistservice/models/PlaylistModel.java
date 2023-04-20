@@ -43,6 +43,10 @@ public class PlaylistModel {
         return copyToList(tags);
     }
 
+    public String getCustomerName() {
+        return customerName;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -69,10 +73,6 @@ public class PlaylistModel {
     //CHECKSTYLE:OFF:Builder
     public static Builder builder() {
         return new Builder();
-    }
-
-    public String getCustomerName() {
-        return customerName;
     }
 
     public static class Builder {

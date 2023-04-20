@@ -209,42 +209,133 @@ export default class MusicPlaylistClient extends BindingClass {
             errorCallback(error);
         }
     }
-
     async getData() {
-        try {
-            const response = await fetch('/api/playlist');
-            const data = await response.json();
-            return data;
-        } catch (error) {
+        const [ipaData, stoutData, porterData, lagerData] = await Promise.all([this.getIPAData(), this.getStoutData(), this.getPorterData(), this.getLagerData()]);
+        return [...ipaData, ...stoutData, ...porterData, ...lagerData];
+    }
+
+    async getIPAData() {
+      try {
+        const response = await axios.get('/inventory/IPA');
+        return response.data.beerModelList.map((beer) => {
+          return {
+            beerId: beer.beerId,
+            beerType: beer.beerType,
+            name: beer.name,
+            packagingType: beer.packagingType,
+            unitPrice: beer.unitPrice,
+            availableUnits: beer.availableUnits,
+            reservedUnits: beer.reservedUnits,
+          };
+        });
+      } catch (error) {
+        console.error(`Error fetching data: ${error}`);
+        // Return some sample data
+        return [
+          {
+            beerId: 1,
+            beerType: 'IPA',
+            name: 'Hoppy IPA',
+            packagingType: 'Case',
+            unitPrice: 20,
+            availableUnits: 100,
+            reservedUnits: 10,
+          }
+        ];
+      }
+    }
+
+    async getStoutData() {
+          try {
+            const response = await axios.get('/inventory/Stout');
+            return response.data.beerModelList.map((beer) => {
+              return {
+                beerId: beer.beerId,
+                beerType: beer.beerType,
+                name: beer.name,
+                packagingType: beer.packagingType,
+                unitPrice: beer.unitPrice,
+                availableUnits: beer.availableUnits,
+                reservedUnits: beer.reservedUnits,
+              };
+            });
+          } catch (error) {
             console.error(`Error fetching data: ${error}`);
             // Return some sample data
             return [
-                {
-                    beerId: 1,
-                    packagingType: 'Case',
-                    beerName: 'ICUpa',
-                    beerType: 'IPA',
-                    availableInventory: 100,
-                    reservedInventory: 10,
-                },
-                {
-                    beerId: 2,
-                    packagingType: 'Case',
-                    beerName: 'porcupine porter',
-                    beerType: 'Stout',
-                    availableInventory: 50,
-                    reservedInventory: 20,
-                },
-                {
-                    beerId: 3,
-                    packagingType: 'Keg',
-                    beerType: 'Pilsner',
-                    beerName: 'pilsner dough boy',
-                    availableInventory: 20,
-                    reservedInventory: 5,
-                }
+              {
+                beerId: 1,
+                beerType: 'STOUT',
+                name: 'Hoppy STOUT',
+                packagingType: 'Case',
+                unitPrice: 20,
+                availableUnits: 100,
+                reservedUnits: 10,
+              }
             ];
+          }
         }
-    }
+
+    async getPorterData() {
+          try {
+            const response = await axios.get('/inventory/PORTER');
+            return response.data.beerModelList.map((beer) => {
+              return {
+                beerId: beer.beerId,
+                beerType: beer.beerType,
+                name: beer.name,
+                packagingType: beer.packagingType,
+                unitPrice: beer.unitPrice,
+                availableUnits: beer.availableUnits,
+                reservedUnits: beer.reservedUnits,
+              };
+            });
+          } catch (error) {
+            console.error(`Error fetching data: ${error}`);
+            // Return some sample data
+            return [
+              {
+                beerId: 1,
+                beerType: 'PORTER',
+                name: 'Hoppy PORTER',
+                packagingType: 'Case',
+                unitPrice: 20,
+                availableUnits: 100,
+                reservedUnits: 10,
+              }
+            ];
+          }
+        }
+
+    async getLagerData() {
+          try {
+            const response = await axios.get('/inventory/Lager');
+            return response.data.beerModelList.map((beer) => {
+              return {
+                beerId: beer.beerId,
+                beerType: beer.beerType,
+                name: beer.name,
+                packagingType: beer.packagingType,
+                unitPrice: beer.unitPrice,
+                availableUnits: beer.availableUnits,
+                reservedUnits: beer.reservedUnits,
+              };
+            });
+          } catch (error) {
+            console.error(`Error fetching data: ${error}`);
+            // Return some sample data
+            return [
+              {
+                beerId: 1,
+                beerType: 'LAGER',
+                name: 'Hoppy LAGER',
+                packagingType: 'Case',
+                unitPrice: 20,
+                availableUnits: 100,
+                reservedUnits: 10,
+              }
+            ];
+          }
+        }
 }
 
