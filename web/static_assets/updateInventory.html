@@ -1,23 +1,52 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <script type="module" src="assets/updateInventory.js"></script>
-    <link rel="stylesheet" type="text/css" href="css/stylebeer.css">
+  <script type="text/javascript" src="assets/home.js"></script>
+  <script type="module" src="assets/updateInventory.js"></script>
+  <link rel="stylesheet" type="text/css" href="css/stylebeer.css">
 </head>
 <header class="header" id="header">
-    <a href="index1.html">
-        <img src="sixpacklogo.png" alt="logo placeholder" style="width:150px;height:150px;">
-    </a>
 </header>
 <body class="background">
 <div class="card">
-    <h1 style="color: #FFB563;">Inventory</h1>
-    <h2>Warehouse No.01, Nashville, TN</h2>
-    <div id="table-container"></div>
-    <p class="button-group">
-        <a href="updateInventory.html">Update Inventory</a>
-        <a href="employeeDashboard.html">Dashboard</a>
-    </p>
+  <h1 style="color: #FFB563;">Update Inventory</h1>
+  <h2>For Warehouse No.01, Nashville, TN</h2>
+  Please review the current inventory table below. Underneath the table you will find two dropdown items, one for
+  the type of beer you would like to update, and the other for the packaging type. Please enter the correct value in
+  each of the blank fields prior to clicking Update Inventory.<br>
+  <br>
+   <div id="table-container"></div>
+  <form id="update-inventory-form">
+    <div class="form-group row">
+      <br>
+      <br>
+      <select name="beerId" class="form-control" id="beerId">
+        <option value="B019HKJTCI">Werewolf Beach Party</option>
+        <option value="B019HKJTCJ">The Dark Knight</option>
+        <option value="B019HKJTCL">Porter Potty</option>
+        <option value="B019HKJTCK">Midnight Sun Kodiak</option>
+      </select>
+      <select name="packagingType" class="form-control" id="packagingType">
+        <option value="Keg">Keg</option>
+        <option value="Case">Case</option>
+      </select>
+        <label for="availableUnits">Available Units:</label>
+        <input type="number" id="availableUnits" class="input" name="availableUnits" min="0">
+        <label for="reserveUnits">Reserved Units:</label>
+        <input type="number" id="reserveUnits" class="input" name="reserveUnits" min="0">
+        <label for="unitPrice">Unit Price:</label>
+        <input type="number" id="unitPrice" class="input" name="unitPrice" min="10">
+        <button class="button-bordered" id="update">Update</button>
+    </div>
+  </form>
+  <br>
+  <p class="button-group">
+    <a href="inventory.html">Return to Inventory screen</a>
+    <a href="employeeDashboard.html">Return to Dashboard</a>
+  </p>
 </div>
+</p>
 </body>
 </html>
+
+

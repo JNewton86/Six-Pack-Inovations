@@ -9,7 +9,7 @@ import static com.nashss.se.musicplaylistservice.utils.CollectionUtils.copyToLis
 
 public class OrderModel {
 
-    private final String orderId;
+    private final String id;
     private final String clientId;
     private final List<OrderItem> orderItems;
     private final Double totalCost;
