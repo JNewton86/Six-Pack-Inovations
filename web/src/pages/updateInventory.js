@@ -28,8 +28,8 @@ class Inventory extends BindingClass {
         console.log('Inventory.js mounting...');
         this.table.addTableToPage();
         var updateButton = document.getElementById("update");
-        this.header.addHeaderToPage();
         updateButton.addEventListener("click", this.updateInventory);
+        this.header.addHeaderToPage();
 
     }
 
