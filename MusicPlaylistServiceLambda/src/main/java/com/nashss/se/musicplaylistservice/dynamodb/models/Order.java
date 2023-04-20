@@ -4,7 +4,6 @@ import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBAttribute;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBHashKey;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -23,8 +22,8 @@ public class Order {
         return orderId;
     }
 
-    public void setOrderId(String orderId) {
-        this.orderId = orderId;
+    public void setId(String orderId) {
+        this.orderId = orderId ;
     }
 
     @DynamoDBAttribute(attributeName = "clientId")
@@ -35,11 +34,13 @@ public class Order {
     public void setClientId(String clientId) {
         this.clientId = clientId;
     }
+
     /**
      * Returns the list of orderItems associated with this Order, null if there are none.
      *
      * @return Set of tags for this playlist
      */
+
     @DynamoDBAttribute(attributeName = "orderItems")
     public List<OrderItem> getOrderItems() {
         // normally, we would prefer to return an empty Set if there are no

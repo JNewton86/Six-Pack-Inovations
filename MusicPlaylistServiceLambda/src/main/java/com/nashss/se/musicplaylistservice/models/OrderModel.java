@@ -2,7 +2,6 @@ package com.nashss.se.musicplaylistservice.models;
 
 import com.nashss.se.musicplaylistservice.dynamodb.models.OrderItem;
 
-import java.math.BigDecimal;
 import java.util.List;
 import java.util.Objects;
 
@@ -16,11 +15,13 @@ public class OrderModel {
     private final Double totalCost;
     private boolean orderProcessed;
 
-    public OrderModel(String id, String clientId, List<OrderItem> orderItems, Double totalCost) {
-        this.orderId = id;
+
+    public OrderModel(String id, String clientId, List<OrderItem> orderItems, Double totalCost, boolean orderProcessed) {
+        this.id = id;
         this.clientId = clientId;
         this.orderItems = orderItems;
         this.totalCost = totalCost;
+        this.orderProcessed = orderProcessed;
     }
 
     public String getOrderId() {
@@ -46,36 +47,27 @@ public class OrderModel {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
         OrderModel that = (OrderModel) o;
+        return orderProcessed == that.orderProcessed && Objects.equals(id, that.id) && Objects.equals(clientId, that.clientId) && Objects.equals(orderItems, that.orderItems) && Objects.equals(totalCost, that.totalCost);
 
-        return Objects.equals(orderId, that.orderId) &&
-                Objects.equals(clientId, that.clientId) &&
-                Objects.equals(orderItems, that.orderItems) &&
-                Objects.equals(totalCost, that.totalCost);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(orderId, clientId, orderItems, totalCost);
+        return Objects.hash(id, clientId, orderItems, totalCost, orderProcessed);
     }
-
     //CHECKSTYLE:OFF:Builder
-    public static Builder builder() {
-        return new Builder();
-    }
+    public static Builder builder() { return new Builder(); }
 
     public static class Builder {
         private String id;
         private String clientId;
         private List<OrderItem> orderItems;
         private Double totalCost;
+        private boolean orderProcessed;
+
 
         public Builder withOrderId(String id) {
             this.id = id;
@@ -96,9 +88,14 @@ public class OrderModel {
             this.orderItems = copyToList(orderItems);
             return this;
         }
+        public Builder withOrderProcessed(boolean orderProcessed) {
+            this.orderProcessed = orderProcessed;
+            return this;
+        }
+
 
         public OrderModel build() {
-            return new OrderModel(id, clientId, orderItems, totalCost);
+            return new OrderModel(id, clientId, orderItems, totalCost, orderProcessed);
         }
     }
 }
