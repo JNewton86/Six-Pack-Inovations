@@ -17,7 +17,7 @@ public class Order {
     private boolean orderProcessed;
 
     @DynamoDBHashKey(attributeName = "orderId")
-    public String getOrderId() {
+    public String getId() {
         return orderId;
     }
 
