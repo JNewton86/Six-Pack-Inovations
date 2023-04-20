@@ -1,5 +1,6 @@
 package com.nashss.se.musicplaylistservice.dynamodb;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBScanExpression;
 import com.nashss.se.musicplaylistservice.dynamodb.models.Order;
 import com.nashss.se.musicplaylistservice.dynamodb.models.OrderItem;
 import com.nashss.se.musicplaylistservice.exceptions.OrderNotFoundException;
@@ -37,6 +38,11 @@ public class OrderDao {
             throw new OrderNotFoundException(String.format("Could not find an Order with OrderId '%s' ", orderId));
         }
         return requestedOrder;
+    }
+
+    public List<Order> getAllOrders(){
+        List<Order> orders = dynamoDbMapper.scan(Order.class, new DynamoDBScanExpression());
+        return orders;
     }
 
     /**

@@ -13,12 +13,11 @@ public class GetOrderRequest {
 
     @Override
     public String toString() {
-        return "GetPlaylistRequest{" +
-                "id='" + orderId + '\'' +
+        return "GetOrderRequest{" +
+                "orderId='" + orderId + '\'' +
                 '}';
     }
 
-    //CHECKSTYLE:OFF:Builder
     public static Builder builder() {
         return new Builder();
     }
@@ -33,6 +32,10 @@ public class GetOrderRequest {
 
         public GetOrderRequest build() {
             return new GetOrderRequest(orderId);
+        }
+
+        public GetOrderRequest buildForAllOrders() {
+            return new GetOrderRequest(null);
         }
     }
 }

@@ -12,6 +12,8 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import javax.inject.Inject;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Implementation of the GetPlaylistActivity for the MusicPlaylistService's GetPlaylist API.
@@ -22,34 +24,26 @@ public class GetOrderActivity {
     private final Logger log = LogManager.getLogger();
     private final OrderDao orderDao;
 
-    /**
-     * Instantiates a new GetPlaylistActivity object.
-     *
-     * @param orderDao PlaylistDao to access the playlist table.
-     */
     @Inject
     public GetOrderActivity(OrderDao orderDao) {
         this.orderDao = orderDao;
     }
 
-    /**
-     * This method handles the incoming request by retrieving the playlist from the database.
-     * <p>
-     * It then returns the playlist.
-     * <p>
-     * If the playlist does not exist, this should throw a PlaylistNotFoundException.
-     *
-     * @param getPlaylistRequest request object containing the playlist ID
-     * @return getPlaylistResult result object containing the API defined {@link PlaylistModel}
-     */
-    public GetOrderResult handleRequest(final GetOrderRequest getPlaylistRequest) {
-        log.info("Received GetPlaylistRequest {}", getPlaylistRequest);
-        String requestedId = getPlaylistRequest.getId();
-        Order order = orderDao.getOrder(requestedId);
-        OrderModel orderModel = new ModelConverterSPI().toOrderModel(order);
-
-        return GetOrderResult.builder()
-                .withOrder(orderModel)
-                .build();
+    public GetOrderResult handleRequest(final GetOrderRequest getOrderRequest) {
+        log.info("Received GetOrderRequest {}", getOrderRequest);
+        if (getOrderRequest.getId() == null) {
+            List<Order> orders = orderDao.getAllOrders();
+            List<OrderModel> orderModels = orders.stream().map(order -> new ModelConverterSPI().toOrderModel(order)).collect(Collectors.toList());
+            return GetOrderResult.builder()
+                    .withOrders(orderModels)
+                    .build();
+        } else {
+            String requestedId = getOrderRequest.getId();
+            Order order = orderDao.getOrder(requestedId);
+            OrderModel orderModel = new ModelConverterSPI().toOrderModel(order);
+            return GetOrderResult.builder()
+                    .withOrder(orderModel)
+                    .build();
+        }
     }
 }
