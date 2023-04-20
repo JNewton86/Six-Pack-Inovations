@@ -1,0 +1,51 @@
+{
+  "order": [
+    {
+      "PostRequest": {
+        "Item": {
+          "orderId": { "S": "oi123" },
+          "clientId": { "S": "ci456" },
+          "orderItems": [
+            { "id": 1, "units": 2, "lineItemPrice": 10 },
+            { "id": 2, "units": 1, "lineItemPrice": 10},
+            { "id": 3, "units": 2, "lineItemPrice": 10 },
+            { "id": 5, "units": 1, "lineItemPrice": 50}
+          ],
+          "totalCost": { "N": "100" },
+          "orderProcessed": { "B": true }
+        }
+      }
+    },
+    {
+    "PostRequest": {
+      "Item": {
+        "orderId": { "S": "oi456" },
+        "clientId": { "S": "ci789" },
+        "orderItems": [
+          { "id": 6, "units": 1, "lineItemPrice": 100 },
+          { "id": 7, "units": 2, "lineItemPrice": 200},
+          { "id": 8, "units": 3, "lineItemPrice": 1000 },
+          { "id": 9, "units": 4, "lineItemPrice": 1},
+          { "id": 10, "units": 1, "lineItemPrice": 6.99}
+        ],
+        "totalCost": { "N": "1307.99" },
+        "orderProcessed": { "B": false }
+      }
+    }
+    },
+    {
+      "PostRequest": {
+        "Item": {
+          "orderId": { "S": "oi101112" },
+          "clientId": { "S": "ci131415" },
+          "orderItems": [
+            { "id": 11, "units": 500, "lineItemPrice": 1 }
+          ],
+          "totalCost": { "N": "500" },
+          "orderProcessed": { "B": false }
+        }
+      }
+    }
+  ]
+}
+
