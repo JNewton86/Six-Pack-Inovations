@@ -24,7 +24,6 @@ public class OrderDao {
      * @param dynamoDbMapper   the {@link DynamoDBMapper} used to interact with the playlists table
      * @param metricsPublisher the {@link MetricsPublisher} used to record metrics.
      */
-
     @Inject
     public OrderDao(DynamoDBMapper dynamoDbMapper, MetricsPublisher metricsPublisher) {
         this.dynamoDbMapper = dynamoDbMapper;

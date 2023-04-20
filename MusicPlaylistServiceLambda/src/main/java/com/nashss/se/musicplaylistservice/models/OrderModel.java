@@ -9,11 +9,12 @@ import static com.nashss.se.musicplaylistservice.utils.CollectionUtils.copyToLis
 
 public class OrderModel {
 
-    private final String id;
+    private final String orderId;
     private final String clientId;
     private final List<OrderItem> orderItems;
     private final Double totalCost;
     private boolean orderProcessed;
+
 
     public OrderModel(String id, String clientId, List<OrderItem> orderItems, Double totalCost, boolean orderProcessed) {
         this.id = id;
@@ -23,8 +24,8 @@ public class OrderModel {
         this.orderProcessed = orderProcessed;
     }
 
-    public String getId() {
-        return id;
+    public String getOrderId() {
+        return orderId;
     }
 
     public String getClientId() {
@@ -50,6 +51,7 @@ public class OrderModel {
         if (o == null || getClass() != o.getClass()) return false;
         OrderModel that = (OrderModel) o;
         return orderProcessed == that.orderProcessed && Objects.equals(id, that.id) && Objects.equals(clientId, that.clientId) && Objects.equals(orderItems, that.orderItems) && Objects.equals(totalCost, that.totalCost);
+
     }
 
     @Override
@@ -66,7 +68,8 @@ public class OrderModel {
         private Double totalCost;
         private boolean orderProcessed;
 
-        public Builder withId(String id) {
+
+        public Builder withOrderId(String id) {
             this.id = id;
             return this;
         }

@@ -18,7 +18,7 @@ public class Order {
     private boolean orderProcessed;
 
     @DynamoDBHashKey(attributeName = "orderId")
-    public String getId() {
+    public String getOrderId() {
         return orderId;
     }
 
@@ -101,3 +101,4 @@ public class Order {
         return Objects.hash(orderId, clientId, orderItems, totalCost);
     }
 }
+

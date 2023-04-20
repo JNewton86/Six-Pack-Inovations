@@ -1,8 +1,9 @@
 package com.nashss.se.musicplaylistservice.converters;
 
-import com.nashss.se.musicplaylistservice.dynamodb.models.AlbumTrack;
-import com.nashss.se.musicplaylistservice.dynamodb.models.Beer;
+import com.nashss.se.musicplaylistservice.dynamodb.models.*;
 import com.nashss.se.musicplaylistservice.models.BeerModel;
+import com.nashss.se.musicplaylistservice.models.OrderModel;
+import com.nashss.se.musicplaylistservice.models.PlaylistModel;
 import com.nashss.se.musicplaylistservice.models.SongModel;
 
 import java.util.ArrayList;
@@ -29,6 +30,20 @@ public class ModelConverterSPI {
                 .withAvailableUnits(beer.getAvailableUnits())
                 .withBeerType(beer.getBeerType())
                 .withBeerId(beer.getBeerId())
+                .build();
+    }
+
+    public OrderModel toOrderModel(Order order) {
+        List<OrderItem> orderItems = null;
+        if (order.getOrderItems() != null) {
+            orderItems = new ArrayList<>(order.getOrderItems());
+        }
+
+        return OrderModel.builder()
+                .withOrderId(order.getOrderId())
+                .withClientId(order.getClientId())
+                .withTotalCost(order.getTotalCost())
+                .withOrderItems(orderItems)
                 .build();
     }
 }
