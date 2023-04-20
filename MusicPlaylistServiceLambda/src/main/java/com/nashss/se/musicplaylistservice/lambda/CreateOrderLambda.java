@@ -18,8 +18,19 @@ implements RequestHandler<LambdaRequest<CreateOrderRequest>, LambdaResponse> {
     public LambdaResponse handleRequest(LambdaRequest<CreateOrderRequest>input, Context context) {
         log.info("handleRequest");
         return super.runActivity(
-            () -> input.fromBody(CreateOrderRequest.class),
-            (request, serviceComponent) ->
-        serviceComponent.provideCreateOrderActivity().handleRequest(request));
+                () -> {
+                    CreateOrderRequest arg = input.fromBody(CreateOrderRequest.class);
+                    return input.fromPath(claims ->
+                            CreateOrderRequest.builder()
+                                    .withOrderId(arg.getOrderId())
+                                    .withClientId(arg.getClientId())
+                                    .withOrderItems(arg.getOrderItems())
+                                    .withTotalCost(arg.getTotalCost())
+                                    .withIsOrderProcessed(arg.isOrderProcessed())
+                                    .build());
+                },
+                (request, serviceComponent) ->
+                        serviceComponent.provideCreateOrderActivity().handleRequest(request)
+        );
     }
 }
