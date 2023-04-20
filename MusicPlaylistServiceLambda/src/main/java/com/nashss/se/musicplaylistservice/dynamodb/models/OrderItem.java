@@ -12,12 +12,17 @@ public class OrderItem {
     private String packagingType;
     private String name;
 
+    public OrderItem() {
+    }
+
     public String getId() {
         return id;
     }
 
     public void setId(String id) {
-        this.id = ServiceUtilsSPI.generateUserId();
+        if (this.id == null) {
+            this.id = ServiceUtilsSPI.generateUserId();
+        }
     }
 
     public int getUnits() { return units; }
