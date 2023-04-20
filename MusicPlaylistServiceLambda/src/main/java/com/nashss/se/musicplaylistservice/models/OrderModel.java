@@ -24,8 +24,8 @@ public class OrderModel {
         this.orderProcessed = orderProcessed;
     }
 
-    public String getOrderId() {
-        return orderId;
+    public String getId() {
+        return id;
     }
 
     public String getClientId() {
@@ -69,7 +69,7 @@ public class OrderModel {
         private boolean orderProcessed;
 
 
-        public Builder withOrderId(String id) {
+        public Builder withId(String id) {
             this.id = id;
             return this;
         }
