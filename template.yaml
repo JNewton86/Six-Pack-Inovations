@@ -545,13 +545,6 @@ Resources:
           KeyType: "HASH"
       BillingMode: "PAY_PER_REQUEST"
       TableName: "orders"
-      GlobalSecondaryIndexes:
-        - IndexName: "OrdersByClientIdWithData"
-          KeySchema:
-            - AttributeName: "customerId"
-              KeyType: "HASH"
-          Projection:
-            ProjectionType: "ALL"
 
 #-----------------------------------------------------
 # The outputs defined below will be printed
