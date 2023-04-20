@@ -448,8 +448,30 @@ Resources:
         MusicPlaylistService:
           Type: Api
           Properties:
-            Path: /order/{order}
+            Path: /orders
             Method: post
+            Auth:
+              Authorizer: 'NONE'
+
+  GetAllOrdersLambda:
+    Type: AWS::Serverless::Function
+    Properties:
+      Role: !GetAtt AccessRole.Arn
+      CodeUri: MusicPlaylistServiceLambda
+      Handler: com.nashss.se.musicplaylistservice.lambda.GetOrderLambda::handleRequest
+      Runtime: java11
+      Architectures:
+        - x86_64
+      MemorySize: 512
+      Environment:
+        Variables:
+          JAVA_TOOL_OPTIONS: -XX:+TieredCompilation -XX:TieredStopAtLevel=1
+      Events:
+        MusicPlaylistService:
+          Type: Api
+          Properties:
+            Path: /orders
+            Method: get
             Auth:
               Authorizer: 'NONE'
 
