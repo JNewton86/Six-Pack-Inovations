@@ -1,4 +1,5 @@
 {
     "java.compile.nullAnalysis.mode": "automatic",
-    "editor.fontFamily": "Hack, 'Courier New', monospace"
+    "editor.fontFamily": "Fira Code",
+    "editor.fontLigatures": true,
 }
