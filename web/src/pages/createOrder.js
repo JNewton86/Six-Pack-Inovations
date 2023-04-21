@@ -17,7 +17,7 @@ class CreateOrder extends BindingClass{
      * Add the header to the page and load the MusicPlaylistClient.
      */
     mount() {
-        document.getElementById('create').addEventListener('click', this.submit);
+        document.getElementById('submit').addEventListener('click', this.submit);
 
         this.header.addHeaderToPage();
 
@@ -35,14 +35,13 @@ class CreateOrder extends BindingClass{
         errorMessageDisplay.innerText = ``;
         errorMessageDisplay.classList.add('hidden');
 
-        const beginOrderButton = document.getElementById('begin');
-        const origButtonText = beginOrderButton.innerText;
+        const beginOrderButton = document.getElementById('submit');
         beginOrderButton.innerText = 'Loading...';
+        const origButtonText = beginOrderButton.innerText;
 
         const customerName = document.getElementById('customer-name').value;
 
         const order = await this.client.createOrder(customerName, (error) => {
-            createButton.innerText = origButtonText;
             errorMessageDisplay.innerText = `Error: ${error.message}`;
             errorMessageDisplay.classList.remove('hidden');
         });

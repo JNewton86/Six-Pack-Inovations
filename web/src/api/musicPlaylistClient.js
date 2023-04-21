@@ -134,17 +134,38 @@ export default class MusicPlaylistClient extends BindingClass {
      * @param errorCallback (Optional) A function to execute if the call fails.
      * @returns The order's metadata.
      */
-    async createOrder(orderId, orderItems, errorCallback) {
+  async createOrder(customerName, errorCallback) {
         try {
             const response = await this.axiosClient.post(`orders`, {
-                orderId: orderId,
-                orderItems: items
+                customerName: customerName
         });
-            return response.data.playlist;
+            return response.data.order;
         } catch (error) {
             this.handleError(error, errorCallback)
         }
     }
+
+
+  /**
+   * Add a song to a playlist.
+   * @param id The id of the playlist to add a song to.
+   * @param asin The asin that uniquely identifies the album.
+   * @param trackNumber The track number of the song on the album.
+   * @returns The list of songs on a playlist.
+   */
+  async addItemToOrder(beerId, beerName, packagingType, quantity, errorCallback) {
+    try {
+      const response = await this.axiosClient.post(`orders/${id}/items`, {
+        beerId: beerId,
+        beerName: beerName,
+        packagingType: packagingType,
+        quantity: quantity,
+      });
+      return response.data.itemList;
+    } catch (error) {
+      this.handleError(error, errorCallback)
+    }
+  }
 
 
     /**
@@ -154,7 +175,7 @@ export default class MusicPlaylistClient extends BindingClass {
      * @param trackNumber The track number of the song on the album.
      * @returns The list of songs on a playlist.
      */
-    async faddSongToPlaylist(id, asin, trackNumber, errorCallback) {
+    async addSongToPlaylist(id, asin, trackNumber, errorCallback) {
         try {
             const token = await this.getTokenOrThrow("Only authenticated users can add a song to a playlist.");
             const response = await this.axiosClient.post(`playlists/${id}/songs`, {
