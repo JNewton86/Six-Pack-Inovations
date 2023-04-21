@@ -538,8 +538,6 @@ Resources:
       AttributeDefinitions:
         - AttributeName: "orderId"
           AttributeType: "S"
-        - AttributeName: "customerId"
-          AttributeType: "S"
       KeySchema:
         - AttributeName: "orderId"
           KeyType: "HASH"
