@@ -1,7 +1,7 @@
 import MusicPlaylistClient from '../api/musicPlaylistClient';
 import BindingClass from "../util/bindingClass";
-import DataStore from "../util/DataStore";
 import OrderTable from '../components/orderTable';
+import DataStore from "../util/DataStore";
 import Header from '../components/header';
 
 
@@ -17,7 +17,6 @@ class Inventory extends BindingClass {
         // Create a new datastore with an initial "empty" state.
         this.dataStore = new DataStore();
         this.orderTable = new OrderTable(this.dataStore);
-        this.dataStore.addChangeListener(this.displaySearchResults);
         this.client = new MusicPlaylistClient();
     }
 

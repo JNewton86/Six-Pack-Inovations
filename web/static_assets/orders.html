@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html>
-    <title>Orders Page</title>
 <head>
+    <title>Orders Page</title>
     <script type="text/javascript" src="assets/home.js"></script>
     <link rel="stylesheet" type="text/css" href="css/stylebeer.css">
+    <script type="component" src="./path/to/orderTable.js"></script>
+    <script src="assets/processOrder.js"></script>
 </head>
     <body class="background">
     <header class="header" id="header">
@@ -18,7 +20,7 @@
                 <div class="form-group row">
                     <label for="orderId">Enter Order Id to Process:</label>
                     <input type="text" id="orderId" name="orderId" placeholder="required">
-                    <button class="button-bordered" id="update">Update</button>
+                    <button type="button" class="button-bordered" id="update">Update</button>
                 </div>
             </form>
             <p class="button-group">
@@ -26,5 +28,4 @@
     </p>
         </div>
     </body>
-</body>
 </html>
