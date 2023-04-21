@@ -17,7 +17,7 @@ export default class OrderTable extends BindingClass {
     async addTableToPage() {
         console.log('OrderTable.js building...');
         const currentUser = await this.client.getIdentity();
-        const data = await this.client.getOrderData();
+        const data = await this.client.getAllOrderData();
         const table = this.buildTable(data);
         const container = document.getElementById('order-table-container');
         table.classList.add('table-container'); // Add a class to style the table

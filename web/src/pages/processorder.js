@@ -1,7 +1,7 @@
 import MusicPlaylistClient from '../api/musicPlaylistClient';
 import BindingClass from "../util/bindingClass";
 import DataStore from "../util/DataStore";
-import Table from '../components/ordertable';
+import OrderTable from '../components/orderTable';
 import Header from '../components/header';
 
 
@@ -16,7 +16,7 @@ class Inventory extends BindingClass {
 
         // Create a new datastore with an initial "empty" state.
         this.dataStore = new DataStore();
-        this.table = new Table(this.dataStore);
+        this.orderTable = new OrderTable(this.dataStore);
         this.dataStore.addChangeListener(this.displaySearchResults);
         this.client = new MusicPlaylistClient();
     }
@@ -26,7 +26,7 @@ class Inventory extends BindingClass {
      */
     mount() {
         console.log('Inventory.js mounting...');
-        this.table.addTableToPage();
+        this.orderTable.addTableToPage();
         var updateButton = document.getElementById("update");
         updateButton.addEventListener("click", this.updateInventory);
         this.header.addHeaderToPage();
