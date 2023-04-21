@@ -15,7 +15,7 @@ export default class MusicPlaylistClient extends BindingClass {
     constructor(props = {}) {
         super();
         //Methods found in this class
-        const methodsToBind = ['clientLoaded', 'getIdentity', 'login', 'logout', 'getPlaylist', 'getPlaylistSongs', 'createPlaylist', 'updateInventoryItem'];
+        const methodsToBind = ['clientLoaded', 'getIdentity', 'login', 'logout', 'getPlaylist', 'getPlaylistSongs', 'createPlaylist', 'updateInventoryItem', 'getAllOrderData'];
         this.bindClassMethods(methodsToBind, this);
 
         //this is the login
@@ -209,7 +209,32 @@ export default class MusicPlaylistClient extends BindingClass {
             errorCallback(error);
         }
     }
-
+/**
+get all order data for order table
+  */
+   async getAllOrderData() {
+     try {
+         const response = await this.axiosClient.get(`/orders/`);
+         const orders = response.data.orders.map(order => {
+             const { id: orderId, clientId, orderItems, totalCost, orderProcessed: isOrderProcessed } = order;
+             return {
+                 orderId,
+                 clientId,
+                 orderItems: orderItems.map(item => ({
+                     ...item,
+                     beerType: item.beerType || '',
+                     packagingType: item.packagingType || '',
+                     name: item.name || ''
+                 })),
+                 totalCost,
+                 isOrderProcessed
+             };
+         });
+         return orders;
+     } catch (error) {
+         this.handleError(error, errorCallback);
+     }
+   }
 
     /**
      * Update Inventory item

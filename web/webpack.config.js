@@ -29,7 +29,8 @@ module.exports = {
     createOrder: path.resolve(__dirname, 'src', 'pages', 'createOrder.js'),
     home: path.resolve(__dirname, 'src', 'pages', 'home.js'),
     inventory: path.resolve(__dirname, 'src', 'pages', 'inventory.js'),
-    updateInventory: path.resolve(__dirname, 'src', 'pages', 'updateInventory.js')
+    updateInventory: path.resolve(__dirname, 'src', 'pages', 'updateInventory.js'),
+    processOrder: path.resolve(__dirname,'src', 'pages', 'processOrder.js')
   },
   output: {
     path: path.resolve(__dirname, 'build', 'assets'),

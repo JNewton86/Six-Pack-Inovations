@@ -13,10 +13,10 @@ public class OrderModel {
     private final String clientId;
     private final List<OrderItem> orderItems;
     private final Double totalCost;
-    private boolean orderProcessed;
+    private Boolean orderProcessed;
 
 
-    public OrderModel(String id, String clientId, List<OrderItem> orderItems, Double totalCost, boolean orderProcessed) {
+    public OrderModel(String id, String clientId, List<OrderItem> orderItems, Double totalCost, Boolean orderProcessed) {
         this.id = id;
         this.clientId = clientId;
         this.orderItems = orderItems;
@@ -41,7 +41,7 @@ public class OrderModel {
         return totalCost;
     }
 
-    public boolean isOrderProcessed() {
+    public Boolean isOrderProcessed() {
         return orderProcessed;
     }
 
@@ -66,7 +66,7 @@ public class OrderModel {
         private String clientId;
         private List<OrderItem> orderItems;
         private Double totalCost;
-        private boolean orderProcessed;
+        private Boolean orderProcessed;
 
 
         public Builder withId(String id) {
@@ -88,7 +88,7 @@ public class OrderModel {
             this.orderItems = copyToList(orderItems);
             return this;
         }
-        public Builder withOrderProcessed(boolean orderProcessed) {
+        public Builder withOrderProcessed(Boolean orderProcessed) {
             this.orderProcessed = orderProcessed;
             return this;
         }
