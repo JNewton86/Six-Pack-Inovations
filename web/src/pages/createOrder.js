@@ -5,19 +5,29 @@ import BindingClass from '../util/bindingClass';
 import DataStore from '../util/DataStore';
 
 class CreateOrder extends BindingClass{
-    constructor(){
+    constructor() {
         super();
-        
-        this.bindClassMethods(['mount', 'submit', 'redirectToViewPlaylist'], this);
-
+        this.bindClassMethods(['mount', 'submit', 'redirectToViewOrder'], this);
         this.dataStore = new DataStore();
         this.dataStore.addChangeListener(this.redirectToViewOrder);
-        this.table = new Table(this.dataStore);
-
-        this.client = new MusicPlaylistClient();
-
+        this.header = new Header(this.dataStore);
     }
 
+    /**
+     * Add the header to the page and load the MusicPlaylistClient.
+     */
+    mount() {
+        document.getElementById('create').addEventListener('click', this.submit);
+
+        this.header.addHeaderToPage();
+
+        this.client = new MusicPlaylistClient();
+    }
+
+    /**
+     * Method to run when the create playlist submit button is pressed. Call the MusicPlaylistService to create the
+     * playlist.
+     */
     async submit(evt) {
         evt.preventDefault();
 
@@ -25,42 +35,41 @@ class CreateOrder extends BindingClass{
         errorMessageDisplay.innerText = ``;
         errorMessageDisplay.classList.add('hidden');
 
-        const createButton = document.getElementById('Submit Order');
-        const origButtonText = createButton.innerText;
-        createButton.innerText = 'Processing Order...';
+        const beginOrderButton = document.getElementById('begin');
+        const origButtonText = beginOrderButton.innerText;
+        beginOrderButton.innerText = 'Loading...';
 
-        const newOrder = document.getElementById('new-Order').value;
-        const ordering = await this.client.createOrder(newOrder, (error) => {
+        const customerName = document.getElementById('customer-name').value;
+
+        const order = await this.client.createOrder(customerName, (error) => {
             createButton.innerText = origButtonText;
             errorMessageDisplay.innerText = `Error: ${error.message}`;
             errorMessageDisplay.classList.remove('hidden');
         });
-        this.dataStore.set('ordering', ordering);
+        this.dataStore.set('order', order);
     }
 
+    /**
+     * When the playlist is updated in the datastore, redirect to the view playlist page.
+     */
     redirectToViewOrder() {
         const order = this.dataStore.get('order');
-        if (order != null){
-            // view order page needs to go here
-            window.location.href = `/viewOrder.html?id=${order.id}`
+        if (order != null) {
+            window.location.href = `/order.html?id=${order.id}`;
         }
     }
-
-    reset(){
-         document.getElementById("clear").value = "";
-    }
-      
 }
-    /**
-     * Main method to run when the page contents have loaded.
-     */
 
+/**
+ * Main method to run when the page contents have loaded.
+ */
 const main = async () => {
     const createOrder = new CreateOrder();
     createOrder.mount();
 };
 
-window.addEventListener('DOMContentLoaded', main);  
+window.addEventListener('DOMContentLoaded', main);
+
 
 
 
