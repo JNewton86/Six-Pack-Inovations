@@ -212,14 +212,29 @@ export default class MusicPlaylistClient extends BindingClass {
 /**
 get all order data for order table
   */
-    async getAllOrderData() {
-            try {
-                const response = await this.axiosClient.get(`/orders/`);
-                return response.data.orderList;
-            } catch (error) {
-                this.handleError(error, errorCallback)
-            }
-    }
+   async getAllOrderData() {
+     try {
+         const response = await this.axiosClient.get(`/orders/`);
+         const orders = response.data.orders.map(order => {
+             const { id: orderId, clientId, orderItems, totalCost, orderProcessed: isOrderProcessed } = order;
+             return {
+                 orderId,
+                 clientId,
+                 orderItems: orderItems.map(item => ({
+                     ...item,
+                     beerType: item.beerType || '',
+                     packagingType: item.packagingType || '',
+                     name: item.name || ''
+                 })),
+                 totalCost,
+                 isOrderProcessed
+             };
+         });
+         return orders;
+     } catch (error) {
+         this.handleError(error, errorCallback);
+     }
+   }
 
     /**
      * Update Inventory item

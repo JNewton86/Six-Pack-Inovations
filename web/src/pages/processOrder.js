@@ -32,6 +32,7 @@ class Inventory extends BindingClass {
 
     }
 
+// TODO update this code to make call to a futre backednd to change boolean for process order
     /**
      * Method to run when the update button is pressed. Call the MusicPlaylistService to update the inventory.
      */

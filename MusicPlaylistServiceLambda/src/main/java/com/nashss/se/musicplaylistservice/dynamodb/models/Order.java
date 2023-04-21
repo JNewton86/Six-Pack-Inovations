@@ -1,8 +1,6 @@
 package com.nashss.se.musicplaylistservice.dynamodb.models;
 
-import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBAttribute;
-import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBHashKey;
-import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable;
+import com.amazonaws.services.dynamodbv2.datamodeling.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,7 +12,7 @@ public class Order {
     private String clientId;
     private List<OrderItem> orderItems;
     private Double totalCost;
-    private boolean orderProcessed;
+    private Boolean orderProcessed;
 
     @DynamoDBHashKey(attributeName = "orderId")
     public String getId() {
@@ -70,12 +68,13 @@ public class Order {
         this.totalCost = totalCost;
     }
 
+    @DynamoDBTyped(DynamoDBMapperFieldModel.DynamoDBAttributeType.BOOL)
     @DynamoDBAttribute(attributeName = "orderProcessed")
-    public boolean getOrderProcessed() {
+    public Boolean getOrderProcessed() {
         return orderProcessed;
     }
 
-    public void setOrderProcessed(boolean orderProcessed) {
+    public void setOrderProcessed(Boolean orderProcessed) {
         this.orderProcessed = orderProcessed;
     }
 
