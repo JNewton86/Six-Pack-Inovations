@@ -73,5 +73,7 @@ public interface ServiceComponent {
      */
     CreateOrderActivity provideCreateOrderActivity();
 
+    ProcessOrderActivity provideProcessOrderActivity();
+
 
 }
