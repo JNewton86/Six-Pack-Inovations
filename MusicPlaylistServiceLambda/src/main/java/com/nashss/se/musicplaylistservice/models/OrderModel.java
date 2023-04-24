@@ -11,11 +11,11 @@ public class OrderModel {
 
     private final String id;
     private final String clientId;
-    private final List<OrderItem> orderItems;
+    private final String orderItems;
     private Boolean orderProcessed;
 
 
-    public OrderModel(String id, String clientId, List<OrderItem> orderItems, Boolean orderProcessed) {
+    public OrderModel(String id, String clientId, String orderItems, Boolean orderProcessed) {
         this.id = id;
         this.clientId = clientId;
         this.orderItems = orderItems;
@@ -31,7 +31,7 @@ public class OrderModel {
     }
 
     //change String to Beer object when merged
-    public List<OrderItem> getOrderItems() {
+    public String getOrderItems() {
         return orderItems;
     }
 
@@ -58,7 +58,7 @@ public class OrderModel {
     public static class Builder {
         private String id;
         private String clientId;
-        private List<OrderItem> orderItems;
+        private String orderItems;
         private Boolean orderProcessed;
 
 
@@ -72,8 +72,8 @@ public class OrderModel {
             return this;
         }
 
-        public Builder withOrderItems(List<OrderItem> orderItems) {
-            this.orderItems = copyToList(orderItems);
+        public Builder withOrderItems(String orderItems) {
+            this.orderItems = orderItems;
             return this;
         }
         public Builder withOrderProcessed(Boolean orderProcessed) {

@@ -59,9 +59,10 @@ class CreateOrder extends BindingClass{
         const origButtonText = beginOrderButton.innerText;
     
         const clientId = document.getElementById('customer-name').value;
-        const orderString = document.getElementById('order').value;
-    
-        const order = await this.client.createOrder(clientId, orderString, (error) => {
+        
+        const orderItems = document.getElementById('order-items').value;
+
+        const order = await this.client.createOrder(clientId, orderItems, (error) => {
             beginOrderButton.innerText = origButtonText;
             errorMessageDisplay.innerText = `Error: ${error.message}`;
             errorMessageDisplay.classList.remove('hidden');
@@ -76,7 +77,7 @@ class CreateOrder extends BindingClass{
     redirectToViewOrder() {
         const order = this.dataStore.get('order');
         if (order != null) {
-            window.location.href = `/order.html?id=${order.id}`;
+            window.location.href = `/yay.html`;
         }
     }
 }

@@ -10,7 +10,7 @@ import java.util.Objects;
 public class Order {
     private String orderId;
     private String clientId;
-    private List<OrderItem> orderItems;
+    private String orderItems;
     private Boolean orderProcessed;
 
     @DynamoDBHashKey(attributeName = "orderId")
@@ -39,22 +39,11 @@ public class Order {
      */
 
     @DynamoDBAttribute(attributeName = "orderItems")
-    public List<OrderItem> getOrderItems() {
-        // normally, we would prefer to return an empty Set if there are no
-        // tags, but DynamoDB doesn't represent empty Sets...needs to be null
-        // instead
-        if (null == orderItems) {
-            return null;
-        }
-        return new ArrayList<>(orderItems);
+    public String getOrderItems() {
+        return orderItems;
     }
 
-    public void setOrderItems(List<OrderItem> orderItems) {
-        if (null == orderItems) {
-            this.orderItems = null;
-        } else {
-            this.orderItems = new ArrayList<>(orderItems);
-        }
+    public void setOrderItems(String orderItems) {
         this.orderItems = orderItems;
     }
 

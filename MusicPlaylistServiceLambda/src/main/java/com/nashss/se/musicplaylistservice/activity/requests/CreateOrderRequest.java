@@ -14,11 +14,11 @@ import java.util.List;
 @JsonDeserialize(builder = CreateOrderRequest.Builder.class)
 public class CreateOrderRequest {
     private String orderId;
-    private List<OrderItem> orderItems;
+    private String orderItems;
     private boolean orderProcessed;
     private String clientId;
 
-    public CreateOrderRequest(String orderId, List<OrderItem> orderItems, boolean orderProcessed, String clientId) {
+    public CreateOrderRequest(String orderId, String orderItems, boolean orderProcessed, String clientId) {
         this.orderId = orderId;
         this.orderItems = orderItems;
         this.orderProcessed = orderProcessed;
@@ -33,7 +33,7 @@ public class CreateOrderRequest {
         return orderId;
     }
 
-    public List<OrderItem> getOrderItems() {
+    public String getOrderItems() {
         return orderItems;
     }
 
@@ -51,7 +51,7 @@ public class CreateOrderRequest {
     @JsonPOJOBuilder
     public static class Builder {
         private String orderId;
-        private List<OrderItem> orderItems;
+        private String orderItems;    
         private boolean orderProcessed;
         private String clientId;
 
@@ -60,7 +60,7 @@ public class CreateOrderRequest {
             return this;
         }
 
-        public CreateOrderRequest.Builder withOrderItems(List<OrderItem> orderItems) {
+        public CreateOrderRequest.Builder withOrderItems(String orderItems) {
             this.orderItems = orderItems;
             return this;
         }
