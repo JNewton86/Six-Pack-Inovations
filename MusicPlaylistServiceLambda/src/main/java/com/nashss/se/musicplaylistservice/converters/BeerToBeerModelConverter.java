@@ -34,7 +34,6 @@ public class BeerToBeerModelConverter {
                 .withId(order.getId())
                 .withClientId(order.getClientId())
                 .withOrderItems(order.getOrderItems())
-                .withTotalCost(order.getTotalCost())
                 .withOrderProcessed(order.getOrderProcessed())
                 .build();
     }

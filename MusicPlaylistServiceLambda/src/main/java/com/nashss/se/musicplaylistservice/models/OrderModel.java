@@ -12,15 +12,13 @@ public class OrderModel {
     private final String id;
     private final String clientId;
     private final List<OrderItem> orderItems;
-    private final Double totalCost;
     private Boolean orderProcessed;
 
 
-    public OrderModel(String id, String clientId, List<OrderItem> orderItems, Double totalCost, Boolean orderProcessed) {
+    public OrderModel(String id, String clientId, List<OrderItem> orderItems, Boolean orderProcessed) {
         this.id = id;
         this.clientId = clientId;
         this.orderItems = orderItems;
-        this.totalCost = totalCost;
         this.orderProcessed = orderProcessed;
     }
 
@@ -37,10 +35,6 @@ public class OrderModel {
         return orderItems;
     }
 
-    public Double getTotalCost() {
-        return totalCost;
-    }
-
     public Boolean isOrderProcessed() {
         return orderProcessed;
     }
@@ -50,13 +44,13 @@ public class OrderModel {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         OrderModel that = (OrderModel) o;
-        return orderProcessed == that.orderProcessed && Objects.equals(id, that.id) && Objects.equals(clientId, that.clientId) && Objects.equals(orderItems, that.orderItems) && Objects.equals(totalCost, that.totalCost);
+        return orderProcessed == that.orderProcessed && Objects.equals(id, that.id) && Objects.equals(clientId, that.clientId) && Objects.equals(orderItems, that.orderItems);
 
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, clientId, orderItems, totalCost, orderProcessed);
+        return Objects.hash(id, clientId, orderItems, orderProcessed);
     }
     //CHECKSTYLE:OFF:Builder
     public static Builder builder() { return new Builder(); }
@@ -65,7 +59,6 @@ public class OrderModel {
         private String id;
         private String clientId;
         private List<OrderItem> orderItems;
-        private Double totalCost;
         private Boolean orderProcessed;
 
 
@@ -76,11 +69,6 @@ public class OrderModel {
 
         public Builder withClientId(String clientId) {
             this.clientId = clientId;
-            return this;
-        }
-
-        public Builder withTotalCost(Double totalCost) {
-            this.totalCost = totalCost;
             return this;
         }
 
@@ -95,7 +83,7 @@ public class OrderModel {
 
 
         public OrderModel build() {
-            return new OrderModel(id, clientId, orderItems, totalCost, orderProcessed);
+            return new OrderModel(id, clientId, orderItems, orderProcessed);
         }
     }
 }
