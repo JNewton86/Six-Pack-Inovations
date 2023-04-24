@@ -51,7 +51,7 @@ public class CreateOrderActivity {
 
         Order newOrder = new Order();
         newOrder.setId(MusicPlaylistServiceUtils.generatePlaylistId());
-        newOrder.setOrderItems("");
+        newOrder.setOrderItems(createOrderRequest.getOrderItems());
         newOrder.setTotalCost(0.0);
         newOrder.setOrderProcessed(false);
         newOrder.setClientId(createOrderRequest.getClientId());
