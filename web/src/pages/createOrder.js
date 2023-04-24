@@ -53,7 +53,7 @@ class CreateOrder extends BindingClass{
     redirectToViewOrder() {
         const order = this.dataStore.get('order');
         if (order != null) {
-            window.location.href = `/order.html?id=${order.id}`;
+            window.location.href = `/yay.html`;
         }
     }
 }
