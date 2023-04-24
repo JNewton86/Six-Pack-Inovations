@@ -65,10 +65,10 @@ public class CreateOrderActivity {
     }
 }
 //If this is the place we ultimately decide to calculate totalCost, then this code may be helpful:
-//        private Double calculateTotalCost(List<OrderItem> order) {
-//            Double totalCost = 0.0;
-//            for(OrderItem item : order) {
-//                totalCost = totalCost + item.getLineItemPrice();
-//            }
-//            return totalCost;
-//        }
+    //    private Double calculateTotalCost(List<OrderItem> order) {
+    //        Double totalCost = 0.0;
+    //        for(OrderItem item : order) {
+    //            totalCost = totalCost + item.getLineItemPrice();
+    //        }
+    //        return totalCost;
+    //    }

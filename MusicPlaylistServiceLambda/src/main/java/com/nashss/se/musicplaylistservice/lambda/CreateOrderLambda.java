@@ -26,7 +26,7 @@ implements RequestHandler<LambdaRequest<CreateOrderRequest>, LambdaResponse> {
                                     .withClientId(arg.getClientId())
                                     .withOrderItems(arg.getOrderItems())
                                     .withTotalCost(arg.getTotalCost())
-                                    .withIsOrderProcessed(arg.isOrderProcessed())
+                                    .withOrderProcessed(arg.getOrderProcessed())
                                     .build());
                 },
                 (request, serviceComponent) ->
