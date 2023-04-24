@@ -475,6 +475,25 @@ Resources:
             Auth:
               Authorizer: 'NONE'
 
+  ProcessOrderLambda:
+    Type: AWS::Serverless::Function
+    Properties:
+      Role: !GetAtt AccessRole.Arn
+      CodeUri: MusicPlaylistServiceLambda
+      Handler: com.nashss.se.musicplaylistservice.lambda.ProcessOrderLambda::handleRequest
+      Runtime: java11
+      Architectures:
+        - x86_64
+      MemorySize: 512
+      Environment:
+        Variables:
+          JAVA_TOOL_OPTIONS: -XX:+TieredCompilation -XX:TieredStopAtLevel=1
+      Events:
+        MusicPlaylistService:
+          Type: Api
+          Properties:
+            Path: /orders/{orderId}
+            Method: put
   #-----------------------------------------------------
   # DynamoDB Configuration
   #-----------------------------------------------------

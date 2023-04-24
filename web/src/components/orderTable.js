@@ -25,37 +25,36 @@ export default class OrderTable extends BindingClass {
     }
 
     buildTable(data) {
-        if (!Array.isArray(data)) {
-            console.error('Error: data is not an array!');
-            return;
-        }
-        const table = document.createElement('table');
-        table.classList.add('table-container'); // Add a class to style the table
-
-        // Create the table header row
-        const headerRow = table.insertRow();
-        const headers = ['Order Id', 'Client Id', 'Order Items', 'Total Cost'];
-        headers.forEach(header => {
-            const th = document.createElement('th');
-            th.innerText = header;
-            headerRow.appendChild(th);
-        });
-
-        // Create the order table body rows and only show unprocessed requests
-       data.forEach(item => {
-         if (!item.isOrderProcessed) { // only add rows for orders that haven't been processed yet
-           const row = table.insertRow();
-           row.classList.add('order-row'); // Add a class to style the row
-           const cells = [item.orderId, item.clientId, item.orderItems, item.totalCost];
-           cells.forEach(cell => {
-             const td = document.createElement('td');
-             td.innerText = cell;
-             row.appendChild(td);
-           });
-         }
-       });
-
-        return table;
-    }
+      if (!Array.isArray(data)) {
+          console.error('Error: data is not an array!');
+          return;
+      }
+      const table = document.createElement('table');
+      table.classList.add('table-container'); // Add a class to style the table
+  
+      // Create the table header row
+      const headerRow = table.insertRow();
+      const headers = ['Order Id', 'Client Id', 'Order Items', 'Total Cost'];
+      headers.forEach(header => {
+          const th = document.createElement('th');
+          th.innerText = header;
+          headerRow.appendChild(th);
+      });
+  
+      // Create the order table body rows and only show unprocessed requests
+      data.filter(item => !item.isOrderProcessed).forEach(item => {
+          const row = table.insertRow();
+          row.classList.add('order-row'); // Add a class to style the row
+          const cells = [item.orderId, item.clientId, item.orderItems, item.totalCost];
+          cells.forEach(cell => {
+              const td = document.createElement('td');
+              td.innerText = cell;
+              row.appendChild(td);
+          });
+      });
+  
+      return table;
+  }
+  
 
 }

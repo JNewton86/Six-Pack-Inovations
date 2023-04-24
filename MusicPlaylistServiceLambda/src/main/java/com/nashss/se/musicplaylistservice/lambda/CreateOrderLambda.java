@@ -23,6 +23,9 @@ implements RequestHandler<LambdaRequest<CreateOrderRequest>, LambdaResponse> {
                     return input.fromPath(claims ->
                             CreateOrderRequest.builder()
                                     .withClientId(arg.getClientId())
+                                    .withOrderItems(arg.getOrderItems())
+                                    .withTotalCost(arg.getTotalCost())
+                                    .withOrderProcessed(arg.getOrderProcessed())
                                     .build());
                 },
                 (request, serviceComponent) ->
