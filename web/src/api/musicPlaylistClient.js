@@ -134,12 +134,12 @@ export default class MusicPlaylistClient extends BindingClass {
      * @param errorCallback (Optional) A function to execute if the call fails.
      * @returns The order's metadata.
      */
-  async createOrder(clientId, errorCallback) {
+  async createOrder(clientId, orderItems, errorCallback) {
     try {
       const response = await this.axiosClient.post(`orders`, {
         clientId: clientId,
         orderId: '',
-        orderItems: [],
+        orderItems: orderItems,
         totalCost: 0,
         orderProcessed: false
       });
