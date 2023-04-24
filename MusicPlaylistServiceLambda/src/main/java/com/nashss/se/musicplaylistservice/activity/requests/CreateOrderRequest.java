@@ -16,14 +16,14 @@ public class CreateOrderRequest {
     private String orderId;
     private List<OrderItem> orderItems;
     private Double totalCost;
-    private boolean isOrderProcessed;
+    private boolean orderProcessed;
     private String clientId;
 
     public CreateOrderRequest(String orderId, List<OrderItem> orderItems, Double totalCost, boolean orderProcessed, String clientId) {
         this.orderId = orderId;
         this.orderItems = orderItems;
         this.totalCost = totalCost;
-        this.isOrderProcessed = orderProcessed;
+        this.orderProcessed = orderProcessed;
         this.clientId = clientId;
     }
 
@@ -43,8 +43,8 @@ public class CreateOrderRequest {
         return totalCost;
     }
 
-    public boolean isOrderProcessed() {
-        return isOrderProcessed;
+    public boolean getOrderProcessed() {
+        return orderProcessed;
     }
 
     public String getClientId() {
@@ -59,7 +59,7 @@ public class CreateOrderRequest {
         private String orderId;
         private List<OrderItem> orderItems;
         private Double totalCost;
-        private boolean isOrderProcessed;
+        private boolean orderProcessed;
         private String clientId;
 
         public CreateOrderRequest.Builder withOrderId(String orderId) {
@@ -77,8 +77,8 @@ public class CreateOrderRequest {
             return this;
         }
 
-        public CreateOrderRequest.Builder withIsOrderProcessed(boolean isOrderProcessed) {
-            this.isOrderProcessed = isOrderProcessed;
+        public CreateOrderRequest.Builder withOrderProcessed(boolean orderProcessed) {
+            this.orderProcessed = orderProcessed;
             return this;
         }
 
@@ -88,7 +88,7 @@ public class CreateOrderRequest {
         }
 
         public CreateOrderRequest build() {
-            return new CreateOrderRequest(orderId, orderItems, totalCost, isOrderProcessed, clientId);
+            return new CreateOrderRequest(orderId, orderItems, totalCost, orderProcessed, clientId);
         }
     }
 }

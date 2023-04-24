@@ -395,5 +395,27 @@ get all order data for order table
             ];
           }
         }
+        
+        async processOrder(orderId) {
+            try {
+                const token = await this.getTokenOrThrow("Only authenticated users can process orders.");
+                console.log("**this is my token** " + token)
+                const response = await this.axiosClient.put(`orders/${orderId}`, {
+                    orderId: orderId,
+                    orderProcessed: true,
+                }, {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                        'Content-Type': 'application/json'
+                    }
+                });
+                console.log(response);
+                window.location.reload();
+            } catch (error) {
+                this.handleError(error, errorCallback)
+            }
+        }
+        
+  
 }
 
