@@ -239,18 +239,12 @@ get all order data for order table
      try {
          const response = await this.axiosClient.get(`/orders/`);
          const orders = response.data.orders.map(order => {
-             const { id: orderId, clientId, orderItems, totalCost, orderProcessed: isOrderProcessed } = order;
+             const { id: orderId, clientId, orderItems, orderProcessed: orderProcessed } = order;
              return {
                  orderId,
                  clientId,
-                 orderItems: orderItems.map(item => ({
-                     ...item,
-                     beerType: item.beerType || '',
-                     packagingType: item.packagingType || '',
-                     name: item.name || ''
-                 })),
-                 totalCost,
-                 isOrderProcessed
+                 orderItems,
+                 orderProcessed
              };
          });
          return orders;

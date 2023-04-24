@@ -26,18 +26,40 @@ class CreateOrder extends BindingClass{
      * Method to run when the create order submit button is pressed. Call the MusicPlaylistService to create the
      * order.
      */
+    // async submit(evt) {
+    //     evt.preventDefault();
+
+    //     const errorMessageDisplay = document.getElementById('error-message');
+    //     errorMessageDisplay.innerText = ``;
+    //     errorMessageDisplay.classList.add('hidden');
+
+    //     const beginOrderButton = document.getElementById('submit');
+    //     beginOrderButton.innerText = 'Loading...';
+    //     const origButtonText = beginOrderButton.innerText;
+
+    //     const clientId = document.getElementById('customer-name').value;
+
+    //     const order = await this.client.createOrder(clientId, (error) => {
+    //         beginOrderButton.innerText = origButtonText;
+    //         errorMessageDisplay.innerText = `Error: ${error.message}`;
+    //         errorMessageDisplay.classList.remove('hidden');
+    //     });
+    //     this.dataStore.set('order', order);
+    // }
+
     async submit(evt) {
         evt.preventDefault();
-
+    
         const errorMessageDisplay = document.getElementById('error-message');
         errorMessageDisplay.innerText = ``;
         errorMessageDisplay.classList.add('hidden');
-
+    
         const beginOrderButton = document.getElementById('submit');
         beginOrderButton.innerText = 'Loading...';
         const origButtonText = beginOrderButton.innerText;
-
+    
         const clientId = document.getElementById('customer-name').value;
+        
         const orderItems = document.getElementById('order-items').value;
 
         const order = await this.client.createOrder(clientId, orderItems, (error) => {
@@ -47,6 +69,7 @@ class CreateOrder extends BindingClass{
         });
         this.dataStore.set('order', order);
     }
+    
 
     /**
      * When the order is updated in the datastore, redirect to the view playlist page.
