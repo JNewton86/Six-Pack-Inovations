@@ -42,7 +42,6 @@ public class ModelConverterSPI {
         return OrderModel.builder()
                 .withId(order.getId())
                 .withClientId(order.getClientId())
-                .withTotalCost(order.getTotalCost())
                 .withOrderItems(orderItems)
                 .withOrderProcessed(order.getOrderProcessed())
                 .build();

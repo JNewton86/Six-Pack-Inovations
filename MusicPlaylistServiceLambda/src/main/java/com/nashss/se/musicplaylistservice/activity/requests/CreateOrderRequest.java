@@ -15,14 +15,12 @@ import java.util.List;
 public class CreateOrderRequest {
     private String orderId;
     private List<OrderItem> orderItems;
-    private Double totalCost;
     private boolean orderProcessed;
     private String clientId;
 
-    public CreateOrderRequest(String orderId, List<OrderItem> orderItems, Double totalCost, boolean orderProcessed, String clientId) {
+    public CreateOrderRequest(String orderId, List<OrderItem> orderItems, boolean orderProcessed, String clientId) {
         this.orderId = orderId;
         this.orderItems = orderItems;
-        this.totalCost = totalCost;
         this.orderProcessed = orderProcessed;
         this.clientId = clientId;
     }
@@ -37,10 +35,6 @@ public class CreateOrderRequest {
 
     public List<OrderItem> getOrderItems() {
         return orderItems;
-    }
-
-    public Double getTotalCost() {
-        return totalCost;
     }
 
     public boolean getOrderProcessed() {
@@ -58,7 +52,6 @@ public class CreateOrderRequest {
     public static class Builder {
         private String orderId;
         private List<OrderItem> orderItems;
-        private Double totalCost;
         private boolean orderProcessed;
         private String clientId;
 
@@ -69,11 +62,6 @@ public class CreateOrderRequest {
 
         public CreateOrderRequest.Builder withOrderItems(List<OrderItem> orderItems) {
             this.orderItems = orderItems;
-            return this;
-        }
-
-        public CreateOrderRequest.Builder withTotalCost(Double totalCost) {
-            this.totalCost = totalCost;
             return this;
         }
 
@@ -88,7 +76,7 @@ public class CreateOrderRequest {
         }
 
         public CreateOrderRequest build() {
-            return new CreateOrderRequest(orderId, orderItems, totalCost, orderProcessed, clientId);
+            return new CreateOrderRequest(orderId, orderItems, orderProcessed, clientId);
         }
     }
 }

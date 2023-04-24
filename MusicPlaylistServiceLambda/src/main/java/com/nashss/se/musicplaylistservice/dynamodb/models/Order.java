@@ -11,7 +11,6 @@ public class Order {
     private String orderId;
     private String clientId;
     private List<OrderItem> orderItems;
-    private Double totalCost;
     private Boolean orderProcessed;
 
     @DynamoDBHashKey(attributeName = "orderId")
@@ -59,15 +58,6 @@ public class Order {
         this.orderItems = orderItems;
     }
 
-    @DynamoDBAttribute(attributeName = "totalCost")
-    public Double getTotalCost() {
-        return totalCost;
-    }
-
-    public void setTotalCost(Double totalCost) {
-        this.totalCost = totalCost;
-    }
-
     @DynamoDBAttribute(attributeName = "orderProcessed")
     public Boolean getOrderProcessed() {
         return orderProcessed;
@@ -90,13 +80,12 @@ public class Order {
 
         return Objects.equals(orderId, that.orderId) &&
                 Objects.equals(clientId, that.clientId) &&
-                Objects.equals(orderItems, that.orderItems) &&
-                Objects.equals(totalCost, that.totalCost);
+                Objects.equals(orderItems, that.orderItems);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(orderId, clientId, orderItems, totalCost);
+        return Objects.hash(orderId, clientId, orderItems);
     }
 }
 
