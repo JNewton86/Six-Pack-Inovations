@@ -32,7 +32,7 @@ public class BeerToBeerModelConverter {
 
         return OrderModel.builder()
                 .withId(order.getId())
-                .withClientId(order.getId())
+                .withClientId(order.getClientId())
                 .withOrderItems(order.getOrderItems())
                 .withTotalCost(order.getTotalCost())
                 .withOrderProcessed(order.getOrderProcessed())

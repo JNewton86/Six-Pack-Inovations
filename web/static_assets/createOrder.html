@@ -8,144 +8,30 @@
 </head>
 
 <header class="header" id="header">
-    <a href="index1.html">
+    <a href="index.html">
         <img src="sixpacklogo.png" alt="logo placeholder" style="width:150px;height:150px;">
     </a>
 </header>
 
 <body class="background">
     <div class="card">
-        <h1 style="color: #FFB563;">Create Order</h1>
+        <h2>Create Order</h2>
         <hr class="dashed">
-        <h4>Ordering From: Warehouse No. 01, Nashville, TN</h4>
-
-        <div id="table-container"></div>
-
-        <form name="tblform">
-            <table width="80%" id="alignment">
-                <tr>
-                    <th>Item</th>
-                    <th>Beer Name </th>
-                    <th>Quantity</th>
-                    <th>Packaging Type</th>
-                </tr>
-                <tr>
-                    <td>Item 1:</td>
-
-                    <td>
-
-                        <select id="item1">
-                            <option value="1">--Select Item--</option>
-                            <option value="Werewolf Beach Party">Werewolf Beach Party</option>
-                            <option value="The Dark Knight">The Dark Knight</option>
-                            <option value="Midnight Sun Kodiak">Midnight Sun Kodiak</option>
-                            <option value="Porter Potty">Porter Potty</option>
-                            <option value="None">None</option>
-                        </select>
-
-                    </td>
-
-                    <td><input type="number" value="" id="q1" min="000" max="100">
-
-                    </td>
-                    <td>
-                            <select id="item1">
-                            <option value="1">--Select Packaging Type--</option>
-                            <option value="Keg">Keg</option>
-                            <option value="Case">Case</option>
-
-                        </select>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td>Item 2:</td>
-                    <td>
-                        <select id="item2">
-                            <option value="1">--Select Item--</option>
-                            <option value="Werewolf Beach Party">Werewolf Beach Party</option>
-                            <option value="The Dark Knight">The Dark Knight</option>
-                            <option value="Midnight Sun Kodiak">Midnight Sun Kodiak</option>
-                            <option value="Porter Potty">Porter Potty</option>
-                            <option value="None">None</option>
-                        </select>
-                    </td>
-
-                    <td><input type="number" value="" id="q1" min="000" max="100">
-
-                    <td>
-                        <select id="item1">
-                            <option value="1">--Select Packaging Type--</option>
-                            <option value="Keg">Keg</option>
-                            <option value="Case">Case</option>
-                    
-                        </select>
-                    
-                    </td>
-                </tr>
-                <tr>
-                    <td>Item 3:</td>
-                    <td><select id="item3">
-                            <option value="1">--Select Item--</option>
-                            <option value="Werewolf Beach Party">Werewolf Beach Party</option>
-                            <option value="The Dark Knight">The Dark Knight</option>
-                            <option value="Midnight Sun Kodiak">Midnight Sun Kodiak</option>
-                            <option value="Porter Potty">Porter Potty</option>
-                            <option value="None">None</option>
-                        </select>
-                    </td>
-
-                    <td><input type="number" value="" id="q1" min="000" max="100">
-
-                    <td>
-                        <select id="item1">
-                            <option value="1">--Select Packaging Type--</option>
-                            <option value="Keg">Keg</option>
-                            <option value="Case">Case</option>
-                    
-                        </select>
-                    
-                    </td>
-                </tr>
-                <tr>
-                    <td>Item 4:</td>
-                    <td><select id="item4">
-                            <option value="1">--Select Item--</option>
-                            <option value="Werewolf Beach Party">Werewolf Beach Party</option>
-                            <option value="The Dark Knight">The Dark Knight</option>
-                            <option value="Midnight Sun Kodiak">Midnight Sun Kodiak</option>
-                            <option value="Porter Potty">Porter Potty</option>
-                            <option value="None">None</option>
-                        </select>
-                    </td>
-
-                    <td><input type="number" value="" id="q1" min="000" max="100">
-
-                    <td>
-                        <select id="item1">
-                            <option value="1">--Select Packaging Type--</option> 
-                            <option value="Keg">Keg</option>
-                            <option value="Case">Case</option>
-                    
-                        </select>
-                    
-                    </td>
-                </tr>
-                    <br>
-            </table>
-
-            <td><input type="button" value="Submit Order" onclick=submit()></td>
-            <td><button type="reset" onclick="ClearFields();">Clear</button></td>
+        <center>
+        <form class="card-content" id="create-order-form">
+            <p class="hidden error" id="error-message"> </p>
+            <p class="form-field">
+                <h3><label> <b> Customer Name </b></label></h3>
+                <input type="text" required class="validated-field" id="customer-name" placeholder="squidward-tortellini" autofocus>
+            </p>
+            <p>
             
+                <hr style="border-top: dotted 1px;" />
+                <a href="#" class="button" id="submit">Begin Order</a>
+            </p>
         </form>
-            </table>
-            <br>
-
-        </p>
-
-            </div>
-        </div>
     </div>
+    </center>
 </body>
 
 </html>

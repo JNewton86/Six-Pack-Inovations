@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<Title>Order</Title>
+<head>
+    <script type="text/javascript" src="assets/viewOrder.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/stylebeer.css">
+</head>
+
+<body class="background">
+    <header class="header" id="header"></header>
+    <div class="card">
+        <h2 id="order-id"></h2>
+        <h3>Customer: <span id="customer-name"></span></h3>
+        <ol id="items"></ol>
+    </div>
+    <div class="card">
+        <h2>Add Item to Order</h2>
+        <hr class="dashed">
+        <form class="card-content" id="add-item-form">
+            <p class="hidden error" id="error-message"> </p>
+            <p class="form-field">
+                <label>Beer Name</label>
+                <select name="beerName" id="beerName">
+                    <option value="Werewolf Beach Party">Werewolf Beach Party</option>
+                    <option value="The Dark Knight">The Dark Knight</option>
+                    <option value="Midnight Sun Kodiak">Midnight Sun Kodiak</option>
+                    <option value="Porter Potty">Porter Potty</option>
+                </select>
+            </p>
+            <p class="form-field">
+                <label>Beer ID</label>
+                <input type="text" id="beerId">
+            </p>
+            <p class="form-field">
+                <label>Quantity</label>
+                <input type="number" id="quantity" min="0">
+            </p>
+            <p class="form-field">
+                <label>Packaging Type</label>
+                <select name="packagingType" id="packagingType">
+                    <option value="Keg">Keg</option>
+                    <option value="Case">Case</option>
+                </select>
+            </p>
+        </form>
+        <a href="#" class="button" id="add-item">Add Item to Order</a>
+    </div>
+</body>
+
+</html>

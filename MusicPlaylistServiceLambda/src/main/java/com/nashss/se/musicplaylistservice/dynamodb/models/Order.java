@@ -68,7 +68,6 @@ public class Order {
         this.totalCost = totalCost;
     }
 
-    // @DynamoDBTyped(DynamoDBMapperFieldModel.DynamoDBAttributeType.BOOL)
     @DynamoDBAttribute(attributeName = "orderProcessed")
     public Boolean getOrderProcessed() {
         return orderProcessed;
