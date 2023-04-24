@@ -139,12 +139,11 @@ export default class MusicPlaylistClient extends BindingClass {
             const response = await this.axiosClient.post(`orders`, {
                 customerName: customerName
         });
-            return response.data.order;
+            return response.data.orders;
         } catch (error) {
             this.handleError(error, errorCallback)
         }
     }
-
 
   /**
    * Add a song to a playlist.
@@ -166,7 +165,6 @@ export default class MusicPlaylistClient extends BindingClass {
       this.handleError(error, errorCallback)
     }
   }
-
 
     /**
      * Add a song to a playlist.

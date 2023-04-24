@@ -22,11 +22,7 @@ implements RequestHandler<LambdaRequest<CreateOrderRequest>, LambdaResponse> {
                     CreateOrderRequest arg = input.fromBody(CreateOrderRequest.class);
                     return input.fromPath(claims ->
                             CreateOrderRequest.builder()
-                                    .withOrderId(arg.getOrderId())
                                     .withClientId(arg.getClientId())
-                                    .withOrderItems(arg.getOrderItems())
-                                    .withTotalCost(arg.getTotalCost())
-                                    .withIsOrderProcessed(arg.isOrderProcessed())
                                     .build());
                 },
                 (request, serviceComponent) ->

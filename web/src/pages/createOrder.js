@@ -10,7 +10,7 @@ class CreateOrder extends BindingClass{
         this.bindClassMethods(['mount', 'submit', 'redirectToViewOrder'], this);
         this.dataStore = new DataStore();
         this.dataStore.addChangeListener(this.redirectToViewOrder);
-        this.header = new Header(this.dataStore);
+    
     }
 
     /**
@@ -19,14 +19,12 @@ class CreateOrder extends BindingClass{
     mount() {
         document.getElementById('submit').addEventListener('click', this.submit);
 
-        this.header.addHeaderToPage();
-
         this.client = new MusicPlaylistClient();
     }
 
     /**
-     * Method to run when the create playlist submit button is pressed. Call the MusicPlaylistService to create the
-     * playlist.
+     * Method to run when the create order submit button is pressed. Call the MusicPlaylistService to create the
+     * order.
      */
     async submit(evt) {
         evt.preventDefault();
@@ -42,6 +40,7 @@ class CreateOrder extends BindingClass{
         const customerName = document.getElementById('customer-name').value;
 
         const order = await this.client.createOrder(customerName, (error) => {
+            beginOrderButton.innerText = origButtonText;
             errorMessageDisplay.innerText = `Error: ${error.message}`;
             errorMessageDisplay.classList.remove('hidden');
         });
@@ -49,7 +48,7 @@ class CreateOrder extends BindingClass{
     }
 
     /**
-     * When the playlist is updated in the datastore, redirect to the view playlist page.
+     * When the order is updated in the datastore, redirect to the view playlist page.
      */
     redirectToViewOrder() {
         const order = this.dataStore.get('order');
