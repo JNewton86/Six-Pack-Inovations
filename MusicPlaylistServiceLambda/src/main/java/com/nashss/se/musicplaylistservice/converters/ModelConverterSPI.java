@@ -34,16 +34,12 @@ public class ModelConverterSPI {
     }
 
     public OrderModel toOrderModel(Order order) {
-        List<OrderItem> orderItems = null;
-        if (order.getOrderItems() != null) {
-            orderItems = new ArrayList<>(order.getOrderItems());
-        }
 
         return OrderModel.builder()
                 .withId(order.getId())
                 .withClientId(order.getClientId())
                 .withTotalCost(order.getTotalCost())
-                .withOrderItems(orderItems)
+                .withOrderItems(order.getOrderItems())
                 .withOrderProcessed(order.getOrderProcessed())
                 .build();
     }
