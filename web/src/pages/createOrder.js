@@ -37,9 +37,9 @@ class CreateOrder extends BindingClass{
         beginOrderButton.innerText = 'Loading...';
         const origButtonText = beginOrderButton.innerText;
 
-        const customerName = document.getElementById('customer-name').value;
+        const clientId = document.getElementById('customer-name').value;
 
-        const order = await this.client.createOrder(customerName, (error) => {
+        const order = await this.client.createOrder(clientId, (error) => {
             beginOrderButton.innerText = origButtonText;
             errorMessageDisplay.innerText = `Error: ${error.message}`;
             errorMessageDisplay.classList.remove('hidden');

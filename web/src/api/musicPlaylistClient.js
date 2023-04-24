@@ -134,16 +134,20 @@ export default class MusicPlaylistClient extends BindingClass {
      * @param errorCallback (Optional) A function to execute if the call fails.
      * @returns The order's metadata.
      */
-  async createOrder(customerName, errorCallback) {
-        try {
-            const response = await this.axiosClient.post(`orders`, {
-                customerName: customerName
-        });
-            return response.data.orders;
-        } catch (error) {
-            this.handleError(error, errorCallback)
-        }
+  async createOrder(clientId, errorCallback) {
+    try {
+      const response = await this.axiosClient.post(`orders`, {
+        clientId: clientId,
+        orderId: '',
+        orderItems: [],
+        totalCost: 0,
+        orderProcessed: false
+      });
+      return response.data;
+    } catch (error) {
+      this.handleError(error, errorCallback);
     }
+  }
 
   /**
    * Add a song to a playlist.
