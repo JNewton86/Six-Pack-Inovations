@@ -9,10 +9,10 @@ on:
 env:
 
   # STUDENTS: Set these environment variables 
-  API_BASE_URL: https://i1hghlyipj.execute-api.us-east-2.amazonaws.com/Prod/
-  COGNITO_DOMAIN: beerdrinkingbears.auth.us-east-2.amazoncognito.com
-  COGNITO_REDIRECT_SIGNIN: https://d2ckq9m02ll5f2.cloudfront.net
-  COGNITO_REDIRECT_SIGNOUT: https://d2ckq9m02ll5f2.cloudfront.net
+  API_BASE_URL: https://y0x9z82s37.execute-api.us-east-2.amazonaws.com/Prod/
+  COGNITO_DOMAIN: bearsdrinkingbeers.auth.us-east-2.amazoncognito.com
+  COGNITO_REDIRECT_SIGNIN: https://d36tprx9xu1xl0.cloudfront.net
+  COGNITO_REDIRECT_SIGNOUT: https://d36tprx9xu1xl0.cloudfront.net
 
   COGNITO_USER_POOL_ID: ${{ secrets.COGNITO_USER_POOL_ID }}
   COGNITO_USER_POOL_CLIENT_ID: ${{ secrets.COGNITO_USER_POOL_CLIENT_ID }}
