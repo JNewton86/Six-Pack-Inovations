@@ -19,7 +19,7 @@ class ProcessOrder extends BindingClass {
       this.dataStore = new DataStore();
       this.orderTable = new OrderTable(this.dataStore);
       this.client = new MusicPlaylistClient();
-      this.header = new Header();
+      this.header = new Header(this.dataStore);
     }
   
     mount() {
