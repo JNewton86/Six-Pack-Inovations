@@ -105,7 +105,7 @@ In this scenario you will deploy the backend to AWS and run the frontend locally
 
 1. Deploy the Lambda service (aka the backend):
    - Build the Java code: `sam build`
-   - Deploy it: `sam deploy --s3-bucket __BUCKET_FROM_ABOVE__ --parameter-overrides S3Bucket=__BUCKET_FROM_ABOVE__ FrontendDeployment=local`
+- Deploy it: `sam deploy --s3-bucket __BUCKET_FROM_ABOVE__ --parameter-overrides S3Bucket=__BUCKET_FROM_ABOVE__ FrontendDeployment=local`
 
      **Take note of the "Outputs" produced by the deploy command. You will be using these soon.**
 2. Configure the frontend application:
