@@ -412,7 +412,7 @@ get all order data for order table
           }
         }
         
-        async processOrder(orderId) {
+        async processOrder(orderId, errorCallback) {
             try {
                 const token = await this.getTokenOrThrow("Only authenticated users can process orders.");
                 console.log("**this is my token** " + token)

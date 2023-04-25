@@ -23,9 +23,21 @@ class ProcessOrder extends BindingClass {
     mount() {
       console.log("processOrder.js mounting...");
       this.orderTable.addTableToPage();
-      const updateButton = document.getElementById("update");
-      updateButton.addEventListener("click", this.processOrder); // updated line
-    }
+
+      // Create the button
+      const updateButton = document.createElement("button");
+      updateButton.type = "button";
+      updateButton.className = "button-bordered";
+      updateButton.id = "update";
+      updateButton.innerText = "Update";
+
+      // Add event listener to the button
+      updateButton.addEventListener("click", this.processOrder);
+
+      // Add the button to the form
+      const formGroup = document.querySelector(".form-group.row");
+      formGroup.appendChild(updateButton);
+  }
   
     async processOrder(event) {
       event.preventDefault();
@@ -34,7 +46,11 @@ class ProcessOrder extends BindingClass {
       const orderId = form.elements["orderId"].value;
   
       try {
-        const updateRequest = await this.client.processOrder(orderId);
+        const updateRequest = await this.client.processOrder(orderId, (error) => {
+          beginOrderButton.innerText = origButtonText;
+          errorMessageDisplay.innerText = `Error: ${error.message}`;
+          errorMessageDisplay.classList.remove('hidden');
+      });
         alert("Order processed successfully!");
       } catch (error) {
         console.error(error);

@@ -43,7 +43,7 @@ export default class OrderTable extends BindingClass {
         });
     
         // Create the order table body rows and only show unprocessed requests
-        data.filter(item => !item.isOrderProcessed).forEach(item => {
+        data.filter(item => !item.orderProcessed).forEach(item => {
             const row = table.insertRow();
             row.classList.add('order-row');
             const cells = [item.orderId, item.clientId, item.orderItems];
