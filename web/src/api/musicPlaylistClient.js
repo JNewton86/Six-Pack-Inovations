@@ -137,10 +137,9 @@ export default class MusicPlaylistClient extends BindingClass {
   async createOrder(clientId, orderItems, errorCallback) {
     try {
       const response = await this.axiosClient.post(`orders`, {
-        clientId: clientId,
         orderId: '',
+        clientId: clientId,
         orderItems: orderItems,
-        totalCost: 0,
         orderProcessed: false
       });
       return response.data;
