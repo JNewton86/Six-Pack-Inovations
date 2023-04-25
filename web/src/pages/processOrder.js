@@ -2,7 +2,6 @@ import MusicPlaylistClient from '../api/musicPlaylistClient';
 import BindingClass from "../util/bindingClass";
 import OrderTable from '../components/orderTable';
 import DataStore from "../util/DataStore";
-import Header from '../components/header';
 
 
 
@@ -26,7 +25,6 @@ class ProcessOrder extends BindingClass {
       this.orderTable.addTableToPage();
       const updateButton = document.getElementById("update");
       updateButton.addEventListener("click", this.processOrder); // updated line
-      this.header.addHeaderToPage();
     }
   
     async processOrder(event) {
